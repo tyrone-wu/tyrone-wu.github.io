@@ -1,14 +1,14 @@
 {
-    "name": "react-devcontainer",
-    "image": "mcr.microsoft.com/devcontainers/typescript-node:latest",
+    "name": "node-devcontainer",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:18",
     "remoteUser": "node",
     "customizations": {
         "vscode": {
             "extensions": [
-				"dbaeumer.vscode-eslint",
-				"dsznajder.es7-react-js-snippets",
-				"astro-build.astro-vscode"
-			]
+                "dbaeumer.vscode-eslint",
+                "dsznajder.es7-react-js-snippets",
+                "astro-build.astro-vscode"
+            ]
         }
     }
 }
