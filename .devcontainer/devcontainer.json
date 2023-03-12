@@ -7,7 +7,7 @@
             "extensions": [
                 "dbaeumer.vscode-eslint",
                 "dsznajder.es7-react-js-snippets",
-                "astro-build.astro-vscode"
+                "msjsdiag.vscode-react-native"
             ]
         }
     }
