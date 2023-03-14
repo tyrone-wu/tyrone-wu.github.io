@@ -14,9 +14,9 @@ export default function ToggleTheme() {
   return (
     <IconButton 
       marginX={6}
-      marginY="auto"
+      marginY={[3, "auto"]}
       size="md"
-      colorScheme={modeColor}
+      borderColor={modeColor}
       variant="outline"
       icon={ModeIcon}
       onClick={toggleColorMode}

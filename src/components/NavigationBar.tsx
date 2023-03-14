@@ -1,4 +1,4 @@
-import { Flex, Spacer, useColorModeValue } from "@chakra-ui/react";
+import { Flex, useColorModeValue } from "@chakra-ui/react";
 import Logo from "./NavBar/Logo";
 
 import Menu from "./NavBar/Menu";
@@ -10,14 +10,14 @@ function NavigationBar() {
   return (
     <Flex
       width="full"
-      height={16}
+      minHeight={16}
+      justify="space-between"
       zIndex="banner"
       position="fixed"
       boxShadow="lg"
       background={headerBGColor}
     >
       <Logo />
-      <Spacer />
       <Menu />
       <ToggleTheme />
     </Flex>

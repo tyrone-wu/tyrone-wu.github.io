@@ -1,5 +1,5 @@
-import { defineStyleConfig, extendTheme } from "@chakra-ui/react";
-import { mode, StyleFunctionProps } from "@chakra-ui/theme-tools";
+import { extendTheme, StyleFunctionProps } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 
 const config = {
   initialColorMode: "light",
@@ -10,7 +10,7 @@ const config = {
 const styles = {
   global: (props: StyleFunctionProps) => ({
     body: {
-      background: mode("fall.0", "fall.3")(props),
+      backgroundColor: mode("fall.0", "fall.3")(props),
       transitionProperty: "all",
       transitionDuration: "normal",
     },
@@ -41,21 +41,24 @@ const colors = {
   night: "#395B64",
 };
 
-const NavigationBar = defineStyleConfig({
-  baseStyle: (props) => ({
-    variants: {
-      fall: {
-        background: mode("fall.2", "fall.1")(props)
-      },
-    },
-  }),
-});
+const breakpoints = {
+  sm: "46em",
+  md: "52em",
+  lg: "64em",
+};
+
+// const NavigationBar = defineStyleConfig({
+//   baseStyle: (props: StyleFunctionProps) => ({
+//     background: mode("fall.0", "fall.2")(props),
+//   }),
+// });
 
 const theme = extendTheme({
   config: config,
   styles: styles,
   fonts: fonts,
   colors: colors,
+  breakpoints: breakpoints,
   // components: {
   //   NavigationBar,
   // },

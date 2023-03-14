@@ -1,8 +1,8 @@
 import Head from "next/head";
-import PillPity from "pill-pity";
+import { Text, Box } from "@chakra-ui/react";
 
 import NavigationBar from "../components/NavigationBar";
-import Hero from "../components/Hero";
+import Layout from "@/components/Layout";
 
 export default function Home() {
   return (
@@ -17,14 +17,10 @@ export default function Home() {
       </Head>
 
       <NavigationBar />
-      <PillPity
-        pattern="circuit-board"
-        patternOpacity={0.4}
-        backgroundColor="transparent"
-        minH="100vh"
-      >
-        <Hero />
-      </PillPity>
+      <Layout>
+        <Box height={20}></Box>
+        <Text>Me</Text>
+      </Layout>
     </>
   );
 };
