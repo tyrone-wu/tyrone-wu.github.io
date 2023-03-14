@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Button, Divider, Flex, HStack, Icon, IconButton, useColorModeValue, VStack } from "@chakra-ui/react";
-import { BiMenu } from "react-icons/Bi";
-import { CgChevronDown } from "react-icons/Cg";
+import { BiMenu } from "react-icons/bi";
+import { CgChevronDown } from "react-icons/cg";
 
 interface Props {
   expanded: boolean;

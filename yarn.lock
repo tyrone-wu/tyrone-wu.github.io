@@ -2809,11 +2809,6 @@ picomatch@^2.3.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-pill-pity@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/pill-pity/-/pill-pity-0.2.3.tgz#cb34bf5c0f573ff2bc787b145b6856a0f916b0a0"
-  integrity sha512-d0J9pDFwaivD15I6dgFdljXL8vlaXtbFlmn+oGCEW4eC0IpXcUHge2AwLAnbiWr6qICfmxwaM8BWrbUkaN2/ug==
-
 postcss@8.4.14:
   version "8.4.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
