@@ -44,7 +44,7 @@ export default function Menu() {
         <VStack
           display={[expanded ? "flex" : "none", "none"]}
           spacing={4}
-          marginBottom={2}
+          marginBottom={4}
         >
           <Divider 
             orientation="horizontal" 
