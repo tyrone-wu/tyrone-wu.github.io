@@ -12,12 +12,9 @@ export default function Layout({ children }: Props) {
 
   return (
     <VStack
-      style={{ backgroundImage: bgMode }}
-      backgroundSize="cover"
-      backgroundRepeat="no-repeat"
-      backgroundPosition="center"
-      width="100vw"
-      height="100vh"
+      // backgroundColor="white"
+      marginX="auto"
+      maxWidth="5xl"
     >
       {children}
     </VStack>
