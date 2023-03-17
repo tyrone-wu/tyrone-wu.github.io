@@ -10,7 +10,7 @@ function NavigationBar() {
   return (
     <Flex
       width="full"
-      minHeight={16}
+      minHeight={[16, 20]}
       justify="space-between"
       zIndex="banner"
       position="fixed"

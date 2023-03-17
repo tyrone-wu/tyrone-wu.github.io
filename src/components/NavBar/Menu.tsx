@@ -16,7 +16,7 @@ export default function Menu() {
     setExpanded((prevState) => !prevState);
   };
 
-  const fillColor = useColorModeValue("winter.3", "fall.0");
+  const fillColor = useColorModeValue("winter.3", "warmWinter.1");
 
   return (
     <>

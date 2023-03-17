@@ -22,7 +22,26 @@ const fonts = {
   body: "Roboto Mono",
 };
 
+const textStyles = {
+  name: {
+    fontSize: ["3rem", "4.5rem"],
+    fontWeight: "black",
+  },
+  body: {
+    fontSize: ["1rem", "1.25rem"],
+  },
+};
+
 const colors = {
+  warm: {
+    0: "#A39270",
+  },
+  warmWinter: {
+    0: "#EEE9DA",
+    1: "#BDCDD6",
+    2: "#93BFCF",
+    3: "#6096B4",
+  },
   // https://colorhunt.co/palette/2c36393f4e4fa27b5cdcd7c9
   fall: {
     0: "#DCD7C9",
@@ -39,12 +58,13 @@ const colors = {
   },
   day: "#F49D1A",
   night: "#395B64",
+  
 };
 
 const breakpoints = {
   sm: "46em",
   md: "52em",
-  lg: "64em",
+  lg: "70em",
 };
 
 // const NavigationBar = defineStyleConfig({
@@ -57,6 +77,7 @@ const theme = extendTheme({
   config: config,
   styles: styles,
   fonts: fonts,
+  textStyles: textStyles,
   colors: colors,
   breakpoints: breakpoints,
   // components: {
