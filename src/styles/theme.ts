@@ -62,7 +62,7 @@ const colors = {
 };
 
 const breakpoints = {
-  sm: "46em",
+  sm: "42em",
   md: "52em",
   lg: "70em",
 };

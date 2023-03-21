@@ -87,7 +87,7 @@ function SectionsCollection({ textColor }: { textColor: string }) {
       <Section title="About Me" textColor={textColor} />
       <Section title="Experience" textColor={textColor} />
       <Section title="Projects" textColor={textColor} />
-      <Section title="Technology" textColor={textColor} />
+      <Section title="Skills" textColor={textColor} />
     </>
   );
 };

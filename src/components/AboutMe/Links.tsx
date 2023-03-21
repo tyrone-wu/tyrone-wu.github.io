@@ -1,4 +1,4 @@
-import { Button, Icon, Link, SlideFade, Stack } from "@chakra-ui/react";
+import { Button, Icon, Link, SlideFade, Stack, useColorModeValue } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { FaEnvelope, FaFilePdf, FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -8,15 +8,6 @@ interface Props {
   icon: IconType;
 }
 
-function LinkIcon({ icon }: { icon: IconType }) {
-  return (
-    <Icon
-      as={icon}
-      boxSize={6}
-    />
-  );
-};
-
 export default function Links({ textColor }: { textColor: string }) {
   const links = [
     { name: "GitHub", link: "https://github.com/tyrone-wu", icon: FaGithub },
@@ -24,10 +15,11 @@ export default function Links({ textColor }: { textColor: string }) {
     { name: "Resume", link: "/files/Resume.pdf", icon: FaFilePdf },
     { name: "Email", link: "mailto:tboywu@gmail.com", icon: FaEnvelope },
   ];
+  const bgShade = useColorModeValue("blackAlpha.200", "whiteAlpha.200");
 
   return (
     <Stack
-      direction="row"
+      direction={["column", "row"]}
       gridGap={4}
       spacing={0}
       wrap="wrap"
@@ -45,6 +37,12 @@ export default function Links({ textColor }: { textColor: string }) {
             <Button
               leftIcon={<LinkIcon icon={link.icon} />}
               textColor={textColor}
+              height={14}
+              backgroundColor={bgShade}
+              backdropFilter="auto" 
+              backdropBlur="6px"
+              boxShadow="xl"
+              width={["full", "initial"]}
             >
               {link.name}
             </Button>
@@ -52,5 +50,14 @@ export default function Links({ textColor }: { textColor: string }) {
         </SlideFade>
       ))}
     </Stack>
+  );
+};
+
+function LinkIcon({ icon }: { icon: IconType }) {
+  return (
+    <Icon
+      as={icon}
+      boxSize={6}
+    />
   );
 };

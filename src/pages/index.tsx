@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
 
       <Box
-        style={{ backgroundImage: bgMode }}
+        backgroundImage={bgMode}
         backgroundSize="cover"
         backgroundRepeat="no-repeat"
         backgroundPosition="center"
