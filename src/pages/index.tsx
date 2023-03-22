@@ -34,9 +34,9 @@ export default function Home() {
         <Layout>
           <AboutMe />
 
-          <Box  backgroundColor="yellow" >
+          {/* <Box  backgroundColor="yellow" >
             yo
-          </Box>
+          </Box> */}
 
         </Layout>
       </Box>
