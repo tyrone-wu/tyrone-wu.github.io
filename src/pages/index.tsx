@@ -1,10 +1,16 @@
 import Head from "next/head";
-import { Text, Box } from "@chakra-ui/react";
+import { Text, Box, Flex, useColorModeValue } from "@chakra-ui/react";
 
 import NavigationBar from "../components/NavigationBar";
 import Layout from "@/components/Layout";
+import AboutMe from "../components/AboutMe";
 
 export default function Home() {
+  const bgMode = useColorModeValue (
+    "url(/assets/bg-meteor.svg)",
+    "url(/assets/bg-hexagon.svg)"
+  );
+
   return (
     <>
       <Head>
@@ -16,11 +22,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NavigationBar />
-      <Layout>
-        <Box height={20}></Box>
-        <Text>Me</Text>
-      </Layout>
+      <Box
+        backgroundImage={bgMode}
+        backgroundSize="cover"
+        backgroundRepeat="no-repeat"
+        backgroundPosition="center"
+        width="100vw"
+        height="100vh"
+      >
+        <NavigationBar />
+        <Layout>
+          <AboutMe />
+
+          {/* <Box  backgroundColor="yellow" >
+            yo
+          </Box> */}
+
+        </Layout>
+      </Box>
+      
     </>
   );
 };

@@ -5,7 +5,7 @@ import Menu from "./NavBar/Menu";
 import ToggleTheme from "./NavBar/ToggleTheme";
 
 function NavigationBar() {
-  const headerBGColor = useColorModeValue("fall.0", "fall.2");
+  const headerBGColor = useColorModeValue("fallShade.0", "fall.2");
 
   return (
     <Flex

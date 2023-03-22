@@ -30,11 +30,18 @@ const textStyles = {
   body: {
     fontSize: ["1rem", "1.25rem"],
   },
+  h1: {
+    fontSize: ["1.75rem", "2.25rem"],
+    fontWeight: "bold",
+  },
+  h2: {
+  },
 };
 
 const colors = {
-  warm: {
-    0: "#A39270",
+  fallShade: {
+    0: "#DFDBCE",
+    1: "#C6C1B4",
   },
   warmWinter: {
     0: "#EEE9DA",
@@ -62,7 +69,7 @@ const colors = {
 };
 
 const breakpoints = {
-  sm: "46em",
+  sm: "42em",
   md: "52em",
   lg: "70em",
 };
