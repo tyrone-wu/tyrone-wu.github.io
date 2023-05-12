@@ -32,7 +32,7 @@ export default function Education() {
       <Text textStyle="body" fontWeight="medium" mt={2}>
         Coursework:
       </Text>
-      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}>
+      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} mb={2}>
         <UnorderedList pl={3} textStyle="body">
           {c1.map((course: string) => (
             <ListItem key={course}>{course}</ListItem>

@@ -97,6 +97,7 @@ function SectionsCollection({ sections, textColor }: { sections: string[], textC
           duration={500}
           activeClass="navlink"
           color={textColor}
+          href="#"
         >
           {title}
         </Link>
