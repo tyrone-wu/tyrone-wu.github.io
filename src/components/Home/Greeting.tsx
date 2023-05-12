@@ -1,4 +1,4 @@
-import { Flex,  SlideFade, Text } from "@chakra-ui/react";
+import { Box, Flex,  SlideFade, Text } from "@chakra-ui/react";
 
 interface Props {
   textPalette: string;
@@ -6,7 +6,19 @@ interface Props {
 
 export default function Greeting({ textPalette }: Props) {
   return (
-    <>
+    <Flex 
+      direction={["column", "row"]}
+      backgroundColor="white"
+    >
+      <Name textPalette={textPalette} />
+
+    </Flex>
+  );
+};
+
+function Name({ textPalette }: Props) {
+  return (
+    <Box>
       <SlideFade in>
         <Text 
           textStyle="greet" 
@@ -39,6 +51,13 @@ export default function Greeting({ textPalette }: Props) {
           </Text>
         </SlideFade>
       </Flex>
+    </Box>
+  );
+};
+
+function ProfilePicture() {
+  return (
+    <>
     </>
   );
 };

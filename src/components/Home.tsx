@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue, Image, Flex } from "@chakra-ui/react";
 
 import Greeting from "./Home/Greeting";
 import Links from "./Home/Links";
@@ -10,10 +10,10 @@ export default function Home() {
     <Box
       id="home"
       paddingTop={[28, 40]}
-      mb={52}
     >
       <Greeting textPalette={textPalette} />
       <Links textColor={textPalette} />
+      <Box mb={52} />
     </Box>
   );
 };
