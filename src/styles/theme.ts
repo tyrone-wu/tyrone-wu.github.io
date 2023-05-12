@@ -27,14 +27,26 @@ const textStyles = {
     fontSize: ["3rem", "4.5rem"],
     fontWeight: "black",
   },
-  body: {
+  greet: {
     fontSize: ["1rem", "1.25rem"],
+    fontWeight: "medium",
   },
   h1: {
     fontSize: ["1.75rem", "2.25rem"],
     fontWeight: "bold",
   },
   h2: {
+    fontSize: ["1.3rem", "1.6rem"],
+    fontWeight: "bold",
+  },
+  h3:{
+    fontSize: ["1.2rem", "1.3rem"],
+    fontWeight: "medium",
+  },
+  body: {
+    fontSize: ["1rem", "1.1rem"],
+    fontWeight: "normal",
+    letterSpacing: "tight",
   },
 };
 
@@ -69,7 +81,7 @@ const colors = {
 };
 
 const breakpoints = {
-  sm: "42em",
+  sm: "46em",
   md: "52em",
   lg: "70em",
 };

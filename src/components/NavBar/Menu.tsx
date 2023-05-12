@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Box, Button, Divider, Flex, HStack, Icon, IconButton, useColorModeValue, VStack } from "@chakra-ui/react";
+import { Link } from "react-scroll";
+import { Box, Divider, Flex, HStack, Icon, IconButton, useColorModeValue, VStack } from "@chakra-ui/react";
 import { BiMenu } from "react-icons/bi";
 import { CgChevronDown } from "react-icons/cg";
 
@@ -11,6 +12,8 @@ interface Props {
 
 // Toggle hamburger menu dropdown 
 export default function Menu() {
+  const sections = ["Home", "About", "Experience", "Projects", "Skills"];
+
   const [ expanded, setExpanded ] = useState(false);
   function toggleMenu() {
     setExpanded((prevState) => !prevState);
@@ -24,12 +27,12 @@ export default function Menu() {
         display={["none", "flex"]}
         justifyContent="flex-end"
         align="center"
-        spacing={4}
+        spacing={10}
         flex="auto"
       >
-        <SectionsCollection textColor={fillColor} />
+        <SectionsCollection sections={sections} textColor={fillColor} />
       </HStack>
-      
+
       <Flex
         display={["flex", "none"]}
         direction="column"
@@ -51,7 +54,7 @@ export default function Menu() {
             borderColor={fillColor} 
             borderWidth="thin"
           />
-          <SectionsCollection textColor={fillColor} />
+          <SectionsCollection sections={sections} textColor={fillColor} />
         </VStack>
       </Flex>
     </>
@@ -81,24 +84,23 @@ function MenuIcon({ expanded, toggleMenu, iconColor }: Props) {
   );
 };
 
-function SectionsCollection({ textColor }: { textColor: string }) {
+function SectionsCollection({ sections, textColor }: { sections: string[], textColor: string }) {
   return (
     <>
-      <Section title="About Me" textColor={textColor} />
-      <Section title="Experience" textColor={textColor} />
-      <Section title="Projects" textColor={textColor} />
-      <Section title="Skills" textColor={textColor} />
+      {sections.map((title: string) => (
+        <Link
+          key={title}
+          to={title.toLowerCase()}
+          smooth={true}
+          spy={true}
+          offset={-74}
+          duration={500}
+          activeClass="navlink"
+          color={textColor}
+        >
+          {title}
+        </Link>
+      ))}
     </>
-  );
-};
-
-function Section({ title, textColor }: { title: string, textColor: string }) {
-  return (
-    <Button
-      variant="ghost"
-      textColor={textColor}
-    >
-      {title}
-    </Button>
   );
 };

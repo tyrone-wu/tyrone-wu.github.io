@@ -9,9 +9,8 @@ export default function Greeting({ textPalette }: Props) {
     <>
       <SlideFade in>
         <Text 
-          textStyle="body" 
+          textStyle="greet" 
           color={textPalette} 
-          fontWeight="medium"
         >
           ヾ(＾∇＾) Hey there! I&apos;m-
         </Text>

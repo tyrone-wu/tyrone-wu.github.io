@@ -1,4 +1,4 @@
-import { useColorModeValue, VStack } from "@chakra-ui/react";
+import { Flex, useColorModeValue, VStack } from "@chakra-ui/react";
 
 interface Props {
   children: React.ReactNode | JSX.Element | JSX.Element[];
@@ -12,11 +12,17 @@ export default function Layout({ children }: Props) {
 
   return (
     <VStack
-      // backgroundColor="white"
       marginX="auto"
       maxWidth="5xl"
     >
-      {children}
+      <Flex
+        paddingX={4}
+        direction="column"
+        width="full"
+        flex="auto"
+      >
+        {children}
+      </Flex>
     </VStack>
   );
 };
