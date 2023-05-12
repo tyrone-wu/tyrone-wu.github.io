@@ -17,6 +17,7 @@ export default function ToggleTheme() {
       marginY={[3, "auto"]}
       size="md"
       borderColor={modeColor}
+      borderRadius="none"
       variant="outline"
       icon={ModeIcon}
       onClick={toggleColorMode}

@@ -18,12 +18,12 @@ export default function Card({ textColor, title, children }: Props) {
       borderRightWidth={4}
     >
       <Flex 
-        marginX={4}
+        marginX={6}
         marginY={2}
         paddingBottom={4}
         direction="column"
       >
-        <Text textStyle="h1" marginTop={2}>
+        <Text textStyle="h1" marginTop={4}>
           {title}
         </Text>
 

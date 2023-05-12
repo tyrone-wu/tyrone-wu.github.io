@@ -1,8 +1,9 @@
 import Head from "next/head";
-import { Text, Box, Flex, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 import NavigationBar from "../components/NavigationBar";
 import Layout from "@/components/Layout";
+import Landing from "../components/Home";
 import AboutMe from "../components/AboutMe";
 
 export default function Home() {
@@ -27,17 +28,13 @@ export default function Home() {
         backgroundSize="cover"
         backgroundRepeat="no-repeat"
         backgroundPosition="center"
-        width="100vw"
-        height="100vh"
+        // width="calc(100vw)"
+        // height="calc(100vh)"
       >
         <NavigationBar />
         <Layout>
+          <Landing />
           <AboutMe />
-
-          {/* <Box  backgroundColor="yellow" >
-            yo
-          </Box> */}
-
         </Layout>
       </Box>
       

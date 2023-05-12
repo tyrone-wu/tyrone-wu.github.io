@@ -1,38 +1,49 @@
-import { Box, Image, SlideFade, Text } from "@chakra-ui/react";
+import { Text, ListItem, UnorderedList, Grid, Link, useColorModeValue } from "@chakra-ui/react";
 
-import Card from "../Card";
+export default function Education() {
+  const c1 = ["Software Engineering", "Computer Networks", "DevOps: Modern SWE Practices", "Compiler Construction"];
+  const c2 = ["Data Structures & Algorithms", "Database Management Systems", "Automated Learning & Data Analysis", "Concepts & Facilities of Operating Systems"];
 
-interface Props {
-  textColor: string;
-}
+  const schoolColor = useColorModeValue("school.0", "school.1");
+  const degreeColor = useColorModeValue("degree.0", "degree.1");
 
-export default function Education({ textColor }: Props) {
-  return (
-    <Box marginTop={52}>
-      <SlideFade in transition={{ enter: { delay: 1.1 } }}>
-        <Card textColor={textColor} title="🎓 Education">
-          <EducationBody />
-        </Card>
-      </SlideFade>
-    </Box>
-  );
-};
-
-function EducationBody() {
   return (
     <>
-      
-      <Image 
-        src="/assets/NCSU_logo.svg" 
-        alt="NCSU Logo" 
-        padding={1}
-        borderRadius="md"
-        // backgroundColor="white"
-        boxSize={12}
-      />
-      <Text>
-        asdf
+      <Text as="u" textStyle="h2" mt={8}>
+        Education
       </Text>
+
+      <Text textStyle="h3" textColor={schoolColor}>
+        <Link href="https://www.ncsu.edu/" isExternal>
+          🐺 North Carolina State University
+        </Link>
+      </Text>
+
+      <Text textStyle="body" pl={10} textColor={degreeColor} mt={1}>
+        Master of Computer Science
+      </Text>
+      <UnorderedList pl={14} textStyle="sub" textColor={degreeColor}>
+        <ListItem>Accelerated Bachelor&apos;s/Master&apos;s Program</ListItem>
+      </UnorderedList>
+      <Text textStyle="body" pl={10} textColor={degreeColor} mt={1}>
+        B.S. Computer Science + Statistics Minor
+      </Text>
+      
+      <Text textStyle="body" fontWeight="medium" mt={2}>
+        Coursework:
+      </Text>
+      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} mb={2}>
+        <UnorderedList pl={3} textStyle="body">
+          {c1.map((course: string) => (
+            <ListItem key={course}>{course}</ListItem>
+          ))}
+        </UnorderedList>
+        <UnorderedList pl={3} textStyle="body">
+          {c2.map((course: string) => (
+            <ListItem key={course}>{course}</ListItem>
+          ))}
+        </UnorderedList>
+      </Grid>
     </>
   );
 };
