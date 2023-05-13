@@ -8,10 +8,7 @@ import AboutMe from "../components/AboutMe/AboutMe";
 import Experience from "../components/Experience/Experience";
 
 export default function Home() {
-  const bgMode = useColorModeValue (
-    "url(/assets/backgrounds/bg-hexagon.svg)",
-    "url(/assets/backgrounds/bg-hexagon.svg)"
-  );
+  const background = "/assets/backgrounds/bg-hexagon.svg";
   const textPalette = useColorModeValue("fall.2", "warmWinter.1");
 
   return (
@@ -26,7 +23,7 @@ export default function Home() {
       </Head>
 
       <Box
-        backgroundImage={bgMode}
+        backgroundImage={background}
         backgroundSize="cover"
         backgroundRepeat="no-repeat"
         backgroundPosition="center"

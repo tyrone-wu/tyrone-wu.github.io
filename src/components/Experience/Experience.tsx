@@ -18,7 +18,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
     { 
       company: "NC State University", 
       link: "https://www.csc.ncsu.edu/",
-      logo: `${companyPath}` + "ncsu.jpg", 
+      logo: `${companyPath}` + "ncsu.png", 
       time: "Sep 2021 - Dec 2021", 
       position: "Teaching Assistant - Automated Learning & Data Analysis", 
       description: [
