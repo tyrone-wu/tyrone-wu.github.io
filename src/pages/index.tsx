@@ -9,8 +9,8 @@ import Experience from "../components/Experience/Experience";
 
 export default function Home() {
   const bgMode = useColorModeValue (
-    "url(/assets/bg-meteor.svg)",
-    "url(/assets/bg-hexagon.svg)"
+    "url(/assets/backgrounds/bg-hexagon.svg)",
+    "url(/assets/backgrounds/bg-hexagon.svg)"
   );
   const textPalette = useColorModeValue("fall.2", "warmWinter.1");
 
