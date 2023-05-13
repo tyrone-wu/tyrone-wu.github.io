@@ -1,10 +1,15 @@
-import { Image, Flex,  SlideFade, Text, Spacer } from "@chakra-ui/react";
+import { Image, Flex,  SlideFade, Text, Spacer, useColorModeValue } from "@chakra-ui/react";
 
 interface Props {
   textPalette: string;
 }
 
 export default function Greeting({ textPalette }: Props) {
+  const profile = useColorModeValue(
+    "/assets/profile_light.png",
+    "/assets/profile_dark.png"
+  );
+
   return (
     <Flex 
       direction={["column", "row"]}
@@ -49,7 +54,7 @@ export default function Greeting({ textPalette }: Props) {
       <Spacer />
       <SlideFade in transition={{ enter: { delay: 0.4 } }}>
         <Image  
-          src="/assets/profile_hex.png"
+          src={profile}
           alt="Tyrone Wu"
           boxSize={["150px", "250px"]}
           objectFit="contain"

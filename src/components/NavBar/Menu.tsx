@@ -93,7 +93,7 @@ function SectionsCollection({ sections, textColor }: { sections: string[], textC
           to={title.toLowerCase()}
           smooth={true}
           spy={true}
-          offset={-74}
+          offset={-88}
           duration={500}
           activeClass="navlink"
           color={textColor}

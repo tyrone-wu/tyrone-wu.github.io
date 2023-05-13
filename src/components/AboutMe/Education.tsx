@@ -19,13 +19,13 @@ export default function Education() {
         </Link>
       </Text>
 
-      <Text textStyle="body" pl={10} textColor={degreeColor} mt={1}>
+      <Text textStyle="body" textColor={degreeColor} mt={1} ml={4}>
         Master of Computer Science
       </Text>
-      <UnorderedList pl={14} textStyle="sub" textColor={degreeColor}>
-        <ListItem>Accelerated Bachelor&apos;s/Master&apos;s Program</ListItem>
+      <UnorderedList textStyle="sub" textColor={degreeColor}>
+        <ListItem ml={8}>Accelerated Bachelor&apos;s/Master&apos;s Program</ListItem>
       </UnorderedList>
-      <Text textStyle="body" pl={10} textColor={degreeColor} mt={1}>
+      <Text textStyle="body" textColor={degreeColor} mt={1} ml={4}>
         B.S. Computer Science + Statistics Minor
       </Text>
       

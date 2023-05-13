@@ -1,8 +1,8 @@
 import { Flex, useColorModeValue } from "@chakra-ui/react";
-import Logo from "./NavBar/Logo";
+import Logo from "./Logo";
 
-import Menu from "./NavBar/Menu";
-import ToggleTheme from "./NavBar/ToggleTheme";
+import Menu from "./Menu";
+import ToggleTheme from "./ToggleTheme";
 
 function NavigationBar() {
   const headerBGColor = useColorModeValue("fallShade.0", "fall.2");
