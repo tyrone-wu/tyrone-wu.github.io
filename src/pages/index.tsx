@@ -1,16 +1,18 @@
 import Head from "next/head";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/NavBar/NavigationBar";
 import Layout from "@/components/Layout";
-import Landing from "../components/Home";
-import AboutMe from "../components/AboutMe";
+import Landing from "../components/Home/Home";
+import AboutMe from "../components/AboutMe/AboutMe";
+import Experience from "../components/Experience/Experience";
 
 export default function Home() {
   const bgMode = useColorModeValue (
     "url(/assets/bg-meteor.svg)",
     "url(/assets/bg-hexagon.svg)"
   );
+  const textPalette = useColorModeValue("fall.2", "warmWinter.1");
 
   return (
     <>
@@ -33,8 +35,9 @@ export default function Home() {
       >
         <NavigationBar />
         <Layout>
-          <Landing />
-          <AboutMe />
+          <Landing textPalette={textPalette} />
+          <AboutMe textPalette={textPalette} />
+          <Experience textPalette={textPalette} />
         </Layout>
       </Box>
       

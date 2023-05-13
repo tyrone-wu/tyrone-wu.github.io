@@ -1,20 +1,23 @@
 import { Box, SlideFade, useColorModeValue } from "@chakra-ui/react";
 
-import Card from "./Card";
-import About from "./AboutMe/About";
-import Education from "./AboutMe/Education";
+import Card from "../Card";
+import Description from "./AboutDescription";
+import Education from "./Education";
 
-export default function AboutMe() {
-  const textPalette = useColorModeValue("fall.2", "warmWinter.1");
+interface Props {
+  textPalette: string;
+};
 
+export default function AboutMe({ textPalette }: Props) {
   return (
     <Box id="about">
       <SlideFade in transition={{ enter: { delay: 1.1 } }}>
         <Card textColor={textPalette} title="About Me">
-          <About />
+          <Description />
           <Education />
         </Card>
       </SlideFade>
+      <Box mb={52} />
     </Box>
   );
 };
