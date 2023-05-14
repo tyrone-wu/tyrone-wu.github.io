@@ -1,7 +1,6 @@
-import { Box, Image, Flex, useColorModeValue, Text, Spacer, UnorderedList, ListItem, Link, Divider } from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider } from "@chakra-ui/react";
 
 import Card from "../Card";
-// import Subsection from "./Subsection";
 
 interface Props {
   company: string;

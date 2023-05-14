@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import Landing from "../components/Home/Home";
 import AboutMe from "../components/AboutMe/AboutMe";
 import Experience from "../components/Experience/Experience";
+import Projects from "../components/Projects/Projects";
 
 export default function Home() {
   const background = "/assets/backgrounds/bg-hexagon.svg";
@@ -35,6 +36,7 @@ export default function Home() {
           <Landing textPalette={textPalette} />
           <AboutMe textPalette={textPalette} />
           <Experience textPalette={textPalette} />
+          <Projects textPalette={textPalette} />
         </Layout>
       </Box>
       
