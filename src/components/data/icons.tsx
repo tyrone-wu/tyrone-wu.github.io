@@ -1,0 +1,97 @@
+interface TechIconProps {
+  icon: string;
+  link: string;
+};
+
+const iconPath = "/assets/icons/";
+
+export const iconMap = new Map<string, TechIconProps>([
+  ["Ansible", { 
+    icon: `${iconPath}` + "ansible.svg", 
+    link: "https://www.ansible.com/" 
+  }],
+  ["AWS EC2", { 
+    icon: `${iconPath}` + "aws.svg", 
+    link: "https://aws.amazon.com/ec2/" 
+  }],
+  ["Bash/Shell", { 
+    icon: `${iconPath}` + "bash.svg", 
+    link: "https://www.gnu.org/software/bash/" 
+  }],
+  ["Docker", { 
+    icon: `${iconPath}` + "docker.svg", 
+    link: "https://www.docker.com/" 
+  }],
+  ["Flask", { 
+    icon: `${iconPath}` + "flask.svg", 
+    link: "https://flask.palletsprojects.com/" 
+  }],
+  ["Java", { 
+    icon: `${iconPath}` + "java.svg", 
+    link: "https://www.java.com/" 
+  }],
+  ["Javascript", { 
+    icon: `${iconPath}` + "javascript.svg", 
+    link: "https://www.javascript.com/" 
+  }],
+  ["Kubernetes", { 
+    icon: `${iconPath}` + "kubernetes.svg", 
+    link: "https://kubernetes.io/" 
+  }],
+  ["Locust", { 
+    icon: `${iconPath}` + "locust.png", 
+    link: "https://locust.io/" 
+  }],
+  ["microk8s", {
+    icon: `${iconPath}` + "microk8s.png", 
+    link: "https://microk8s.io/"
+  }],
+  ["Micronaut", {
+    icon: `${iconPath}` + "micronaut.png", 
+    link: "https://micronaut.io/"
+  }],
+  ["Next.js", {
+    icon: `${iconPath}` + "nextjs.svg", 
+    link: "https://nextjs.org/"
+  }],
+  ["Node.js", {
+    icon: `${iconPath}` + "nodejs.svg", 
+    link: "https://nodejs.org/"
+  }],
+  ["Oracle Cloud", {
+    icon: `${iconPath}` + "oci.png", 
+    link: "https://www.oracle.com/cloud/"
+  }],
+  ["Oracle DB", {
+    icon: `${iconPath}` + "oracle-db.png", 
+    link: "https://www.oracle.com/database/"
+  }],
+  ["Python", {
+    icon: `${iconPath}` + "python.svg", 
+    link: "https://www.python.org/"
+  }],
+  ["React", {
+    icon: `${iconPath}` + "react.svg", 
+    link: "https://react.dev/"
+  }],
+  ["Redis", {
+    icon: `${iconPath}` + "redis.svg", 
+    link: "https://redis.io/"
+  }],
+  ["Terraform", { 
+    icon: `${iconPath}` + "terraform.svg", 
+    link: "https://www.terraform.io/" 
+  }],
+  ["Typescript", { 
+    icon: `${iconPath}` + "typescript.svg", 
+    link: "https://www.typescriptlang.org/" 
+  }],
+  ["Ubuntu", { 
+    icon: `${iconPath}` + "ubuntu.svg", 
+    link: "https://ubuntu.com/" 
+  }],
+  ["VirtualBox", { 
+    icon: `${iconPath}` + "virtualbox.png", 
+    link: "https://www.virtualbox.org/" 
+  }],
+]);

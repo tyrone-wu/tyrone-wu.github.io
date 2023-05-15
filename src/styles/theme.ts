@@ -54,6 +54,11 @@ const textStyles = {
     fontWeight: "normal",
     letterSpacing: "tight",
   },
+  icon: {
+    fontSize: ["0.8rem", "0.9rem"],
+    fontWeight: "medium",
+    letterSpacing: "tighter",
+  },
 };
 
 const colors = {

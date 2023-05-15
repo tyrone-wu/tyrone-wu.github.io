@@ -1,68 +1,56 @@
-import { Box, Divider, Flex, Image, Link, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Image, Link, SimpleGrid, Text, useColorModeValue, Wrap, WrapItem } from "@chakra-ui/react";
 
 import Card from "../Card";
-
-interface TechIconProps {
-  tech: string;
-  icon: string;
-};
+import { iconMap } from "../data/icons";
 
 interface Props {
   name: string;
   description: string;
   thumbnail: string;
-  stack: TechIconProps[];
+  stack: string[];
   link: string;
 };
 
 export default function Projects({ textPalette }: { textPalette: string }) {
-  const iconPath = "/assets/icons/";
   const projects = [
     {
       name: "K8s Cluster Deployment for Footware Inventory",
-      description: "An automated kubernetes, multi-node cluster deployment for a simple inventory webapp.",
+      description: "An automated kubernetes, multi-node cluster deployment for a simple inventory web app.",
       thumbnail: "/assets/thumbnails/k8s-deploy.png",
-      stack: [
-        { tech: "Docker", icon: "" },
-      ],
+      stack: [ "Ansible", "AWS EC2", "Docker", "Kubernetes", "Locust", "microk8s", "Terraform" ],
       link: "https://github.com/tyrone-wu/footwear-webstore-cloudops",
     },
     {
       name: "Research Exchange",
       description: "A Stack Exchange-like web application for research publications/articles to open the traditional peer-review to a crowd-review process.",
       thumbnail: "/assets/thumbnails/research-exchange.png",
-      stack: [
-        
-      ],
+      stack: [ "Java", "Micronaut", "Next.js", "Oracle Cloud", "Oracle DB", "Typescript", "React" ],
       link: "https://github.com/tyrone-wu/ResearchExchange",
     },
     {
       name: "One Wallet",
       description: "A web application that centralizes a user's personal finance information with a customizable interface.",
       thumbnail: "/assets/thumbnails/one-wallet.png",
-      stack: [
-        
-      ],
+      stack: [ "Flask", "Python", "React", "Typescript" ],
       link: "https://github.com/SelenaChen123/OneWallet",
     },
     {
-      name: "Build, Deployment, & Monitoring Pipeline Tool",
-      description: "A pipeline tool for monitoring a locally deployed webapp for providing observability on health, uptime, and latency.",
+      name: "Deployment & Monitoring Pipeline Tool",
+      description: "A pipeline tool for monitoring a locally deployed web app to provide observability on compute resource, uptime, and latency.",
       thumbnail: "/assets/thumbnails/pipeline-tool.png",
-      stack: [
-        
-      ],
+      stack: [ "Ansible", "Bash/Shell", "Javascript", "Node.js", "Redis", "Ubuntu", "VirtualBox" ],
       link: "https://github.com/tyrone-wu/deploy-monitor-pipline-tool",
     },
     // {
     //   name: "K-Modes Clustering on CS Job Descriptions",
     //   description: "",
     //   thumbnail: "",
-    //   stack: [
-    //   ],
+    //   stack: [],
     //   link: "https://github.com/tyrone-wu/kmodes-clustering-cs-jobs",
     // },
   ];
+
+  const iconBGColor = useColorModeValue("fallShade.1", "fall.2");
 
   return (
     <Box id="projects">
@@ -73,7 +61,7 @@ export default function Projects({ textPalette }: { textPalette: string }) {
           mb={2}
         >
           {projects.map((project: Props, i: number) => (
-              <ProjectSection key={`${i}` + "-prj"} textPalette={textPalette} project={project} />
+              <ProjectSection key={`${i}` + "-prj"} textPalette={textPalette} project={project} iconBGColor={iconBGColor} />
           ))}
         </SimpleGrid>
       </Card>
@@ -82,7 +70,7 @@ export default function Projects({ textPalette }: { textPalette: string }) {
   );
 };
 
-function ProjectSection({ textPalette, project }: { textPalette: string, project : Props }) {
+function ProjectSection({ textPalette, project, iconBGColor }: { textPalette: string, project : Props, iconBGColor: string }) {
   const sectionBGColor = useColorModeValue("fall.0", "fall.3");
 
   return (
@@ -120,26 +108,38 @@ function ProjectSection({ textPalette, project }: { textPalette: string, project
         </Flex>
       </Link>
 
-      <Flex 
-        direction="row" 
+      <Wrap
         justify="center"
-        mx={8}
+        spacing="6px"
+        mx={6}
         mb={4}
       >
-        {project.stack.map((tech: TechIconProps, i: number) => (
-          <TechIcon key={`${i}` + "-" + `${tech.tech}`} tech={tech} />
+        {project.stack.map((tech: string, i: number) => (
+          <WrapItem key={`${i}` + "-" + `${tech}`}>
+            <TechIcon tech={tech} iconBGColor={iconBGColor} />
+          </WrapItem>
         ))}
-      </Flex>
+      </Wrap>
     </Box>
   );
 };
 
-function TechIcon({ tech }: { tech: TechIconProps }) {
+function TechIcon({ tech, iconBGColor }: { tech: string, iconBGColor: string }) {
+  const stack = iconMap.get(tech);
   return (
-    <>
-      <Text textStyle="sub">
-        {tech.tech}
-      </Text>
-    </>
+    <Link href={stack?.link} isExternal>
+      <Button 
+        rightIcon={<Image src={stack?.icon} alt={tech} h="20px" />}
+        borderRadius="none"
+        backgroundColor={iconBGColor}
+        iconSpacing="5px"
+        w="85%"
+        h="34px"
+      >
+        <Text textStyle="icon">
+          {tech}
+        </Text>
+      </Button>
+    </Link>
   );
 };
