@@ -104,7 +104,7 @@ function ProjectSection({ textPalette, project, iconBGColor }: { textPalette: st
             objectFit="contain"
           />
 
-          <Divider borderColor={textPalette} mt={6} />
+          <Divider borderColor={textPalette} mt={4} mb={2} />
         </Flex>
       </Link>
 
