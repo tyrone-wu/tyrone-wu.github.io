@@ -1,7 +1,6 @@
-import { Box, Image, Flex, useColorModeValue, Text, Spacer, UnorderedList, ListItem, Link, Divider } from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider } from "@chakra-ui/react";
 
 import Card from "../Card";
-// import Subsection from "./Subsection";
 
 interface Props {
   company: string;
@@ -13,11 +12,12 @@ interface Props {
 };
 
 export default function Experience({ textPalette }: { textPalette: string }) {
+  const companyPath = "/assets/companies/";
   const jobs = [
     { 
       company: "NC State University", 
       link: "https://www.csc.ncsu.edu/",
-      logo: "/assets/ncsu.jpg", 
+      logo: `${companyPath}` + "ncsu.png", 
       time: "Sep 2021 - Dec 2021", 
       position: "Teaching Assistant - Automated Learning & Data Analysis", 
       description: [
@@ -30,7 +30,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
     { 
       company: "nCino Inc.", 
       link: "https://www.ncino.com/",
-      logo: "/assets/ncino.png", 
+      logo: `${companyPath}` + "ncino.png", 
       time: "Jul 2020 - Aug 2020", 
       position: "Software Engineer Intern", 
       description: [
@@ -42,7 +42,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
     { 
       company: "NC Chinese Business Association", 
       link: "https://www.nc-cba.org/",
-      logo: "/assets/nccba.png", 
+      logo: `${companyPath}` + "nccba.png", 
       time: "May 2017 - May 2020", 
       position: "Student Web Developer", 
       description: [

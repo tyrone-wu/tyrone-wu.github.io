@@ -6,12 +6,10 @@ import Layout from "@/components/Layout";
 import Landing from "../components/Home/Home";
 import AboutMe from "../components/AboutMe/AboutMe";
 import Experience from "../components/Experience/Experience";
+import Projects from "../components/Projects/Projects";
 
 export default function Home() {
-  const bgMode = useColorModeValue (
-    "url(/assets/bg-meteor.svg)",
-    "url(/assets/bg-hexagon.svg)"
-  );
+  const background = "/assets/backgrounds/bg-hexagon.svg";
   const textPalette = useColorModeValue("fall.2", "warmWinter.1");
 
   return (
@@ -26,7 +24,7 @@ export default function Home() {
       </Head>
 
       <Box
-        backgroundImage={bgMode}
+        backgroundImage={background}
         backgroundSize="cover"
         backgroundRepeat="no-repeat"
         backgroundPosition="center"
@@ -38,6 +36,7 @@ export default function Home() {
           <Landing textPalette={textPalette} />
           <AboutMe textPalette={textPalette} />
           <Experience textPalette={textPalette} />
+          <Projects textPalette={textPalette} />
         </Layout>
       </Box>
       

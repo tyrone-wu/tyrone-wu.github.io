@@ -6,16 +6,12 @@ interface Props {
 
 export default function Greeting({ textPalette }: Props) {
   const profile = useColorModeValue(
-    "/assets/profile_light.png",
-    "/assets/profile_dark.png"
+    "/assets/profile/profile_light.png",
+    "/assets/profile/profile_dark.png"
   );
 
   return (
-    <Flex 
-      direction={["column", "row"]}
-      // backgroundColor="white"
-      align="center"
-    >
+    <Flex direction={["column", "row"]} align="center">
       <Flex direction="column" align="center">
         <SlideFade in>
           <Text 
