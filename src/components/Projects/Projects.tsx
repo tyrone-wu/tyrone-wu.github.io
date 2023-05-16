@@ -108,18 +108,19 @@ function ProjectSection({ textPalette, project, iconBGColor }: { textPalette: st
         </Flex>
       </Link>
 
-      <Wrap
+      <Flex 
+        direction="row"
+        wrap="wrap"
+        gridGap="10px"
+        columnGap="6px"
         justify="center"
-        spacing="6px"
-        mx={6}
+        mx={4}
         mb={4}
       >
         {project.stack.map((tech: string, i: number) => (
-          <WrapItem key={`${i}` + "-" + `${tech}`}>
-            <TechIcon tech={tech} iconBGColor={iconBGColor} />
-          </WrapItem>
+          <TechIcon key={`${i}` + "-" + `${tech}`} tech={tech} iconBGColor={iconBGColor} />
         ))}
-      </Wrap>
+      </Flex>
     </Box>
   );
 };

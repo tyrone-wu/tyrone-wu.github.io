@@ -15,7 +15,7 @@ export default function Links({ textColor }: { textColor: string }) {
     { name: "Resume", link: "/files/Resume.pdf", icon: FaFilePdf },
     { name: "Email", link: "mailto:tboywu@gmail.com", icon: FaEnvelope },
   ];
-  const bgShade = useColorModeValue("blackAlpha.300", "whiteAlpha.300");
+  const bgShade = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
 
   return (
     <Stack
@@ -42,6 +42,8 @@ export default function Links({ textColor }: { textColor: string }) {
               boxShadow="xl"
               width={["full", "initial"]}
               borderRadius="none"
+              backdropFilter="auto" 
+              backdropBlur="4px"
             >
               {link.name}
             </Button>
