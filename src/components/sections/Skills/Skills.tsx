@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Flex, SimpleGrid, GridItem, Text, useColorModeValue, Image, Link, Stack } from "@chakra-ui/react";
 
-import Card from "../Card";
-import { iconMap } from "../data/icons";
+import Card from "@/components/sections/Card";
+import { iconMap } from "@/components/data/icons";
 
 interface Props {
   textPalette: string;

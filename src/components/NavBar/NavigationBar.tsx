@@ -1,5 +1,4 @@
 import { Flex, useColorModeValue } from "@chakra-ui/react";
-import Logo from "./Logo";
 
 import Menu from "./Menu";
 import ToggleTheme from "./ToggleTheme";
@@ -17,7 +16,6 @@ function NavigationBar() {
       boxShadow="lg"
       background={headerBGColor}
     >
-      <Logo />
       <Menu />
       <ToggleTheme />
     </Flex>
