@@ -10,6 +10,10 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "ansible.svg", 
     link: "https://www.ansible.com/" 
   }],
+  ["AWS", { 
+    icon: `${iconPath}` + "aws.svg", 
+    link: "https://aws.amazon.com/" 
+  }],
   ["AWS EC2", { 
     icon: `${iconPath}` + "aws.svg", 
     link: "https://aws.amazon.com/ec2/" 
@@ -18,13 +22,29 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "bash.svg", 
     link: "https://www.gnu.org/software/bash/" 
   }],
+  ["C++", { 
+    icon: `${iconPath}` + "cpp.svg", 
+    link: "https://cplusplus.com/" 
+  }],
+  ["CSS", { 
+    icon: `${iconPath}` + "css.svg", 
+    link: "https://www.w3.org/Style/CSS/Overview.en.html" 
+  }],
   ["Docker", { 
     icon: `${iconPath}` + "docker.svg", 
     link: "https://www.docker.com/" 
   }],
+  ["Figma", { 
+    icon: `${iconPath}` + "figma.svg", 
+    link: "https://www.figma.com/" 
+  }],
   ["Flask", { 
     icon: `${iconPath}` + "flask.svg", 
     link: "https://flask.palletsprojects.com/" 
+  }],
+  ["HTML", { 
+    icon: `${iconPath}` + "html.svg", 
+    link: "https://html.com/" 
   }],
   ["Java", { 
     icon: `${iconPath}` + "java.svg", 
@@ -50,6 +70,10 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "micronaut.png", 
     link: "https://micronaut.io/"
   }],
+  ["MySQL", {
+    icon: `${iconPath}` + "mysql.svg", 
+    link: "https://www.mysql.com/"
+  }],
   ["Next.js", {
     icon: `${iconPath}` + "nextjs.svg", 
     link: "https://nextjs.org/"
@@ -74,9 +98,21 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "react.svg", 
     link: "https://react.dev/"
   }],
+  ["Postman", {
+    icon: `${iconPath}` + "postman.svg", 
+    link: "https://www.postman.com/"
+  }],
+  ["Rust", {
+    icon: `${iconPath}` + "rust.svg", 
+    link: "https://www.rust-lang.org/"
+  }],
   ["Redis", {
     icon: `${iconPath}` + "redis.svg", 
     link: "https://redis.io/"
+  }],
+  ["Spring Boot", {
+    icon: `${iconPath}` + "spring.svg", 
+    link: "https://spring.io/"
   }],
   ["Terraform", { 
     icon: `${iconPath}` + "terraform.svg", 
@@ -89,6 +125,10 @@ export const iconMap = new Map<string, TechIconProps>([
   ["Ubuntu", { 
     icon: `${iconPath}` + "ubuntu.svg", 
     link: "https://ubuntu.com/" 
+  }],
+  ["Unix/Linux", { 
+    icon: `${iconPath}` + "linux.svg", 
+    link: "https://www.linux.org/" 
   }],
   ["VirtualBox", { 
     icon: `${iconPath}` + "virtualbox.png", 

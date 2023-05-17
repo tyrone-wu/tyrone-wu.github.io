@@ -31,7 +31,7 @@ export default function Projects({ textPalette }: { textPalette: string }) {
       name: "One Wallet",
       description: "A web application that centralizes a user's personal finance information with a customizable interface.",
       thumbnail: "/assets/thumbnails/one-wallet.png",
-      stack: [ "Flask", "Python", "React", "Typescript" ],
+      stack: [ "CSS", "Flask", "HTML", "Python", "React", "Typescript" ],
       link: "https://github.com/SelenaChen123/OneWallet",
     },
     {
@@ -108,18 +108,19 @@ function ProjectSection({ textPalette, project, iconBGColor }: { textPalette: st
         </Flex>
       </Link>
 
-      <Wrap
+      <Flex 
+        direction="row"
+        wrap="wrap"
+        gridGap="10px"
+        columnGap="6px"
         justify="center"
-        spacing="6px"
-        mx={6}
+        mx={4}
         mb={4}
       >
         {project.stack.map((tech: string, i: number) => (
-          <WrapItem key={`${i}` + "-" + `${tech}`}>
-            <TechIcon tech={tech} iconBGColor={iconBGColor} />
-          </WrapItem>
+          <TechIcon key={`${i}` + "-" + `${tech}`} tech={tech} iconBGColor={iconBGColor} />
         ))}
-      </Wrap>
+      </Flex>
     </Box>
   );
 };

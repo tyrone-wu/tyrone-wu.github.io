@@ -34,9 +34,9 @@ export default function Experience({ textPalette }: { textPalette: string }) {
       time: "Jul 2020 - Aug 2020", 
       position: "Software Engineer Intern", 
       description: [
-        "Collaborated in a SCRUM team of developers to complete user stories and technical tasks as part of the Retail PDE Portfolio team.",
         "Created a Salesforce component that expands object details in response to user input to support granular display of custom retail information.",
-        "Helped develop an XML DOM parser that automates field mappings and relationships for custom objects on the nCino data model using XPath and a custom internal library.",
+        "Wrote Apex unit tests with at least 90% code coverage to ensure that business logic and error handling are covered.",
+        "Helped develop an XML DOM parser that automates field mappings and relationships for custom objects on the nCino data model using XPath with an internal library.",
       ],
     },
     { 
@@ -49,7 +49,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
         "Worked alongside Web Development Team and Event Coordinators to deliver event pages as per speakers/clients design view.",
         "Created a custom page template and components to support design and format reusability.",
         "Implemented event pages where users can register for attendance and view specific event details.",
-        "Troubleshooted and verify ticket purchase functionalities and URL references for Upcoming Events pages prior to deployment.",
+        "Troubleshooted ticket purchase functionalities and URL references for Upcoming Events pages prior to deployment.",
         "Correct frontend layout of Upcoming & Past Events on the homepage to align with the scheduled timelines.",
       ],
     },

@@ -1,4 +1,4 @@
-import { Box, SlideFade, useColorModeValue } from "@chakra-ui/react";
+import { Box, SlideFade } from "@chakra-ui/react";
 
 import Card from "../Card";
 import Description from "./AboutDescription";
