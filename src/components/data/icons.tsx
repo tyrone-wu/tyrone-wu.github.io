@@ -30,6 +30,10 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "css.svg", 
     link: "https://www.w3.org/Style/CSS/Overview.en.html" 
   }],
+  ["Chakra UI", { 
+    icon: `${iconPath}` + "chakraui.png", 
+    link: "https://chakra-ui.com/" 
+  }],
   ["Docker", { 
     icon: `${iconPath}` + "docker.svg", 
     link: "https://www.docker.com/" 
