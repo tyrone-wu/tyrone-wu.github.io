@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Flex, Image, Link, SimpleGrid, Text, useColorModeValue, Wrap, WrapItem } from "@chakra-ui/react";
 
-import Card from "../Card";
-import { iconMap } from "../data/icons";
+import Card from "@/components/sections/Card";
+import { iconMap } from "@/components/data/icons";
 
 interface Props {
   name: string;

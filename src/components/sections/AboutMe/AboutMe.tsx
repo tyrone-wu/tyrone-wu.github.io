@@ -1,6 +1,6 @@
 import { Box, SlideFade } from "@chakra-ui/react";
 
-import Card from "../Card";
+import Card from "@/components/sections/Card";
 import Description from "./AboutDescription";
 import Education from "./Education";
 

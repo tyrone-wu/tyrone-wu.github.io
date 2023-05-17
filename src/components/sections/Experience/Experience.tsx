@@ -1,6 +1,6 @@
 import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider } from "@chakra-ui/react";
 
-import Card from "../Card";
+import Card from "@/components/sections/Card";
 
 interface Props {
   company: string;
