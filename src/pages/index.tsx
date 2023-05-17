@@ -1,12 +1,13 @@
 import Head from "next/head";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
-import NavigationBar from "../components/NavBar/NavigationBar";
+import NavigationBar from "@/components/NavBar/NavigationBar";
 import Layout from "@/components/Layout";
-import Landing from "../components/Home/Home";
-import AboutMe from "../components/AboutMe/AboutMe";
-import Experience from "../components/Experience/Experience";
-import Projects from "../components/Projects/Projects";
+import Landing from "@/components/Home/Home";
+import AboutMe from "@/components/AboutMe/AboutMe";
+import Experience from "@/components/Experience/Experience";
+import Projects from "@/components/Projects/Projects";
+import Skills from "@/components/Skills/Skills";
 
 export default function Home() {
   const background = "/assets/backgrounds/bg-hexagon.svg";
@@ -27,7 +28,9 @@ export default function Home() {
         backgroundImage={background}
         backgroundSize="cover"
         backgroundRepeat="no-repeat"
-        backgroundPosition="center"
+        backgroundPosition="top"
+        // w="100%"
+        // w="full"
         // width="calc(100vw)"
         // height="calc(100vh)"
       >
@@ -37,6 +40,7 @@ export default function Home() {
           <AboutMe textPalette={textPalette} />
           <Experience textPalette={textPalette} />
           <Projects textPalette={textPalette} />
+          <Skills textPalette={textPalette} />
         </Layout>
       </Box>
       

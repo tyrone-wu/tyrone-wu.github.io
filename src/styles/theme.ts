@@ -96,6 +96,10 @@ const colors = {
     0: "#7E2111",
     1: "#69B6DD",
   },
+  skills: {
+    0: "#F3EDE2",
+    1: "#526566",
+  },
 };
 
 const breakpoints = {

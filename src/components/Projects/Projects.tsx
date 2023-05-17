@@ -31,7 +31,7 @@ export default function Projects({ textPalette }: { textPalette: string }) {
       name: "One Wallet",
       description: "A web application that centralizes a user's personal finance information with a customizable interface.",
       thumbnail: "/assets/thumbnails/one-wallet.png",
-      stack: [ "Flask", "Python", "React", "Typescript" ],
+      stack: [ "CSS", "Flask", "HTML", "Python", "React", "Typescript" ],
       link: "https://github.com/SelenaChen123/OneWallet",
     },
     {
