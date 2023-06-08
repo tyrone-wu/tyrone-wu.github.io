@@ -1,6 +1,7 @@
 import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider, useColorModeValue, SimpleGrid } from "@chakra-ui/react";
 
 import Card from "@/components/sections/Card";
+import MiniCard from "@/components/sections/MiniCard";
 
 interface Props {
   company: string;
@@ -55,8 +56,6 @@ export default function Experience({ textPalette }: { textPalette: string }) {
     },
   ];
 
-  const sectionBGColor = useColorModeValue("fall.0", "fall.3");
-
   return (
     <Box id="experience">
       <Card textColor={textPalette} title="Experience">
@@ -66,7 +65,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
           mb={2}
         >
           {jobs.map((job: Props) => (
-            <Subsection key={job.company} sectionBGColor={sectionBGColor} textPalette={textPalette} job={job} />
+            <Subsection key={job.company} textPalette={textPalette} job={job} />
           ))}
         </SimpleGrid>
       </Card>
@@ -75,14 +74,9 @@ export default function Experience({ textPalette }: { textPalette: string }) {
   );
 };
 
-function Subsection({ sectionBGColor, textPalette, job }: { sectionBGColor: string, textPalette: string, job: Props }) {
+function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
   return (
-    <Box 
-      width="full" 
-      background={sectionBGColor}
-      borderColor={textPalette}
-      borderRightWidth={4}
-    >
+    <MiniCard textPalette={textPalette}>
       <Flex direction="column" mx={6} mt={4}>
         <Flex 
           width="full"
@@ -123,6 +117,6 @@ function Subsection({ sectionBGColor, textPalette, job }: { sectionBGColor: stri
           ))}
         </UnorderedList>
       </Flex>
-    </Box>
+    </MiniCard>
   );
 };
