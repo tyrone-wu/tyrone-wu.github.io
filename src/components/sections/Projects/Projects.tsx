@@ -1,6 +1,7 @@
 import { Box, Button, Divider, Flex, Image, Link, SimpleGrid, Text, useColorModeValue, Wrap, WrapItem } from "@chakra-ui/react";
 
 import Card from "@/components/sections/Card";
+import MiniCard from "@/components/sections/MiniCard";
 import { iconMap } from "@/components/data/icons";
 
 interface Props {
@@ -57,7 +58,7 @@ export default function Projects({ textPalette }: { textPalette: string }) {
       <Card textColor={textPalette} title="Projects">
         <SimpleGrid 
           columns={[1, 2]}
-          spacing={10}
+          spacing={6}
           mb={2}
         >
           {projects.map((project: Props, i: number) => (
@@ -71,15 +72,8 @@ export default function Projects({ textPalette }: { textPalette: string }) {
 };
 
 function ProjectSection({ textPalette, project, iconBGColor }: { textPalette: string, project : Props, iconBGColor: string }) {
-  const sectionBGColor = useColorModeValue("fall.0", "fall.3");
-
   return (
-    <Box 
-      width="full" 
-      background={sectionBGColor}
-      borderColor={textPalette}
-      borderRightWidth={4}
-    >
+    <MiniCard textPalette={textPalette}>
       <Link href={project.link} isExternal>
         <Flex 
           direction="column" 
@@ -121,7 +115,7 @@ function ProjectSection({ textPalette, project, iconBGColor }: { textPalette: st
           <TechIcon key={`${i}` + "-" + `${tech}`} tech={tech} iconBGColor={iconBGColor} />
         ))}
       </Flex>
-    </Box>
+    </MiniCard>
   );
 };
 
