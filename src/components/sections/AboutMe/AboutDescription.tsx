@@ -11,7 +11,7 @@ export default function About() {
       </Text>
 
       <Text textStyle="body">
-        I&apos;m a full-stack developer with a special interest in the <q>operations</q> side of development. I love finding ways to automate processes and building useful software, as well as learning and being up-to-date with new tools/technologies in the industry.
+        I&apos;m a full-stack developer with a special focus in the <q>operations</q> side of development. I love finding ways to automate processes and build useful software for other developers. I also have a lot of interest in learning and being up-to-date with new tools/technologies in the industry
       </Text>
 
       <Text textStyle="body">
