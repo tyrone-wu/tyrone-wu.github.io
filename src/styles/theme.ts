@@ -1,4 +1,4 @@
-import { extendTheme, StyleFunctionProps } from "@chakra-ui/react";
+import { background, ColorModeScript, extendTheme, StyleFunctionProps } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 
 const config = {
@@ -10,7 +10,7 @@ const config = {
 const styles = {
   global: (props: StyleFunctionProps) => ({
     body: {
-      backgroundColor: mode("fall.0", "fall.3")(props),
+      backgroundColor: mode("background.0", "background.1")(props),
       transitionProperty: "all",
       transitionDuration: "normal",
     },
@@ -56,38 +56,32 @@ const textStyles = {
   },
   icon: {
     fontSize: ["0.8rem", "0.9rem"],
-    fontWeight: "medium",
+    fontWeight: ["bold", "medium"],
     letterSpacing: "tighter",
   },
 };
 
 const colors = {
-  fallShade: {
-    0: "#DFDBCE",
-    1: "#C6C1B4",
+  background: {
+    0: "#FBF0D9",
+    1: "#2C3639",
   },
-  warmWinter: {
-    0: "#EEE9DA",
-    1: "#BDCDD6",
-    2: "#93BFCF",
-    3: "#6096B4",
+  textColor: {
+    0: "#3F4E4F",
+    1: "#BDCDD6"
   },
-  // https://colorhunt.co/palette/2c36393f4e4fa27b5cdcd7c9
-  fall: {
-    0: "#DCD7C9",
-    1: "#A27B5C",
-    2: "#3F4E4F",
-    3: "#2C3639",
+  navBar: {
+    0: "#FBF0D9",
+    1: "#3F4E4F",
   },
-  // https://colorhunt.co/palette/1a374d4068826998abb1d0e0
-  winter: {
-    0: "#B1D0E0",
-    1: "#6998AB",
-    2: "#406882",
-    3: "#1A374D",
+  lightDarkIcon: {
+    0: "#3F4E4F",
+    1: "#F49D1A",
   },
-  day: "#F49D1A",
-  night: "#395B64",
+  cardBackground: {
+    0: "#F3E5C8",
+    1: "#3F4E4F",
+  },
   school: {
     0: "#9B2915",
     1: "#5096B9",
@@ -95,10 +89,6 @@ const colors = {
   degree: {
     0: "#7E2111",
     1: "#69B6DD",
-  },
-  skills: {
-    0: "#F3EDE2",
-    1: "#526566",
   },
 };
 

@@ -4,7 +4,7 @@ import Menu from "./Menu";
 import ToggleTheme from "./ToggleTheme";
 
 function NavigationBar() {
-  const headerBGColor = useColorModeValue("fallShade.0", "fall.2");
+  const navBarColor = useColorModeValue("navBar.0", "navBar.1");
 
   return (
     <Flex
@@ -14,7 +14,7 @@ function NavigationBar() {
       zIndex="banner"
       position="fixed"
       boxShadow="lg"
-      background={headerBGColor}
+      background={navBarColor}
     >
       <Box mx="44px" />
       <Menu />

@@ -7,13 +7,12 @@ interface Props {
 }
 
 export default function Card({ textColor, title, children }: Props) {
-  const bgColor = useColorModeValue("fallShade.1", "fall.2");
-  const accentColor = useColorModeValue(textColor, "winter.0");
+  const bgColor = useColorModeValue("cardBackground.0", "cardBackground.1");
 
   return (
     <Box
       backgroundColor={bgColor}
-      borderColor={accentColor}
+      borderColor={textColor}
       textColor={textColor}
       borderRightWidth={4}
     >

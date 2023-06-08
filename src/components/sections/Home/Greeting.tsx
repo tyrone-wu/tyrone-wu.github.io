@@ -5,11 +5,6 @@ interface Props {
 }
 
 export default function Greeting({ textPalette }: Props) {
-  const profile = useColorModeValue(
-    "/assets/profile/profile_light.png",
-    "/assets/profile/profile_dark.png"
-  );
-
   return (
     <Flex direction={["column", "row"]} align="center">
       <Flex direction="column" align="center">
@@ -50,7 +45,7 @@ export default function Greeting({ textPalette }: Props) {
       <Spacer />
       <SlideFade in transition={{ enter: { delay: 0.4 } }}>
         <Image  
-          src={profile}
+          src="/assets/profile/profile.png"
           alt="Tyrone Wu"
           boxSize={["150px", "250px"]}
           objectFit="contain"

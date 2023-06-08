@@ -14,6 +14,10 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "aws.svg", 
     link: "https://aws.amazon.com/" 
   }],
+  ["AWS Certified Developer - Associate", { 
+    icon: `${iconPath}` + "dva-c02.png", 
+    link: "https://www.credly.com/badges/1b91c4d9-176e-48df-aa24-1a95d0a5f530/public_url"
+  }],
   ["AWS EC2", { 
     icon: `${iconPath}` + "aws.svg", 
     link: "https://aws.amazon.com/ec2/" 
@@ -34,6 +38,18 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "chakraui.png", 
     link: "https://chakra-ui.com/" 
   }],
+  [
+    "Certified K8s Administrator", {
+      icon: `${iconPath}` + "cka.png",
+      link: "https://www.credly.com/badges/e68771f5-b96d-4a86-84c6-2023cde8c673/public_url"
+    }
+  ],
+  [
+    "Certified K8s Application Developer", {
+      icon: `${iconPath}` + "ckad.png",
+      link: "https://www.credly.com/badges/ddcb39a8-6fa3-46ba-8b98-ca983838a2b4/public_url"
+    }
+  ],
   ["Docker", { 
     icon: `${iconPath}` + "docker.svg", 
     link: "https://www.docker.com/" 
@@ -45,6 +61,10 @@ export const iconMap = new Map<string, TechIconProps>([
   ["Flask", { 
     icon: `${iconPath}` + "flask.svg", 
     link: "https://flask.palletsprojects.com/" 
+  }],
+  ["GitHub Actions", { 
+    icon: `${iconPath}` + "gha.png", 
+    link: "https://github.com/features/actions" 
   }],
   ["HTML", { 
     icon: `${iconPath}` + "html.svg", 
@@ -133,6 +153,10 @@ export const iconMap = new Map<string, TechIconProps>([
   ["Unix/Linux", { 
     icon: `${iconPath}` + "linux.svg", 
     link: "https://www.linux.org/" 
+  }],
+  ["Vagrant", { 
+    icon: `${iconPath}` + "vagrant.svg", 
+    link: "https://www.vagrantup.com/" 
   }],
   ["VirtualBox", { 
     icon: `${iconPath}` + "virtualbox.png", 

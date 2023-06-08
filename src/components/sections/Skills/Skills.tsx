@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, SimpleGrid, GridItem, Text, useColorModeValue, Image, Link, Stack } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, SimpleGrid, GridItem, Text, useColorModeValue, Image, Link, WrapItem, Wrap } from "@chakra-ui/react";
 
 import Card from "@/components/sections/Card";
 import { iconMap } from "@/components/data/icons";
@@ -8,18 +8,24 @@ interface Props {
   skillsBGColor: string;
   title: string;
   skillSet: string[];
+  isCert: boolean;
 };
 
 export default function Skills({ textPalette }: { textPalette: string }) {
-  const languages = [ "Java", "Python", "C++", "Rust", "Typescript", "Javascript", "Bash/Shell", ];
+  const languages = [ "Java", "Rust", "Python", "C++", "Typescript", "Javascript", "Bash/Shell", ];
   const libs = [ "Spring Boot", "Micronaut", "React", "Next.js", "Chakra UI", ];
   const tools = [ 
-    "AWS", "Oracle Cloud", "Unix/Linux", "Ansible", "Docker", "Terraform", "Kubernetes", "VirtualBox", "MySQL", "Node.js", "Postman", "Figma",  
+    "AWS", "Oracle Cloud", "Unix/Linux", "Ansible", "GitHub Actions", "Docker", "Terraform", "Kubernetes", "VirtualBox", "Vagrant", "MySQL", "Node.js", "Postman", "Figma",  
+  ];
+  const certifications = [
+    "AWS Certified Developer - Associate",
+    "Certified K8s Application Developer",
+    "Certified K8s Administrator"
   ];
 
-  const sectionBGColor = useColorModeValue("fall.0", "fall.3");
-  const skillsBGColor = useColorModeValue("skills.0", "skills.1");
-  
+  const background = useColorModeValue("background.0", "background.1");
+  const innerBackground = useColorModeValue("cardBackground.0", "cardBackground.1");
+
   return (
     <Box id="skills">
       <Card textColor={textPalette} title="Skills">
@@ -28,14 +34,17 @@ export default function Skills({ textPalette }: { textPalette: string }) {
           gap={6}
           mb={2}
         >
-          <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4}>
-            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Programming Languages" skillSet={languages} />
+          <GridItem backgroundColor={background} borderColor={textPalette} borderRightWidth={4}>
+            <SkillSet textPalette={textPalette} skillsBGColor={innerBackground} title="Programming Languages" skillSet={languages} isCert={false} />
           </GridItem>
-          <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4}>
-          <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Libraries/Frameworks" skillSet={libs} />
+          <GridItem backgroundColor={background} borderColor={textPalette} borderRightWidth={4}>
+            <SkillSet textPalette={textPalette} skillsBGColor={innerBackground} title="Libraries/Frameworks" skillSet={libs} isCert={false} />
           </GridItem>
-          <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4} colSpan={[1, 2]}>
-            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Tools/Software" skillSet={tools} />
+          <GridItem backgroundColor={background} borderColor={textPalette} borderRightWidth={4}>
+            <SkillSet textPalette={textPalette} skillsBGColor={innerBackground} title="Tools/Software" skillSet={tools} isCert={false} />
+          </GridItem>
+          <GridItem backgroundColor={background} borderColor={textPalette} borderRightWidth={4}>
+            <SkillSet textPalette={textPalette} skillsBGColor={innerBackground} title="Certifications" skillSet={certifications} isCert={true} />
           </GridItem>
         </SimpleGrid>
       </Card>
@@ -44,31 +53,27 @@ export default function Skills({ textPalette }: { textPalette: string }) {
   );
 };
 
-function SkillSet({ textPalette, skillsBGColor, title, skillSet }: Props) {
+function SkillSet({ textPalette, skillsBGColor, title, skillSet, isCert }: Props) {
   return (
     <Flex direction="column" mx={4} my={2}>
       <Text textStyle="h3" mt={2}>
         {title}
       </Text>
+
       <Divider borderColor={textPalette} mt={1} mb={4} />
 
-      <Flex 
-        direction="row" 
-        wrap="wrap"
-        justify="center"
-        gap="2px"
-        mx={[0, 4]}
-        mb={2} 
-      >
+      <Wrap spacing="2px" justify="center">
         {skillSet.map((skill: string) => (
-          <SkillIcon key={skill} borderColor={textPalette} bgColor={skillsBGColor} skill={skill} />
+          <WrapItem key={skill}>
+            <SkillIcon borderColor={textPalette} bgColor={skillsBGColor} skill={skill} isCert={isCert} />
+          </WrapItem>
         ))}
-      </Flex>
+      </Wrap>
     </Flex>
   );
 };
 
-function SkillIcon({ borderColor, bgColor, skill }: { borderColor: string, bgColor: string, skill: string }) {
+function SkillIcon({ borderColor, bgColor, skill, isCert }: { borderColor: string, bgColor: string, skill: string, isCert: boolean }) {
   const tech = iconMap.get(skill);
 
   return (
@@ -78,7 +83,7 @@ function SkillIcon({ borderColor, bgColor, skill }: { borderColor: string, bgCol
         backgroundColor={bgColor} 
         borderWidth="2px"
         borderRadius="none"
-        boxSize="90px"
+        boxSize={isCert ? "182px" : "90px"}
         style={{ whiteSpace: "normal" }}
       >
         <Flex direction="column">
@@ -86,7 +91,7 @@ function SkillIcon({ borderColor, bgColor, skill }: { borderColor: string, bgCol
             src={tech?.icon} 
             alt={skill} 
             objectFit="contain"
-            height="40px"
+            height={isCert ? "118px" : "40px"}
             mb={skill.indexOf(' ') >= 0 ? "0px" : "8px"}
           />
           <Text textStyle="icon">{skill}</Text>

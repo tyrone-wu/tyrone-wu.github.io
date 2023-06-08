@@ -3,19 +3,16 @@ import { Link, Text } from "@chakra-ui/react";
 export default function About() {
   return (
     <>
-      <Text as="span" textStyle="body" fontWeight="medium">
-        Hi, I&apos;m Tyrone Wu!{' '}
-        <Text as="span" textStyle="body">
-          (Yes, this is my actual birthname.)
-        </Text>
+      <Text textStyle="body">
+        I&apos;m a 🏳‍🌈 full-stack developer who specializes in the infrastructure, networking, and operational aspects of software.
       </Text>
 
       <Text textStyle="body">
-        I&apos;m a full-stack developer with a special interest in the <q>operations</q> side of development. I love finding ways to automate processes and building useful software, as well as learning and being up-to-date with new tools/technologies in the industry.
+        I enjoy weightlifting, watching goofy horror/low-budget movies, and contributing to open-source projects related to eBPF or container/networking/CNI technologies.
       </Text>
 
       <Text textStyle="body">
-        I am currently studying for the <Link href="https://www.cncf.io/certification/ckad/" fontWeight="medium" isExternal>CKAD</Link> exam and learning about <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
+        I am currently learning about <Link href="https://cilium.io/" fontWeight="medium" isExternal>Cilium</Link> and <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>, and will be building my very first homelab! 
       </Text>
     </>
   );

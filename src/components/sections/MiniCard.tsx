@@ -6,7 +6,8 @@ interface Props {
 }
 
 export default function MiniCard({ textPalette, children }: Props) {
-  const sectionBGColor = useColorModeValue("fall.0", "fall.3");
+  const sectionBGColor = useColorModeValue("background.0", "background.1");
+
   return (
     <Box 
       width="full" 

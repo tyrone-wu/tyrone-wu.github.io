@@ -1,11 +1,11 @@
-import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider, useColorModeValue, SimpleGrid } from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider, SimpleGrid } from "@chakra-ui/react";
 
 import Card from "@/components/sections/Card";
 import MiniCard from "@/components/sections/MiniCard";
 
 interface Props {
   company: string;
-  link: string;
+  // link: string;
   logo: string;
   time: string;
   position: string;
@@ -15,43 +15,40 @@ interface Props {
 export default function Experience({ textPalette }: { textPalette: string }) {
   const companyPath = "/assets/companies/";
   const jobs = [
-    { 
+    {
       company: "NC State University", 
-      link: "https://www.csc.ncsu.edu/",
+      // link: "https://www.csc.ncsu.edu/",
       logo: `${companyPath}` + "ncsu.png", 
       time: "Sep 2021 - Dec 2021", 
-      position: "Teaching Assistant - Automated Learning & Data Analysis", 
+      position: "Teaching Assistant", 
       description: [
-        "Generated importable rubric templates/groups on Gradescope for assignments.",
-        "Exported assignment evaluations with appropriate field mappings to support direct imports onto Moodle.",
-        "Provided iterative feedback for final research projects on problem statement, methodology, method approach, experimental design rationale and analysis, and experiment results.",
-        "Graded general assignments and exams for both undergraduate and graduate section.",
+        "Generated importable rubric templates for Gradescope to streamline management and grading of assignments in the undergraduate and graduate sections of Automated Learning & Data Analysis.",
+        "Facilitated feedback exchange between students and the professor and other TAs by exporting assignment evaluations with proper field mappings for direct import into Moodle using bash and python scripts.",
       ],
     },
     { 
       company: "nCino Inc.", 
-      link: "https://www.ncino.com/",
+      // link: "https://www.ncino.com/",
       logo: `${companyPath}` + "ncino.png", 
       time: "Jul 2020 - Aug 2020", 
       position: "Software Engineer Intern", 
       description: [
-        "Created a Salesforce component that expands object details in response to user input to support granular display of custom retail information.",
-        "Wrote Apex unit tests with at least 90% code coverage to ensure that business logic and error handling are covered.",
-        "Helped develop an XML DOM parser that automates field mappings and relationships for custom objects on the nCino data model using XPath with an internal library.",
+        "Developed a Salesforce component for expanding object details through dropdown and hover triggers, enabling granular display of retail information on enhancing end-user experience.",
+        "Conducted Apex unit tests with a minimum of 90\% code coverage to ensure comprehensive validation of business logic and error handling for retail inventory management.",
+        "Aided in the development of an XML DOM parser that automates field mappings and relationships for custom objects onto the Salesforce data model using XPath and an internal library.",
       ],
     },
     { 
       company: "NC Chinese Business Association", 
-      link: "https://www.nc-cba.org/",
+      // link: "https://www.nc-cba.org/",
       logo: `${companyPath}` + "nccba.png", 
       time: "May 2017 - May 2020", 
       position: "Student Web Developer", 
       description: [
-        "Worked alongside Web Development Team and Event Coordinators to deliver event pages as per speakers/clients design view.",
-        "Created a custom page template and components to support design and format reusability.",
-        "Implemented event pages where users can register for attendance and view specific event details.",
-        "Troubleshooted ticket purchase functionalities and URL references for Upcoming Events pages prior to deployment.",
-        "Correct frontend layout of Upcoming & Past Events on the homepage to align with the scheduled timelines.",
+        "Worked alongside the development team and event coordinators to deliver event pages as per speakers/clients design view.",
+        "Created custom page templates and components to support design and format reusability, including attendance registration and event detail linking.",
+        "Troubleshooted ticket purchase functionalities and link references for the Upcoming Event pages prior to deployment",
+        "Rollout patches on the Upcoming & Past Events on the homepage to align with the scheduled timelines.",
       ],
     },
   ];
@@ -61,7 +58,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
       <Card textColor={textPalette} title="Experience">
         <SimpleGrid
           columns={1}
-          spacing={6}
+          spacing={8}
           mb={2}
         >
           {jobs.map((job: Props) => (
@@ -77,7 +74,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
 function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
   return (
     <MiniCard textPalette={textPalette}>
-      <Flex direction="column" mx={6} mt={4}>
+      <Flex direction="column" mx={6} my={4}>
         <Flex 
           width="full"
           direction="row" 
@@ -91,15 +88,15 @@ function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
           />
 
           <Flex width="full" direction="column">
-            <Link href={job.link} isExternal>
-              <Text as="u" textStyle="h3">
-                {job.company}
-              </Text>
-            </Link>
+            {/* <Link href={job.link} isExternal> */}
+            <Text as="u" textStyle="h3">
+              {job.position}
+            </Text>
+            {/* </Link> */}
 
             <Flex direction={["column", "row"]}>
               <Text textStyle="body" fontWeight="medium">
-                {job.position}
+                {job.company}
               </Text>
               <Spacer />
               <Text textStyle="sub">
@@ -111,7 +108,7 @@ function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
 
         <Divider borderColor={textPalette} mt={1} mb={2} />
 
-        <UnorderedList textStyle="sub" mb={6}>
+        <UnorderedList textStyle="sub">
           {job.description.map((description: string, i: number) => (
             <ListItem key={`${job.company}` + "-d" + `${i}`} ml={4}>{description}</ListItem>
           ))}

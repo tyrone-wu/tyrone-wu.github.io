@@ -5,10 +5,10 @@ import { FaSun } from "react-icons/fa";
 // Toggle dark/light mode
 export default function ToggleTheme() {
   const { toggleColorMode } = useColorMode();
-  const modeColor = useColorModeValue("night", "day");
+  const iconColor = useColorModeValue("lightDarkIcon.0", "lightDarkIcon.1");
   const ModeIcon = useColorModeValue(
-    <Icon as={BsMoonStarsFill} boxSize={6} color="night" />,
-    <Icon as={FaSun} boxSize={7} color="day" />
+    <Icon as={BsMoonStarsFill} boxSize={6} color={iconColor} />,
+    <Icon as={FaSun} boxSize={7} color={iconColor} />
   );
 
   return (
@@ -16,7 +16,7 @@ export default function ToggleTheme() {
       marginX={6}
       marginY={[3, "auto"]}
       size="md"
-      borderColor={modeColor}
+      borderColor={iconColor}
       borderRadius="none"
       variant="outline"
       icon={ModeIcon}

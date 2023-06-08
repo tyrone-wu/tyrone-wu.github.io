@@ -7,12 +7,13 @@ import Landing from "@/components/sections/Home/Home";
 import AboutMe from "@/components/sections/AboutMe/AboutMe";
 import Experience from "@/components/sections/Experience/Experience";
 import Projects from "@/components/sections/Projects/Projects";
+import OpenSource from "@/components/sections/OpenSource/OpenSource";
 import Skills from "@/components/sections/Skills/Skills";
 import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   const background = "/assets/backgrounds/bg-hexagon.svg";
-  const textPalette = useColorModeValue("fall.2", "warmWinter.1");
+  const textPalette = useColorModeValue("textColor.0", "textColor.1");
 
   return (
     <>
@@ -20,7 +21,7 @@ export default function Home() {
         <title>Tyrone Wu</title>
         <meta charSet="utf-8" />
         <meta name="title" content="Tyrone Wu" />
-        <meta name="description" content="Tyrone Wu's Portfolio Site" />
+        <meta name="description" content="Tyrone Wu's Portfolio Website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -37,6 +38,7 @@ export default function Home() {
           <AboutMe textPalette={textPalette} />
           <Experience textPalette={textPalette} />
           <Projects textPalette={textPalette} />
+          <OpenSource textPalette={textPalette} />
           <Skills textPalette={textPalette} />
         </Layout>
       </Box>

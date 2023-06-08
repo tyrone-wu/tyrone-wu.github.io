@@ -12,14 +12,14 @@ interface Props {
 
 // Toggle hamburger menu dropdown 
 export default function Menu() {
-  const sections = ["Home", "About", "Experience", "Projects", "Skills"];
+  const sections = ["Home", "About", "Experience", "Projects", "Open-Source", "Skills"];
 
   const [ expanded, setExpanded ] = useState(false);
   function toggleMenu() {
     setExpanded((prevState) => !prevState);
   };
 
-  const fillColor = useColorModeValue("winter.3", "warmWinter.1");
+  const fillColor = useColorModeValue("textColor.0", "textColor.1");
 
   return (
     <>
