@@ -58,7 +58,7 @@ export default function Projects({ textPalette }: { textPalette: string }) {
       <Card textColor={textPalette} title="Projects">
         <SimpleGrid 
           columns={[1, 2]}
-          spacing={6}
+          spacing={10}
           mb={2}
         >
           {projects.map((project: Props, i: number) => (
