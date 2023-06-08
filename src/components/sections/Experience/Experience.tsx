@@ -1,6 +1,7 @@
-import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider } from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Spacer, UnorderedList, ListItem, Link, Divider, useColorModeValue, SimpleGrid } from "@chakra-ui/react";
 
 import Card from "@/components/sections/Card";
+import MiniCard from "@/components/sections/MiniCard";
 
 interface Props {
   company: string;
@@ -58,9 +59,15 @@ export default function Experience({ textPalette }: { textPalette: string }) {
   return (
     <Box id="experience">
       <Card textColor={textPalette} title="Experience">
-        {jobs.map((job: Props) => (
-          <Subsection key={job.company} textPalette={textPalette} job={job} />
-        ))}
+        <SimpleGrid
+          columns={1}
+          spacing={6}
+          mb={2}
+        >
+          {jobs.map((job: Props) => (
+            <Subsection key={job.company} textPalette={textPalette} job={job} />
+          ))}
+        </SimpleGrid>
       </Card>
       <Box mb={52} />
     </Box>
@@ -69,51 +76,47 @@ export default function Experience({ textPalette }: { textPalette: string }) {
 
 function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
   return (
-    <>
-      <Flex 
-        width="full"
-        direction="row" 
-        align="center"
-      >
-        <Image 
-          src={job.logo} 
-          alt="company logo" 
-          mr={4} 
-          boxSize={12}
-        />
+    <MiniCard textPalette={textPalette}>
+      <Flex direction="column" mx={6} mt={4}>
+        <Flex 
+          width="full"
+          direction="row" 
+          align="center"
+        >
+          <Image 
+            src={job.logo} 
+            alt="company logo" 
+            mr={4} 
+            boxSize={12}
+          />
 
-        <Flex width="full" direction="column">
-          <Flex direction="row" align="center" gap={4}>
-              <Link href={job.link} isExternal>
-                <Text as="u" textStyle="h3">
-                  {job.company}
-                </Text>
-              </Link>
-          </Flex>
+          <Flex width="full" direction="column">
+            <Link href={job.link} isExternal>
+              <Text as="u" textStyle="h3">
+                {job.company}
+              </Text>
+            </Link>
 
-          <Flex direction={["column", "row"]}>
-            <Text textStyle="body" fontWeight="medium">
-              {job.position}
-            </Text>
-            <Spacer />
-            <Text textStyle="sub">
-              {job.time}
-            </Text>
+            <Flex direction={["column", "row"]}>
+              <Text textStyle="body" fontWeight="medium">
+                {job.position}
+              </Text>
+              <Spacer />
+              <Text textStyle="sub">
+                {job.time}
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
-      </Flex>
 
-      <UnorderedList textStyle="sub" mt={2} mb={6}>
-        {job.description.map((description: string, i: number) => (
-          <ListItem key={`${job.company}` + "-d" + `${i}`} ml={4}>{description}</ListItem>
-        ))}
-      </UnorderedList>
-      
-      <Divider 
-        borderColor={textPalette} 
-        borderWidth="thin"
-        mb={6}
-      />
-    </>
+        <Divider borderColor={textPalette} mt={1} mb={2} />
+
+        <UnorderedList textStyle="sub" mb={6}>
+          {job.description.map((description: string, i: number) => (
+            <ListItem key={`${job.company}` + "-d" + `${i}`} ml={4}>{description}</ListItem>
+          ))}
+        </UnorderedList>
+      </Flex>
+    </MiniCard>
   );
 };
