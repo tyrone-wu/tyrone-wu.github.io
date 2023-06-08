@@ -61,7 +61,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
       <Card textColor={textPalette} title="Experience">
         <SimpleGrid
           columns={1}
-          spacing={6}
+          spacing={8}
           mb={2}
         >
           {jobs.map((job: Props) => (
@@ -77,7 +77,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
 function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
   return (
     <MiniCard textPalette={textPalette}>
-      <Flex direction="column" mx={6} mt={4}>
+      <Flex direction="column" mx={6} mt={6}>
         <Flex 
           width="full"
           direction="row" 
