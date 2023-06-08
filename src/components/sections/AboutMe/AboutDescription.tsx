@@ -11,10 +11,10 @@ export default function About() {
       </Text>
 
       <Text textStyle="body">
-        I&apos;m a full-stack developer with a special interest/focus in cloud and devops. I love finding ways to automate and streamline processes, as well as learning and being up-to-date with new tools/technologies in the industry.
+        I&apos;m a full-stack developer with a special interest in the <q>operations</q> side of development. I love finding ways to automate processes and building useful software, as well as learning and being up-to-date with new tools/technologies in the industry.
       </Text>
 
-      <Text textStyle="body" mt={2}>
+      <Text textStyle="body">
         I am currently studying for the <Link href="https://www.cncf.io/certification/ckad/" fontWeight="medium" isExternal>CKAD</Link> exam and learning about <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
       </Text>
     </>
