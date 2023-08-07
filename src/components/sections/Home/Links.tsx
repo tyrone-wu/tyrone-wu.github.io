@@ -12,7 +12,7 @@ export default function Links({ textColor }: { textColor: string }) {
   const links = [
     { name: "GitHub", link: "https://github.com/tyrone-wu", icon: FaGithub },
     { name: "LinkedIn", link: "https://www.linkedin.com/in/tyronekwu/", icon: FaLinkedin },
-    { name: "Resume", link: "/files/Resume.pdf", icon: FaFilePdf },
+    { name: "Resume", link: "https://drive.google.com/file/d/12cWnH4exHtoTJrDTjNlU8ieiEYhh4AUG/view?usp=sharing", icon: FaFilePdf },
     { name: "Email", link: "mailto:tboywu@gmail.com", icon: FaEnvelope },
   ];
   const bgShade = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
