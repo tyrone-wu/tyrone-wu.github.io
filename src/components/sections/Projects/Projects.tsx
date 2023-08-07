@@ -94,7 +94,7 @@ function ProjectSection({ textPalette, project, iconBGColor }: { textPalette: st
             src={project.thumbnail} 
             alt="project thumbnail" 
             w={["230px", "330px"]}
-            borderRadius="2xl"
+            // borderRadius="2xl"
             objectFit="contain"
           />
 
@@ -124,7 +124,7 @@ function TechIcon({ tech, iconBGColor }: { tech: string, iconBGColor: string }) 
   return (
     <Link href={stack?.link} isExternal>
       <Button 
-        rightIcon={<Image src={stack?.icon} alt={tech} h="20px" />}
+        rightIcon={<Image src={stack?.icon} alt={tech} w="20px" />}
         borderRadius="none"
         backgroundColor={iconBGColor}
         iconSpacing="5px"

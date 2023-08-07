@@ -55,7 +55,7 @@ const textStyles = {
     letterSpacing: "tight",
   },
   icon: {
-    fontSize: ["0.75rem", "0.9rem"],
+    fontSize: ["0.8rem", "0.9rem"],
     fontWeight: ["bold", "medium"],
     letterSpacing: "tighter",
   },
