@@ -134,6 +134,10 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "linux.svg", 
     link: "https://www.linux.org/" 
   }],
+  ["Vagrant", { 
+    icon: `${iconPath}` + "vagrant.svg", 
+    link: "https://www.vagrantup.com/" 
+  }],
   ["VirtualBox", { 
     icon: `${iconPath}` + "virtualbox.png", 
     link: "https://www.virtualbox.org/" 

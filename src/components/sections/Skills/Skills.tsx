@@ -14,7 +14,7 @@ export default function Skills({ textPalette }: { textPalette: string }) {
   const languages = [ "Java", "Python", "C++", "Rust", "Typescript", "Javascript", "Bash/Shell", ];
   const libs = [ "Spring Boot", "Micronaut", "React", "Next.js", "Chakra UI", ];
   const tools = [ 
-    "AWS", "Oracle Cloud", "Unix/Linux", "Ansible", "Docker", "Terraform", "Kubernetes", "VirtualBox", "MySQL", "Node.js", "Postman", "Figma",  
+    "AWS", "Oracle Cloud", "Unix/Linux", "Ansible", "Docker", "Terraform", "Kubernetes", "VirtualBox", "Vagrant", "MySQL", "Node.js", "Postman", "Figma",  
   ];
 
   const sectionBGColor = useColorModeValue("fall.0", "fall.3");
