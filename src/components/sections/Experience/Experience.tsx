@@ -22,10 +22,10 @@ export default function Experience({ textPalette }: { textPalette: string }) {
       time: "Sep 2021 - Dec 2021", 
       position: "Teaching Assistant - Automated Learning & Data Analysis", 
       description: [
-        "Generated importable rubric templates/groups on Gradescope for assignments.",
-        "Exported assignment evaluations with appropriate field mappings to support direct imports onto Moodle.",
-        "Provided iterative feedback for final research projects on problem statement, methodology, method approach, experimental design rationale and analysis, and experiment results.",
-        "Graded general assignments and exams for both undergraduate and graduate section.",
+        "Generated importable rubric templates within Gradescope to streamline classroom assignment management.",
+        "Facilitated feedback exchange between students and the professor by exporting assignment evaluations with proper field mappings for direct import into Moodle.",
+        "Delivered iterative feedback for final research projects, offering guidance and refinement suggestions on problem statements, methodologies, experimental design rationales, analyses, and experiment results.",
+        "Graded general assignments and exams for both the undergraduate and graduate section of the courses.",
       ],
     },
     { 
@@ -35,9 +35,9 @@ export default function Experience({ textPalette }: { textPalette: string }) {
       time: "Jul 2020 - Aug 2020", 
       position: "Software Engineer Intern", 
       description: [
-        "Created a Salesforce component that expands object details in response to user input to support granular display of custom retail information.",
-        "Wrote Apex unit tests with at least 90% code coverage to ensure that business logic and error handling are covered.",
-        "Helped develop an XML DOM parser that automates field mappings and relationships for custom objects on the nCino data model using XPath with an internal library.",
+        "Developed a Salesforce component enhancing object detail expansion triggered by dropdown components, enabling the granular display of retail information for improved end-user experience.",
+        "Implemented Apex unit tests achieving a minimum of 90\% code coverage to validate business logic and error handling processes to achieve high-quality user retail inventory experience.",
+        "Helped develop an XML DOM parser that automates field mappings and relationships for custom objects on the nCino data model using XPath and a custom internal library.",
       ],
     },
     { 
