@@ -3,19 +3,17 @@ import { Link, Text } from "@chakra-ui/react";
 export default function About() {
   return (
     <>
-      <Text as="span" textStyle="body" fontWeight="medium">
-        Hi, I&apos;m Tyrone Wu!{' '}
-        <Text as="span" textStyle="body">
-          (Yes, this is my actual birthname.)
-        </Text>
+      <Text textStyle="body">
+        I&apos;m a full-stack developer with a strong passion in the operational and networking aspects of software development. 
+        I enjoy discovering ways to automate processes and workflows to build useful and efficient tools for developers.
       </Text>
 
       <Text textStyle="body">
-        I&apos;m a full-stack developer with a special focus in the <q>operations</q> side of development. I love finding ways to automate processes and build useful software for other developers. I also have a lot of interest in learning and being up-to-date with new tools/technologies in the industry
+        Aside from my career path, my hobbies include learning and being up-to-date with tools/technologies in the industry, weight lifting, and gaming (co-op and strategic).
       </Text>
 
       <Text textStyle="body">
-        I am currently studying for the <Link href="https://www.cncf.io/certification/ckad/" fontWeight="medium" isExternal>CKAD</Link> exam and learning about <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
+        I am currently studying for the <Text as="span" fontWeight="medium">AWS Certified Developer Associate</Text> exam and learning about <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
       </Text>
     </>
   );
