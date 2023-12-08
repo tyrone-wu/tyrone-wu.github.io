@@ -13,7 +13,7 @@ export default function About() {
       </Text>
 
       <Text textStyle="body">
-        I am currently studying for the <Text as="span" fontWeight="medium">AWS Certified Developer Associate</Text> exam and learning about <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
+        I am currently studying for the <Text as="span" fontWeight="medium">CKAD</Text> and learning about <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
       </Text>
     </>
   );
