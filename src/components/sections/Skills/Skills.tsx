@@ -8,6 +8,7 @@ interface Props {
   skillsBGColor: string;
   title: string;
   skillSet: string[];
+  isCert: boolean;
 };
 
 export default function Skills({ textPalette }: { textPalette: string }) {
@@ -15,6 +16,9 @@ export default function Skills({ textPalette }: { textPalette: string }) {
   const libs = [ "Spring Boot", "Micronaut", "React", "Next.js", "Chakra UI", ];
   const tools = [ 
     "AWS", "Oracle Cloud", "Unix/Linux", "Ansible", "Docker", "Terraform", "Kubernetes", "VirtualBox", "Vagrant", "MySQL", "Node.js", "Postman", "Figma",  
+  ];
+  const certifications = [
+    "AWS Certified Developer - Associate",
   ];
 
   const sectionBGColor = useColorModeValue("fall.0", "fall.3");
@@ -29,13 +33,16 @@ export default function Skills({ textPalette }: { textPalette: string }) {
           mb={2}
         >
           <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4}>
-            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Programming Languages" skillSet={languages} />
+            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Programming Languages" skillSet={languages} isCert={false} />
           </GridItem>
           <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4}>
-          <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Libraries/Frameworks" skillSet={libs} />
+            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Libraries/Frameworks" skillSet={libs} isCert={false} />
           </GridItem>
-          <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4} colSpan={[1, 2]}>
-            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Tools/Software" skillSet={tools} />
+          <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4}>
+            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Tools/Software" skillSet={tools} isCert={false} />
+          </GridItem>
+          <GridItem backgroundColor={sectionBGColor} borderColor={textPalette} borderRightWidth={4}>
+            <SkillSet textPalette={textPalette} skillsBGColor={skillsBGColor} title="Certifications" skillSet={certifications} isCert={true} />
           </GridItem>
         </SimpleGrid>
       </Card>
@@ -44,7 +51,7 @@ export default function Skills({ textPalette }: { textPalette: string }) {
   );
 };
 
-function SkillSet({ textPalette, skillsBGColor, title, skillSet }: Props) {
+function SkillSet({ textPalette, skillsBGColor, title, skillSet, isCert }: Props) {
   return (
     <Flex direction="column" mx={4} my={2}>
       <Text textStyle="h3" mt={2}>
@@ -61,14 +68,14 @@ function SkillSet({ textPalette, skillsBGColor, title, skillSet }: Props) {
         mb={2} 
       >
         {skillSet.map((skill: string) => (
-          <SkillIcon key={skill} borderColor={textPalette} bgColor={skillsBGColor} skill={skill} />
+          <SkillIcon key={skill} borderColor={textPalette} bgColor={skillsBGColor} skill={skill} isCert={isCert} />
         ))}
       </Flex>
     </Flex>
   );
 };
 
-function SkillIcon({ borderColor, bgColor, skill }: { borderColor: string, bgColor: string, skill: string }) {
+function SkillIcon({ borderColor, bgColor, skill, isCert }: { borderColor: string, bgColor: string, skill: string, isCert: boolean }) {
   const tech = iconMap.get(skill);
 
   return (
@@ -78,7 +85,7 @@ function SkillIcon({ borderColor, bgColor, skill }: { borderColor: string, bgCol
         backgroundColor={bgColor} 
         borderWidth="2px"
         borderRadius="none"
-        boxSize="90px"
+        boxSize={isCert ? "182px" : "90px"}
         style={{ whiteSpace: "normal" }}
       >
         <Flex direction="column">
@@ -86,7 +93,7 @@ function SkillIcon({ borderColor, bgColor, skill }: { borderColor: string, bgCol
             src={tech?.icon} 
             alt={skill} 
             objectFit="contain"
-            height="40px"
+            height={isCert ? "118px" : "40px"}
             mb={skill.indexOf(' ') >= 0 ? "0px" : "8px"}
           />
           <Text textStyle="icon">{skill}</Text>

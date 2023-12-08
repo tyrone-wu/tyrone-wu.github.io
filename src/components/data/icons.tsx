@@ -14,6 +14,10 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "aws.svg", 
     link: "https://aws.amazon.com/" 
   }],
+  ["AWS Certified Developer - Associate", { 
+    icon: `${iconPath}` + "dva-c02.png", 
+    link: "https://www.credly.com/badges/1b91c4d9-176e-48df-aa24-1a95d0a5f530/linked_in_profile"
+  }],
   ["AWS EC2", { 
     icon: `${iconPath}` + "aws.svg", 
     link: "https://aws.amazon.com/ec2/" 
