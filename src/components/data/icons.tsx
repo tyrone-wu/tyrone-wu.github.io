@@ -38,6 +38,12 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "chakraui.png", 
     link: "https://chakra-ui.com/" 
   }],
+  [
+    "Certified Kubernetes Application Dev.", {
+      icon: `${iconPath}` + "ckad.png",
+      link: "https://www.credly.com/badges/ddcb39a8-6fa3-46ba-8b98-ca983838a2b4/public_url"
+    }
+  ],
   ["Docker", { 
     icon: `${iconPath}` + "docker.svg", 
     link: "https://www.docker.com/" 

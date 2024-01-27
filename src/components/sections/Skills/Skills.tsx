@@ -19,6 +19,7 @@ export default function Skills({ textPalette }: { textPalette: string }) {
   ];
   const certifications = [
     "AWS Certified Developer - Associate",
+    "Certified Kubernetes Application Dev."
   ];
 
   const sectionBGColor = useColorModeValue("fall.0", "fall.3");
