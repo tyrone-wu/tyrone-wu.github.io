@@ -13,7 +13,7 @@ export default function About() {
       </Text>
 
       <Text textStyle="body">
-        I am currently studying for the <Text as="span" fontWeight="medium">CKAD</Text> and learning about <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
+        I am currently learning about <Link href="https://cilium.io/" fontWeight="medium" isExternal>Cilium</Link> and <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
       </Text>
     </>
   );

@@ -16,7 +16,7 @@ export const iconMap = new Map<string, TechIconProps>([
   }],
   ["AWS Certified Developer - Associate", { 
     icon: `${iconPath}` + "dva-c02.png", 
-    link: "https://www.credly.com/badges/1b91c4d9-176e-48df-aa24-1a95d0a5f530/linked_in_profile"
+    link: "https://www.credly.com/badges/1b91c4d9-176e-48df-aa24-1a95d0a5f530/public_url"
   }],
   ["AWS EC2", { 
     icon: `${iconPath}` + "aws.svg", 
@@ -38,6 +38,12 @@ export const iconMap = new Map<string, TechIconProps>([
     icon: `${iconPath}` + "chakraui.png", 
     link: "https://chakra-ui.com/" 
   }],
+  [
+    "Certified Kubernetes Application Dev.", {
+      icon: `${iconPath}` + "ckad.png",
+      link: "https://www.credly.com/badges/ddcb39a8-6fa3-46ba-8b98-ca983838a2b4/public_url"
+    }
+  ],
   ["Docker", { 
     icon: `${iconPath}` + "docker.svg", 
     link: "https://www.docker.com/" 
