@@ -39,7 +39,13 @@ export const iconMap = new Map<string, TechIconProps>([
     link: "https://chakra-ui.com/" 
   }],
   [
-    "Certified Kubernetes Application Dev.", {
+    "Certified K8s Administrator", {
+      icon: `${iconPath}` + "cka.png",
+      link: "https://www.credly.com/badges/e68771f5-b96d-4a86-84c6-2023cde8c673/public_url"
+    }
+  ],
+  [
+    "Certified K8s Application Developer", {
       icon: `${iconPath}` + "ckad.png",
       link: "https://www.credly.com/badges/ddcb39a8-6fa3-46ba-8b98-ca983838a2b4/public_url"
     }

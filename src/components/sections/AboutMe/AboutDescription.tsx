@@ -13,7 +13,7 @@ export default function About() {
       </Text>
 
       <Text textStyle="body">
-        I am currently learning about <Link href="https://cilium.io/" fontWeight="medium" isExternal>Cilium</Link> and <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>! 
+        I am currently learning about <Link href="https://cilium.io/" fontWeight="medium" isExternal>Cilium</Link> and <Link href="https://ebpf.io/" fontWeight="medium" isExternal>eBPF</Link>, and will be creating my very first homelab with <Link href="https://www.proxmox.com/en/" fontWeight="medium" isExternal>Proxmox</Link>! 
       </Text>
     </>
   );
