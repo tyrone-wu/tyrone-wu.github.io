@@ -6,160 +6,163 @@ interface TechIconProps {
 const iconPath = "/assets/icons/";
 
 export const iconMap = new Map<string, TechIconProps>([
-  ["Ansible", { 
-    icon: `${iconPath}` + "ansible.svg", 
-    link: "https://www.ansible.com/" 
+  ["Ansible", {
+    icon: `${iconPath}` + "ansible.svg",
+    link: "https://www.ansible.com/"
   }],
-  ["AWS", { 
-    icon: `${iconPath}` + "aws.svg", 
-    link: "https://aws.amazon.com/" 
+  ["AWS", {
+    icon: `${iconPath}` + "aws.svg",
+    link: "https://aws.amazon.com/"
   }],
-  ["AWS Certified Developer - Associate", { 
-    icon: `${iconPath}` + "dva-c02.png", 
+  ["AWS Certified Developer - Associate", {
+    icon: `${iconPath}` + "dva-c02.png",
     link: "https://www.credly.com/badges/1b91c4d9-176e-48df-aa24-1a95d0a5f530/public_url"
   }],
-  ["AWS EC2", { 
-    icon: `${iconPath}` + "aws.svg", 
-    link: "https://aws.amazon.com/ec2/" 
+  ["AWS EC2", {
+    icon: `${iconPath}` + "aws.svg",
+    link: "https://aws.amazon.com/ec2/"
   }],
-  ["Bash/Shell", { 
-    icon: `${iconPath}` + "bash.svg", 
-    link: "https://www.gnu.org/software/bash/" 
+  ["Bash/Shell", {
+    icon: `${iconPath}` + "bash.svg",
+    link: "https://www.gnu.org/software/bash/"
   }],
-  ["C++", { 
-    icon: `${iconPath}` + "cpp.svg", 
-    link: "https://cplusplus.com/" 
+  ["C++", {
+    icon: `${iconPath}` + "cpp.svg",
+    link: "https://cplusplus.com/"
   }],
-  ["CSS", { 
-    icon: `${iconPath}` + "css.svg", 
-    link: "https://www.w3.org/Style/CSS/Overview.en.html" 
+  ["CSS", {
+    icon: `${iconPath}` + "css.svg",
+    link: "https://www.w3.org/Style/CSS/Overview.en.html"
   }],
-  ["Chakra UI", { 
-    icon: `${iconPath}` + "chakraui.png", 
-    link: "https://chakra-ui.com/" 
+  ["Chakra UI", {
+    icon: `${iconPath}` + "chakraui.png",
+    link: "https://chakra-ui.com/"
   }],
-  [
-    "Certified K8s Administrator", {
-      icon: `${iconPath}` + "cka.png",
-      link: "https://www.credly.com/badges/e68771f5-b96d-4a86-84c6-2023cde8c673/public_url"
-    }
+  ["Certified K8s Administrator", {
+    icon: `${iconPath}` + "cka.png",
+    link: "https://www.credly.com/badges/e68771f5-b96d-4a86-84c6-2023cde8c673/public_url"
+  }
   ],
-  [
-    "Certified K8s Application Developer", {
-      icon: `${iconPath}` + "ckad.png",
-      link: "https://www.credly.com/badges/ddcb39a8-6fa3-46ba-8b98-ca983838a2b4/public_url"
-    }
+  ["Certified K8s Application Developer", {
+    icon: `${iconPath}` + "ckad.png",
+    link: "https://www.credly.com/badges/ddcb39a8-6fa3-46ba-8b98-ca983838a2b4/public_url"
+  }
   ],
-  ["Docker", { 
-    icon: `${iconPath}` + "docker.svg", 
-    link: "https://www.docker.com/" 
+  ["Codecov", {
+    icon: `${iconPath}` + "codecov.svg",
+    link: "https://about.codecov.io/"
+  }
+  ],
+  ["Docker", {
+    icon: `${iconPath}` + "docker.svg",
+    link: "https://www.docker.com/"
   }],
-  ["Figma", { 
-    icon: `${iconPath}` + "figma.svg", 
-    link: "https://www.figma.com/" 
+  ["Figma", {
+    icon: `${iconPath}` + "figma.svg",
+    link: "https://www.figma.com/"
   }],
-  ["Flask", { 
-    icon: `${iconPath}` + "flask.svg", 
-    link: "https://flask.palletsprojects.com/" 
+  ["Flask", {
+    icon: `${iconPath}` + "flask.svg",
+    link: "https://flask.palletsprojects.com/"
   }],
-  ["GitHub Actions", { 
-    icon: `${iconPath}` + "gha.png", 
-    link: "https://github.com/features/actions" 
+  ["GitHub Actions", {
+    icon: `${iconPath}` + "gha.png",
+    link: "https://github.com/features/actions"
   }],
-  ["HTML", { 
-    icon: `${iconPath}` + "html.svg", 
-    link: "https://html.com/" 
+  ["HTML", {
+    icon: `${iconPath}` + "html.svg",
+    link: "https://html.com/"
   }],
-  ["Java", { 
-    icon: `${iconPath}` + "java.svg", 
-    link: "https://www.java.com/" 
+  ["Java", {
+    icon: `${iconPath}` + "java.svg",
+    link: "https://www.java.com/"
   }],
-  ["Javascript", { 
-    icon: `${iconPath}` + "javascript.svg", 
-    link: "https://www.javascript.com/" 
+  // ["Javascript", { 
+  //   icon: `${iconPath}` + "javascript.svg", 
+  //   link: "https://www.javascript.com/" 
+  // }],
+  ["Kubernetes", {
+    icon: `${iconPath}` + "kubernetes.svg",
+    link: "https://kubernetes.io/"
   }],
-  ["Kubernetes", { 
-    icon: `${iconPath}` + "kubernetes.svg", 
-    link: "https://kubernetes.io/" 
-  }],
-  ["Locust", { 
-    icon: `${iconPath}` + "locust.png", 
-    link: "https://locust.io/" 
+  ["Locust", {
+    icon: `${iconPath}` + "locust.png",
+    link: "https://locust.io/"
   }],
   ["microk8s", {
-    icon: `${iconPath}` + "microk8s.png", 
+    icon: `${iconPath}` + "microk8s.png",
     link: "https://microk8s.io/"
   }],
   ["Micronaut", {
-    icon: `${iconPath}` + "micronaut.png", 
+    icon: `${iconPath}` + "micronaut.png",
     link: "https://micronaut.io/"
   }],
   ["MySQL", {
-    icon: `${iconPath}` + "mysql.svg", 
+    icon: `${iconPath}` + "mysql.svg",
     link: "https://www.mysql.com/"
   }],
   ["Next.js", {
-    icon: `${iconPath}` + "nextjs.svg", 
+    icon: `${iconPath}` + "nextjs.svg",
     link: "https://nextjs.org/"
   }],
   ["Node.js", {
-    icon: `${iconPath}` + "nodejs.svg", 
+    icon: `${iconPath}` + "nodejs.svg",
     link: "https://nodejs.org/"
   }],
   ["Oracle Cloud", {
-    icon: `${iconPath}` + "oci.png", 
+    icon: `${iconPath}` + "oci.png",
     link: "https://www.oracle.com/cloud/"
   }],
   ["Oracle DB", {
-    icon: `${iconPath}` + "oracle-db.png", 
+    icon: `${iconPath}` + "oracle-db.png",
     link: "https://www.oracle.com/database/"
   }],
   ["Python", {
-    icon: `${iconPath}` + "python.svg", 
+    icon: `${iconPath}` + "python.svg",
     link: "https://www.python.org/"
   }],
   ["React", {
-    icon: `${iconPath}` + "react.svg", 
+    icon: `${iconPath}` + "react.svg",
     link: "https://react.dev/"
   }],
   ["Postman", {
-    icon: `${iconPath}` + "postman.svg", 
+    icon: `${iconPath}` + "postman.svg",
     link: "https://www.postman.com/"
   }],
   ["Rust", {
-    icon: `${iconPath}` + "rust.svg", 
+    icon: `${iconPath}` + "rust.svg",
     link: "https://www.rust-lang.org/"
   }],
-  ["Redis", {
-    icon: `${iconPath}` + "redis.svg", 
-    link: "https://redis.io/"
-  }],
+  // ["Redis", {
+  //   icon: `${iconPath}` + "redis.svg", 
+  //   link: "https://redis.io/"
+  // }],
   ["Spring Boot", {
-    icon: `${iconPath}` + "spring.svg", 
+    icon: `${iconPath}` + "spring.svg",
     link: "https://spring.io/"
   }],
-  ["Terraform", { 
-    icon: `${iconPath}` + "terraform.svg", 
-    link: "https://www.terraform.io/" 
+  ["Terraform", {
+    icon: `${iconPath}` + "terraform.svg",
+    link: "https://www.terraform.io/"
   }],
-  ["Typescript", { 
-    icon: `${iconPath}` + "typescript.svg", 
-    link: "https://www.typescriptlang.org/" 
+  ["Typescript", {
+    icon: `${iconPath}` + "typescript.svg",
+    link: "https://www.typescriptlang.org/"
   }],
-  ["Ubuntu", { 
-    icon: `${iconPath}` + "ubuntu.svg", 
-    link: "https://ubuntu.com/" 
+  // ["Ubuntu", { 
+  //   icon: `${iconPath}` + "ubuntu.svg", 
+  //   link: "https://ubuntu.com/" 
+  // }],
+  ["Unix/Linux", {
+    icon: `${iconPath}` + "linux.svg",
+    link: "https://www.linux.org/"
   }],
-  ["Unix/Linux", { 
-    icon: `${iconPath}` + "linux.svg", 
-    link: "https://www.linux.org/" 
+  ["Vagrant", {
+    icon: `${iconPath}` + "vagrant.svg",
+    link: "https://www.vagrantup.com/"
   }],
-  ["Vagrant", { 
-    icon: `${iconPath}` + "vagrant.svg", 
-    link: "https://www.vagrantup.com/" 
-  }],
-  ["VirtualBox", { 
-    icon: `${iconPath}` + "virtualbox.png", 
-    link: "https://www.virtualbox.org/" 
+  ["VirtualBox", {
+    icon: `${iconPath}` + "virtualbox.png",
+    link: "https://www.virtualbox.org/"
   }],
 ]);

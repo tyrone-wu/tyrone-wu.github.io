@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-scroll";
 import { Box, Divider, Flex, HStack, Icon, IconButton, useColorModeValue, VStack } from "@chakra-ui/react";
+import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { CgChevronDown } from "react-icons/cg";
+import { Link } from "react-scroll";
 
 interface Props {
   expanded: boolean;
@@ -12,9 +12,9 @@ interface Props {
 
 // Toggle hamburger menu dropdown 
 export default function Menu() {
-  const sections = ["Home", "About", "Experience", "Projects", "Open-Source", "Skills"];
+  const sections = ["Home", "About", "Experience", "Open-Source", "Projects", "Skills"];
 
-  const [ expanded, setExpanded ] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   function toggleMenu() {
     setExpanded((prevState) => !prevState);
   };
@@ -38,10 +38,10 @@ export default function Menu() {
         direction="column"
         flex="auto"
       >
-        <MenuIcon 
-          expanded={expanded} 
-          toggleMenu={toggleMenu} 
-          iconColor={fillColor} 
+        <MenuIcon
+          expanded={expanded}
+          toggleMenu={toggleMenu}
+          iconColor={fillColor}
         />
 
         <VStack
@@ -49,9 +49,9 @@ export default function Menu() {
           spacing={4}
           marginBottom={4}
         >
-          <Divider 
-            orientation="horizontal" 
-            borderColor={fillColor} 
+          <Divider
+            orientation="horizontal"
+            borderColor={fillColor}
             borderWidth="thin"
           />
           <SectionsCollection sections={sections} textColor={fillColor} />
@@ -68,12 +68,12 @@ function MenuIcon({ expanded, toggleMenu, iconColor }: Props) {
       flex="auto"
       justifyContent="flex-end"
     >
-      <IconButton 
+      <IconButton
         marginY={[3, "auto"]}
         size="md"
         variant="ghost"
         aria-label="Toggle Menu"
-        icon={expanded ? 
+        icon={expanded ?
           <Icon as={CgChevronDown} boxSize={8} color={iconColor} />
           :
           <Icon as={BiMenu} boxSize={8} color={iconColor} />

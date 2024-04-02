@@ -1,4 +1,4 @@
-import { Button, Icon, Link, SlideFade, Stack, useColorModeValue } from "@chakra-ui/react";
+import { Button, Icon, Link, Stack, useColorModeValue } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { FaEnvelope, FaFilePdf, FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -25,29 +25,24 @@ export default function Links({ textColor }: { textColor: string }) {
       wrap="wrap"
     >
       {links.map((link: Props, i: number) => (
-        <SlideFade 
-          key={ "link." + `${link.name}` } 
-          in 
-          transition={{ enter: { delay: 0.6 + i * 0.1 } }}
+        <Link
+          key={i}
+          isExternal
+          href={link.link}
         >
-          <Link
-            isExternal
-            href={link.link}
+          <Button
+            leftIcon={<LinkIcon icon={link.icon} />}
+            textColor={textColor}
+            height={14}
+            backgroundColor={bgShade}
+            boxShadow="xl"
+            width={["full", "initial"]}
+            borderRadius="none"
+            backdropFilter="auto"
           >
-            <Button
-              leftIcon={<LinkIcon icon={link.icon} />}
-              textColor={textColor}
-              height={14}
-              backgroundColor={bgShade}
-              boxShadow="xl"
-              width={["full", "initial"]}
-              borderRadius="none"
-              backdropFilter="auto"
-            >
-              {link.name}
-            </Button>
-          </Link>
-        </SlideFade>
+            {link.name}
+          </Button>
+        </Link>
       ))}
     </Stack>
   );

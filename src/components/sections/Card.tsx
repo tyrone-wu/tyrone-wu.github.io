@@ -1,4 +1,4 @@
-import { Box, Flex, useColorModeValue, Text, Divider } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 
 interface Props {
   textColor: string;
@@ -14,9 +14,10 @@ export default function Card({ textColor, title, children }: Props) {
       backgroundColor={bgColor}
       borderColor={textColor}
       textColor={textColor}
+      borderWidth={1}
       borderRightWidth={4}
     >
-      <Flex 
+      <Flex
         marginX={6}
         marginY={2}
         paddingBottom={4}

@@ -12,7 +12,7 @@ export default function ToggleTheme() {
   );
 
   return (
-    <IconButton 
+    <IconButton
       marginX={6}
       marginY={[3, "auto"]}
       size="md"

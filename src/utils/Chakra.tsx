@@ -6,7 +6,7 @@ interface Props {
   children: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-export default function Chakra ({ children }: Props) {
+export default function Chakra({ children }: Props) {
   return (
     <ChakraProvider theme={theme}>
       {children}

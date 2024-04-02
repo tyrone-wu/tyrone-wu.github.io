@@ -1,4 +1,4 @@
-import { Icon, Flex, Link, Text, Divider } from "@chakra-ui/react";
+import { Divider, Flex, Icon, Link, Text } from "@chakra-ui/react";
 import { FaGithub } from 'react-icons/fa';
 
 export default function Footer({ textPalette }: { textPalette: string }) {

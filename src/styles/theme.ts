@@ -1,4 +1,4 @@
-import { background, ColorModeScript, extendTheme, StyleFunctionProps } from "@chakra-ui/react";
+import { extendTheme, StyleFunctionProps } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 
 const config = {
@@ -39,7 +39,7 @@ const textStyles = {
     fontSize: ["1.3rem", "1.6rem"],
     fontWeight: "bold",
   },
-  h3:{
+  h3: {
     fontSize: ["1.2rem", "1.3rem"],
     fontWeight: "medium",
     letterSpacing: "tight",
@@ -63,7 +63,7 @@ const textStyles = {
 
 const colors = {
   background: {
-    0: "#FBF0D9",
+    0: "#FFFFFF",
     1: "#2C3639",
   },
   textColor: {
@@ -71,7 +71,7 @@ const colors = {
     1: "#BDCDD6"
   },
   navBar: {
-    0: "#FBF0D9",
+    0: "#FFFFFF",
     1: "#3F4E4F",
   },
   lightDarkIcon: {
@@ -79,7 +79,7 @@ const colors = {
     1: "#F49D1A",
   },
   cardBackground: {
-    0: "#F3E5C8",
+    0: "#FFFFFF",
     1: "#3F4E4F",
   },
   school: {

@@ -9,10 +9,11 @@ export default function MiniCard({ textPalette, children }: Props) {
   const sectionBGColor = useColorModeValue("background.0", "background.1");
 
   return (
-    <Box 
-      width="full" 
+    <Box
+      width="full"
       background={sectionBGColor}
       borderColor={textPalette}
+      borderWidth={1}
       borderRightWidth={4}
     >
       {children}

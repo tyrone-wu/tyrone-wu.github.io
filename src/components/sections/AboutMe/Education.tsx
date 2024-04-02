@@ -1,4 +1,4 @@
-import { Text, ListItem, UnorderedList, Grid, Link, useColorModeValue, Flex } from "@chakra-ui/react";
+import { Flex, Grid, Link, ListItem, Text, UnorderedList, useColorModeValue } from "@chakra-ui/react";
 
 import MiniCard from "@/components/sections/MiniCard";
 
@@ -31,7 +31,7 @@ export default function Education({ textPalette }: { textPalette: string }) {
         <Text textStyle="body" textColor={degreeColor} mt={1} ml={4}>
           B.S. Computer Science + Statistics Minor
         </Text>
-        
+
         <Text textStyle="body" fontWeight="medium" mt={2}>
           Coursework:
         </Text>

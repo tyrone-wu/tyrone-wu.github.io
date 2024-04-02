@@ -1,4 +1,4 @@
-import { Image, Flex,  SlideFade, Text, Spacer, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Image, Spacer, Text } from "@chakra-ui/react";
 
 interface Props {
   textPalette: string;
@@ -8,51 +8,43 @@ export default function Greeting({ textPalette }: Props) {
   return (
     <Flex direction={["column", "row"]} align="center">
       <Flex direction="column" align="center">
-        <SlideFade in>
-          <Text 
-            textStyle="greet" 
-            color={textPalette} 
-          >
-            ヾ(＾∇＾) Hey there! I&apos;m-
-          </Text>
-        </SlideFade>
+        <Text
+          textStyle="greet"
+          color={textPalette}
+        >
+          ヾ(＾∇＾) Hey there! I&apos;m-
+        </Text>
 
-        <Flex 
-          textStyle="name" 
-          direction="row" 
+        <Flex
+          textStyle="name"
+          direction="row"
           marginTop={-2}
           marginBottom={4}
         >
-          <SlideFade in transition={{ enter: { delay: 0.3 } }}>
-            <Text 
-              textStyle="inherit" 
-              color={textPalette}
-            >
-              Tyrone
-            </Text>
-          </SlideFade>
-          <SlideFade in transition={{ enter: { delay: 0.35 } }}>
-            <Text 
-              textStyle="inherit" 
-              color={textPalette}
-            >
-              &nbsp;Wu
-            </Text>
-          </SlideFade>
+          <Text
+            textStyle="inherit"
+            color={textPalette}
+          >
+            Tyrone
+          </Text>
+          <Text
+            textStyle="inherit"
+            color={textPalette}
+          >
+            &nbsp;Wu
+          </Text>
         </Flex>
       </Flex>
 
       <Spacer />
-      <SlideFade in transition={{ enter: { delay: 0.4 } }}>
-        <Image  
-          src="/assets/profile/profile.png"
-          alt="Tyrone Wu"
-          boxSize={["150px", "250px"]}
-          objectFit="contain"
-          mt={-2}
-          mb={2}
-        />
-      </SlideFade>
+      <Image
+        src="/assets/profile/profile.png"
+        alt="Tyrone Wu"
+        boxSize={["150px", "250px"]}
+        objectFit="contain"
+        mt={-2}
+        mb={2}
+      />
       <Spacer />
     </Flex>
   );
