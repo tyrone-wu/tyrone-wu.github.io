@@ -50,6 +50,12 @@ export const iconMap = new Map<string, TechIconProps>([
       link: "https://www.credly.com/badges/ddcb39a8-6fa3-46ba-8b98-ca983838a2b4/public_url"
     }
   ],
+  [
+    "Codecov", {
+      icon: `${iconPath}` + "codecov.svg",
+      link: "https://about.codecov.io/"
+    }
+  ],
   ["Docker", { 
     icon: `${iconPath}` + "docker.svg", 
     link: "https://www.docker.com/" 

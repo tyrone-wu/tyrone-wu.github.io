@@ -15,7 +15,7 @@ export default function Skills({ textPalette }: { textPalette: string }) {
   const languages = [ "Java", "Rust", "Python", "C++", "Typescript", "Javascript", "Bash/Shell", ];
   const libs = [ "Spring Boot", "Micronaut", "React", "Next.js", "Chakra UI", ];
   const tools = [ 
-    "AWS", "Oracle Cloud", "Unix/Linux", "Ansible", "GitHub Actions", "Docker", "Terraform", "Kubernetes", "VirtualBox", "Vagrant", "MySQL", "Node.js", "Postman", "Figma",  
+    "AWS", "Oracle Cloud", "Unix/Linux", "Ansible", "GitHub Actions", "Docker", "Terraform", "Kubernetes", "Codecov", "VirtualBox", "Vagrant", "MySQL", "Node.js", "Postman", "Figma",  
   ];
   const certifications = [
     "AWS Certified Developer - Associate",
