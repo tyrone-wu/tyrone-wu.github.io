@@ -1,36 +1,22 @@
-import { Flex, Image, Spacer, Text } from "@chakra-ui/react";
+import { Flex, Image, Spacer, Text } from "@chakra-ui/react"
 
 interface Props {
-  textPalette: string;
+  textPalette: string
 }
 
 export default function Greeting({ textPalette }: Props) {
   return (
     <Flex direction={["column", "row"]} align="center">
       <Flex direction="column" align="center">
-        <Text
-          textStyle="greet"
-          color={textPalette}
-        >
+        <Text textStyle="greet" color={textPalette}>
           ヾ(＾∇＾) Hey there! I&apos;m-
         </Text>
 
-        <Flex
-          textStyle="name"
-          direction="row"
-          marginTop={-2}
-          marginBottom={4}
-        >
-          <Text
-            textStyle="inherit"
-            color={textPalette}
-          >
+        <Flex textStyle="name" direction="row" marginTop={-2} marginBottom={4}>
+          <Text textStyle="inherit" color={textPalette}>
             Tyrone
           </Text>
-          <Text
-            textStyle="inherit"
-            color={textPalette}
-          >
+          <Text textStyle="inherit" color={textPalette}>
             &nbsp;Wu
           </Text>
         </Flex>
@@ -47,5 +33,5 @@ export default function Greeting({ textPalette }: Props) {
       />
       <Spacer />
     </Flex>
-  );
-};
+  )
+}

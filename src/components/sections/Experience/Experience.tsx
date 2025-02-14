@@ -1,19 +1,29 @@
-import { Box, Divider, Flex, Image, ListItem, SimpleGrid, Spacer, Text, UnorderedList } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  Image,
+  ListItem,
+  SimpleGrid,
+  Spacer,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react"
 
-import Card from "@/components/sections/Card";
-import MiniCard from "@/components/sections/MiniCard";
+import Card from "@/components/sections/Card"
+import MiniCard from "@/components/sections/MiniCard"
 
 interface Props {
-  company: string;
+  company: string
   // link: string;
-  logo: string;
-  time: string;
-  position: string;
-  description: string[];
-};
+  logo: string
+  time: string
+  position: string
+  description: string[]
+}
 
 export default function Experience({ textPalette }: { textPalette: string }) {
-  const companyPath = "/assets/companies/";
+  const companyPath = "/assets/companies/"
   const jobs = [
     {
       company: "NC State University",
@@ -34,7 +44,7 @@ export default function Experience({ textPalette }: { textPalette: string }) {
       position: "Software Engineer Intern",
       description: [
         "Developed a Salesforce component for expanding object details through dropdown and hover triggers, enabling granular display of retail information on enhancing end-user experience.",
-        "Conducted Apex unit tests with a minimum of 90\% code coverage to ensure comprehensive validation of business logic and error handling for retail inventory management.",
+        "Conducted Apex unit tests with a minimum of 90% code coverage to ensure comprehensive validation of business logic and error handling for retail inventory management.",
         "Aided in the development of an XML DOM parser that automates field mappings and relationships for custom objects onto the Salesforce data model using XPath and an internal library.",
       ],
     },
@@ -51,16 +61,12 @@ export default function Experience({ textPalette }: { textPalette: string }) {
         "Rollout patches on the Upcoming & Past Events on the homepage to align with the scheduled timelines.",
       ],
     },
-  ];
+  ]
 
   return (
     <Box id="experience">
       <Card textColor={textPalette} title="Experience">
-        <SimpleGrid
-          columns={1}
-          spacing={8}
-          mb={2}
-        >
+        <SimpleGrid columns={1} spacing={8} mb={2}>
           {jobs.map((job: Props) => (
             <Subsection key={job.company} textPalette={textPalette} job={job} />
           ))}
@@ -68,18 +74,14 @@ export default function Experience({ textPalette }: { textPalette: string }) {
       </Card>
       <Box mb={52} />
     </Box>
-  );
-};
+  )
+}
 
-function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
+function Subsection({ textPalette, job }: { textPalette: string; job: Props }) {
   return (
     <MiniCard textPalette={textPalette}>
       <Flex direction="column" mx={6} my={4}>
-        <Flex
-          width="full"
-          direction="row"
-          align="center"
-        >
+        <Flex width="full" direction="row" align="center">
           <Image
             src={job.logo}
             alt="company logo"
@@ -98,9 +100,7 @@ function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
                 {job.company}
               </Text>
               <Spacer />
-              <Text textStyle="sub">
-                {job.time}
-              </Text>
+              <Text textStyle="sub">{job.time}</Text>
             </Flex>
           </Flex>
         </Flex>
@@ -109,10 +109,12 @@ function Subsection({ textPalette, job }: { textPalette: string, job: Props }) {
 
         <UnorderedList textStyle="sub">
           {job.description.map((description: string, i: number) => (
-            <ListItem key={`${job.company}` + "-d" + `${i}`} ml={4}>{description}</ListItem>
+            <ListItem key={`${job.company}` + "-d" + `${i}`} ml={4}>
+              {description}
+            </ListItem>
           ))}
         </UnorderedList>
       </Flex>
     </MiniCard>
-  );
-};
+  )
+}

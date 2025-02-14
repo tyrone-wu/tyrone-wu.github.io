@@ -1,25 +1,34 @@
-import { Box, Divider, Flex, HStack, Icon, IconButton, useColorModeValue, VStack } from "@chakra-ui/react";
-import { useState } from "react";
-import { BiMenu } from "react-icons/bi";
-import { CgChevronDown } from "react-icons/cg";
-import { Link } from "react-scroll";
+import {
+  Box,
+  Divider,
+  Flex,
+  HStack,
+  Icon,
+  IconButton,
+  useColorModeValue,
+  VStack,
+} from "@chakra-ui/react"
+import { useState } from "react"
+import { BiMenu } from "react-icons/bi"
+import { CgChevronDown } from "react-icons/cg"
+import { Link } from "react-scroll"
 
 interface Props {
-  expanded: boolean;
-  toggleMenu: () => void;
-  iconColor: string;
+  expanded: boolean
+  toggleMenu: () => void
+  iconColor: string
 }
 
-// Toggle hamburger menu dropdown 
+// Toggle hamburger menu dropdown
 export default function Menu() {
-  const sections = ["Home", "About", "Experience", "Open-Source", "Projects", "Skills"];
+  const sections = ["Home", "Experience", "Open-Source", "Projects", "Skills"]
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false)
   function toggleMenu() {
-    setExpanded((prevState) => !prevState);
-  };
+    setExpanded((prevState) => !prevState)
+  }
 
-  const fillColor = useColorModeValue("textColor.0", "textColor.1");
+  const fillColor = useColorModeValue("textColor.0", "textColor.1")
 
   return (
     <>
@@ -33,11 +42,7 @@ export default function Menu() {
         <SectionsCollection sections={sections} textColor={fillColor} />
       </HStack>
 
-      <Flex
-        display={["flex", "none"]}
-        direction="column"
-        flex="auto"
-      >
+      <Flex display={["flex", "none"]} direction="column" flex="auto">
         <MenuIcon
           expanded={expanded}
           toggleMenu={toggleMenu}
@@ -58,33 +63,37 @@ export default function Menu() {
         </VStack>
       </Flex>
     </>
-  );
-};
+  )
+}
 
 function MenuIcon({ expanded, toggleMenu, iconColor }: Props) {
   return (
-    <Box
-      display="flex"
-      flex="auto"
-      justifyContent="flex-end"
-    >
+    <Box display="flex" flex="auto" justifyContent="flex-end">
       <IconButton
         marginY={[3, "auto"]}
         size="md"
         variant="ghost"
         aria-label="Toggle Menu"
-        icon={expanded ?
-          <Icon as={CgChevronDown} boxSize={8} color={iconColor} />
-          :
-          <Icon as={BiMenu} boxSize={8} color={iconColor} />
+        icon={
+          expanded ? (
+            <Icon as={CgChevronDown} boxSize={8} color={iconColor} />
+          ) : (
+            <Icon as={BiMenu} boxSize={8} color={iconColor} />
+          )
         }
         onClick={toggleMenu}
       />
     </Box>
-  );
-};
+  )
+}
 
-function SectionsCollection({ sections, textColor }: { sections: string[], textColor: string }) {
+function SectionsCollection({
+  sections,
+  textColor,
+}: {
+  sections: string[]
+  textColor: string
+}) {
   return (
     <>
       {sections.map((title: string) => (
@@ -103,5 +112,5 @@ function SectionsCollection({ sections, textColor }: { sections: string[], textC
         </Link>
       ))}
     </>
-  );
-};
+  )
+}

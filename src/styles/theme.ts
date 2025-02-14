@@ -1,11 +1,11 @@
-import { extendTheme, StyleFunctionProps } from "@chakra-ui/react";
-import { mode } from "@chakra-ui/theme-tools";
+import { extendTheme, StyleFunctionProps } from "@chakra-ui/react"
+import { mode } from "@chakra-ui/theme-tools"
 
 const config = {
   initialColorMode: "light",
-  useSystemColorMode: false,
+  useSystemColorMode: true,
   disableTransitionOnChange: false,
-};
+}
 
 const styles = {
   global: (props: StyleFunctionProps) => ({
@@ -15,12 +15,12 @@ const styles = {
       transitionDuration: "normal",
     },
   }),
-};
+}
 
 const fonts = {
   heading: "Roboto Mono",
   body: "Roboto Mono",
-};
+}
 
 const textStyles = {
   name: {
@@ -32,7 +32,7 @@ const textStyles = {
     fontWeight: "medium",
   },
   h1: {
-    fontSize: ["1.75rem", "2.25rem"],
+    fontSize: ["1.75rem", "2.00rem"],
     fontWeight: "bold",
   },
   h2: {
@@ -52,14 +52,14 @@ const textStyles = {
   sub: {
     fontSize: ["0.9rem", "1rem"],
     fontWeight: "normal",
-    letterSpacing: "tight",
+    letterSpacing: "tighter",
   },
   icon: {
     fontSize: ["0.8rem", "0.9rem"],
     fontWeight: ["bold", "medium"],
     letterSpacing: "tighter",
   },
-};
+}
 
 const colors = {
   background: {
@@ -68,7 +68,7 @@ const colors = {
   },
   textColor: {
     0: "#3F4E4F",
-    1: "#BDCDD6"
+    1: "#BDCDD6",
   },
   navBar: {
     0: "#FFFFFF",
@@ -90,13 +90,13 @@ const colors = {
     0: "#7E2111",
     1: "#69B6DD",
   },
-};
+}
 
 const breakpoints = {
   sm: "46em",
   md: "52em",
   lg: "70em",
-};
+}
 
 // const NavigationBar = defineStyleConfig({
 //   baseStyle: (props: StyleFunctionProps) => ({
@@ -114,6 +114,6 @@ const theme = extendTheme({
   // components: {
   //   NavigationBar,
   // },
-});
+})
 
-export default theme;
+export default theme

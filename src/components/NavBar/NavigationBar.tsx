@@ -1,10 +1,10 @@
-import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react"
 
-import Menu from "./Menu";
-import ToggleTheme from "./ToggleTheme";
+import Menu from "./Menu"
+import ToggleTheme from "./ToggleTheme"
 
 function NavigationBar() {
-  const navBarColor = useColorModeValue("navBar.0", "navBar.1");
+  const navBarColor = useColorModeValue("navBar.0", "navBar.1")
 
   return (
     <Flex
@@ -20,7 +20,7 @@ function NavigationBar() {
       <Menu />
       <ToggleTheme />
     </Flex>
-  );
-};
+  )
+}
 
-export default NavigationBar;
+export default NavigationBar

@@ -7,7 +7,8 @@
             "extensions": [
                 "dbaeumer.vscode-eslint",
                 "dsznajder.es7-react-js-snippets",
-                "msjsdiag.vscode-react-native"
+                "msjsdiag.vscode-react-native",
+                "esbenp.prettier-vscode"
             ]
         }
     }

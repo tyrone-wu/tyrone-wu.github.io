@@ -1,15 +1,20 @@
-import { Icon, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import { BsMoonStarsFill } from "react-icons/bs";
-import { FaSun } from "react-icons/fa";
+import {
+  Icon,
+  IconButton,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react"
+import { BsMoonStarsFill } from "react-icons/bs"
+import { FaSun } from "react-icons/fa"
 
 // Toggle dark/light mode
 export default function ToggleTheme() {
-  const { toggleColorMode } = useColorMode();
-  const iconColor = useColorModeValue("lightDarkIcon.0", "lightDarkIcon.1");
+  const { toggleColorMode } = useColorMode()
+  const iconColor = useColorModeValue("lightDarkIcon.0", "lightDarkIcon.1")
   const ModeIcon = useColorModeValue(
     <Icon as={BsMoonStarsFill} boxSize={6} color={iconColor} />,
-    <Icon as={FaSun} boxSize={7} color={iconColor} />
-  );
+    <Icon as={FaSun} boxSize={7} color={iconColor} />,
+  )
 
   return (
     <IconButton
@@ -23,5 +28,5 @@ export default function ToggleTheme() {
       onClick={toggleColorMode}
       aria-label="Toggle Theme"
     />
-  );
-};
+  )
+}
