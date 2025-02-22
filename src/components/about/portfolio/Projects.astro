@@ -1,0 +1,47 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+import { getImage } from "@utils";
+import { data } from "@contents/about/projects.ts";
+import { techMap } from "@/assets/icons/techMap";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/thumbnails/*.jpg",
+);
+---
+
+<section>
+  <h2 id="projects" class="ul-offset anchor-offset">Projects</h2>
+  <div class="flex flex-wrap gap-8">
+    {
+      data.map((project) => (
+        <section class="flex flex-col w-[21rem]">
+          <a class="link-override" href={project.link}>
+            {project.name}
+          </a>
+          <div class="fs-md">{project.description}</div>
+          <Image
+            class="!my-4 size-fit border-1"
+            src={images[getImage("thumbnails/", project.thumbnail, images)]()}
+            alt={project.name}
+          />
+          <div class="flex flex-wrap justify-center gap-2">
+            {project.stack.map((tech) => (
+              <div class="flex flex-row items-center gap-2 pb-1 border-b-1">
+                <Image
+                  class="!my-0"
+                  src={`/src/assets/icons/${techMap.get(tech)}`}
+                  alt={tech}
+                  height={24}
+                  width={24}
+                />
+                <div class="fs-base">{tech}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</section>

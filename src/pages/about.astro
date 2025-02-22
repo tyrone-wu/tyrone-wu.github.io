@@ -1,0 +1,17 @@
+---
+import "@style";
+import Layout from "@layouts/Layout.astro";
+import { Content as Me } from "@contents/about/me.md";
+import Experience from "@components/about/Experience.astro";
+import Portfolio from "@components/about/portfolio/Portfolio.astro";
+
+const page = "about";
+---
+
+<Layout page={page}>
+  <article class="markdown flex flex-col gap-30">
+    <section><Me /></section>
+    <Experience />
+    <Portfolio />
+  </article>
+</Layout>

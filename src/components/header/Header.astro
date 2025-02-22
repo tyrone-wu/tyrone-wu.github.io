@@ -1,0 +1,44 @@
+---
+import { join } from "path";
+
+import ThemeIcon from "./ThemeIcon.astro";
+
+interface Props {
+  currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+
+interface Page {
+  name: string;
+  url: string;
+}
+
+const baseUrl = import.meta.env.BASE_URL;
+const navigation: Page[] = [
+  { name: "home", url: baseUrl },
+  { name: "blog", url: join(baseUrl, "blog") },
+  { name: "about", url: join(baseUrl, "about") },
+];
+---
+
+<div
+  class="border-b-1 backdrop-blur-sm bg-stone-100/75 dark:bg-stone-900/25 fixed top-0 left-0 right-0 z-50 py-4"
+>
+  <div class="section flex flex-row justify-between">
+    <ThemeIcon />
+    <div class="flex flex-row items-center gap-6 fs-md">
+      {
+        navigation.map((nav) => (
+          <a
+            class="ul-offset hover:decoration-2"
+            class:list={{ "font-bold": nav.name === currentPage }}
+            href={nav.url}
+          >
+            {nav.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>

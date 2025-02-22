@@ -1,0 +1,84 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+import "@style";
+import Accordion from "@components/widgets/Accordion.astro";
+import { getImage } from "@utils";
+import { data } from "@contents/about/oss.ts";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/thumbnails/*.{jpg,png}",
+);
+---
+
+<section>
+  <h2 id="open-source" class="ul-offset anchor-offset !mt-4">Open-Source</h2>
+  <div class="flex flex-col gap-8">
+    {
+      data.map((oss) => (
+        <section>
+          <div class="flex flex-row items-center">
+            <Image
+              class="!my-0 size-fit"
+              src={images[getImage("thumbnails/", oss.thumbnail, images)]()}
+              alt={oss.name}
+            />
+            <div class="flex flex-col ml-4">
+              <a class="link-override" href={oss.link}>
+                {oss.name}
+              </a>
+              <a
+                class="!no-underline hover:!underline fs-base"
+                href={oss.org.link}
+              >
+                {oss.org.name}
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-2">{oss.description}</div>
+
+          <div>
+            {["Features", "Bug Fixes"].map(
+              (subheader, i) =>
+                oss.prs[i].length > 0 && (
+                  <section>
+                    <Accordion>
+                      <div class="pl-4" slot="title">
+                        {subheader}
+                      </div>
+                      <ul class="!my-0" slot="contents">
+                        {oss.prs[i].map((pr) => (
+                          <li class="!my-0 !pb-2">
+                            <div class="flex">
+                              {pr.id_links.map((id_link, i) => (
+                                <div>
+                                  {i > 0 && ","}
+                                  <a href={id_link.link}>{id_link.id}</a>
+                                </div>
+                              ))}
+                            </div>
+                            {pr.description}
+                          </li>
+                        ))}
+                      </ul>
+                    </Accordion>
+                  </section>
+                ),
+            )}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+
+  <div class="fs-base mt-10">
+    > The repos listed above are the contributions I'm most proud of.
+    <br />
+    > I've also contributed PRs to other projects, such as <a
+      href="https://github.com/rust-lang/rust">Rust</a
+    >, <a href="https://github.com/cilium/ebpf">ebpf-go</a>, etc., which can be
+    found on my <a href="https://github.com/tyrone-wu">GitHub</a>! 😋
+  </div>
+</section>

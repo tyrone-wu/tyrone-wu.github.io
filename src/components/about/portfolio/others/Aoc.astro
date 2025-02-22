@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+
+import Accordion from "@components/widgets/Accordion.astro";
+import { aocs } from "@contents/about/others.ts";
+import { techMap } from "@assets/icons/techMap.ts";
+---
+
+<section>
+  <Accordion>
+    <div class="!my-0 fs-lg" slot="title">🎄 Advent of Code</div>
+    <section slot="contents" class="flex flex-col gap-2">
+      <div class="flex flex-wrap gap-1 fs-base">
+        {
+          aocs.map((aoc) => (
+            <div class="flex flex-col items-center justify-evenly border-1 w-[5.2rem] h-[5.2rem] sm:w-[6.6rem] sm:h-[6.6rem]">
+              <Image
+                class="!my-0 sm:w-[50px] sm:h-[50px]"
+                src={`/src/assets/icons/${techMap.get(aoc.lang)}`}
+                alt={aoc.lang}
+                height={38}
+                width={38}
+              />
+              <a href={aoc.link} class="text-center leading-4">
+                {aoc.year}
+                {aoc.lang}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+      <div class="flex flex-col gap-4">
+        2022 was first year doing AoC. 🥳
+        <div>
+          <div class="font-bold underline">2024 Times & Ranks</div>
+          I'm not a competitive programmer, but I decided to go competitive mode
+          this year since I was curious to see where I would place against everybody
+          else. Unfortunately, LLM army also decided to raid the rankings as well.
+          😕
+          <Image
+            class="!my-2 size-fit"
+            src="/src/assets/others/aoc-2024-times.png"
+            alt="aoc-2024-times"
+            width={540}
+            height={540}
+          />
+          I was so convinced that my input was bugged for Day 6 part 2. Turns out,
+          it was my reading comprehension that was bugged. 🫠
+          <br />
+          For times that went over 12 hrs, I wasn't able to solve it on my own and
+          ended up getting hints from the subreddit to solve it.
+          <br />
+          All things considered, I think I did decent. at least I hope so? I don't
+          have a reference to go off of, and AoC attracts a ton of cracked ppl.
+        </div>
+      </div>
+    </section>
+  </Accordion>
+</section>

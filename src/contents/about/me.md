@@ -1,0 +1,9 @@
+<h1 id="me" class="ul-span anchor-offset">Me</h1>
+
+<Image class="w-40 md:w-59" src="../../../src/assets/profile.jpg" alt="profile" />
+
+I’m Tyrone Wu (yes that is my real birthname 🫠), and I’m a systems programmer who specializes in the infrastructure, networking, and operational sides of software.
+
+I graduated from NC State University 🐺 with a B.S. + Master's of Computer Science, along with a Statistics Minor, through the Accelerated Bachelor's/Master's Program.
+
+I enjoy weightlifting, watching spooky/goofy stuff, and contributing to open-source projects related to eBPF 🐝. I recently just got back, and am in the process of building my very first homelab!

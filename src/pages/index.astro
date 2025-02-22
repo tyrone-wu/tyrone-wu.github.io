@@ -1,0 +1,13 @@
+---
+import "@style";
+import Layout from "@layouts/Layout.astro";
+import { Content } from "@contents/home.md";
+
+const page = "home";
+---
+
+<Layout page={page}>
+  <article class="markdown">
+    <Content />
+  </article>
+</Layout>

@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+
+import TechIcon from "@components/widgets/TechIcon.astro";
+import { langs, tools, certs } from "@contents/about/skills.ts";
+import { techMap } from "@/assets/icons/techMap.ts";
+---
+
+<section>
+  <h2 id="skills" class="ul-offset anchor-offset">Skills</h2>
+  <div class="md:grid md:grid-cols-2 gap-8">
+    <section>
+      <h3 id="languages" class="anchor-offset border-b-1 !mt-0">
+        Programming Languages
+      </h3>
+      <div class="flex flex-wrap flex-grow gap-1 fs-base">
+        {langs.map((lang) => <TechIcon tech={lang} />)}
+      </div>
+    </section>
+    <section class="row-span-2">
+      <h3 id="tools" class="anchor-offset border-b-1 md:!mt-0">
+        Tools/Software
+      </h3>
+      <div class="flex flex-wrap gap-1 fs-base">
+        {tools.map((tool) => <TechIcon tech={tool} />)}
+      </div>
+    </section>
+    <section>
+      <h3 id="certifications" class="anchor-offset border-b-1 md:!mt-0">
+        Certifications
+      </h3>
+      <div class="flex flex-wrap gap-1 fs-base">
+        {
+          certs.map((cert) => (
+            <div class="flex flex-col items-center justify-evenly border-1 w-[127px] h-[127px] sm:w-[161px] sm:h-[161px]">
+              <Image
+                class="!m-0 sm:w-[100px] sm:h-[100px]"
+                src={`/src/assets/icons/${techMap.get(cert[0])}`}
+                alt={cert[0]}
+                height={70}
+                width={70}
+              />
+              <a class="text-center leading-4" href={cert[1]}>
+                {cert[0]}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</section>

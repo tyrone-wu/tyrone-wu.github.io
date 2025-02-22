@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="accordion">
+  <button
+    class="accordion__button hvr-ulb flex w-full flex-1 items-center justify-between py-1 border-b-1"
+  >
+    <div class="accordion__title">
+      <slot name="title" />
+    </div>
+    <Icon name="arrow-down" class="accordion__chevron size-7 mx-4" />
+  </button>
+  <div class="accordion__content max-h-0 hidden overflow-hidden pl-2 pt-2">
+    <slot name="contents" />
+  </div>
+</div>
+
+<script>
+  function accordionSetup() {
+    const accordionMenus = document.querySelectorAll(
+      ".accordion",
+    ) as NodeListOf<HTMLElement>;
+
+    accordionMenus.forEach((accordionMenu) => {
+      const accordionButton = accordionMenu.querySelector(
+        ".accordion__button",
+      ) as HTMLElement;
+      const accordionTitle = accordionMenu.querySelector(
+        ".accordion__title",
+      ) as HTMLElement;
+      const accordionChevron = accordionMenu.querySelector(
+        ".accordion__chevron",
+      ) as HTMLElement;
+      const accordionContent = accordionMenu.querySelector(
+        ".accordion__content",
+      ) as HTMLElement;
+
+      if (accordionButton && accordionContent && accordionChevron) {
+        accordionButton.addEventListener("click", (event) => {
+          if (!accordionMenu.classList.contains("active")) {
+            accordionMenu.classList.add("active");
+            accordionTitle.classList.add("font-bold");
+            accordionContent.classList.remove("hidden");
+            accordionContent.style.maxHeight =
+              accordionContent.scrollHeight + "rem";
+            accordionChevron.classList.add("rotate-180");
+          } else {
+            accordionMenu.classList.remove("active");
+            accordionTitle.classList.remove("font-bold");
+            accordionContent.classList.add("hidden");
+            accordionContent.style.maxHeight = "0rem";
+            accordionChevron.classList.remove("rotate-180");
+          }
+
+          event.preventDefault();
+          return false;
+        });
+      }
+    });
+  }
+
+  accordionSetup();
+  document.addEventListener("astro:after-swap", accordionSetup);
+</script>

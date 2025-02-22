@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("/fonts/ia-writer-mono_5.0.7_latin-400-normal.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("/fonts/ia-writer-mono_5.0.11_latin-700-normal.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("/fonts/ia-writer-mono_5.1.0_latin-400-italic.woff2")
+    format("woff2");
+}
+
+/* ----- Layout ----- */
+
+body {
+  @apply font-mono antialiased;
+  @apply bg-stone-100 dark:bg-stone-900;
+  @apply text-black/50 dark:text-white/65;
+  @apply overflow-y-scroll;
+}
+
+.section {
+  @apply mx-auto max-w-screen-md px-8;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+a {
+  @apply hover:underline hover:font-bold;
+}
+
+/* ----- Text ----- */
+
+.markdown {
+  @apply prose dark:prose-invert prose-stone;
+  /* idk why but i think the breakpoints for these should be backwards */
+  @apply prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg;
+  @apply md:prose-lg md:prose-h1:text-3xl md:prose-h2:text-2xl md:prose-h3:text-xl;
+  /* prose is adding a weird invisible margin on the right */
+  @apply max-w-full;
+}
+
+.fs-base {
+  @apply text-sm sm:text-base;
+}
+
+.fs-md {
+  @apply text-base sm:text-lg;
+}
+
+.fs-lg {
+  @apply text-lg sm:text-xl;
+}
+
+.link-override {
+  @apply !font-bold hover:!underline hover:!decoration-2;
+}
+
+.ul-offset {
+  @apply underline underline-offset-6;
+}
+
+.ul-span {
+  @apply border-b-3;
+}
+
+.hvr-ulb {
+  @apply hover:underline hover:font-bold;
+}
+
+/* ----- Custom Styles ----- */
+
+.hr-base {
+  border: none;
+  height: 0px;
+  border-top: 2px solid;
+}
+
+.hr-sm {
+  border: none;
+  height: 0px;
+  border-top: 1px solid;
+}
+
+.anchor-offset {
+  scroll-margin-top: 8rem;
+}

@@ -1,0 +1,38 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+import "@style";
+import { getImage } from "@utils";
+import { data } from "@contents/about/experience.ts";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/companies/*.png",
+);
+---
+
+<section>
+  <h1 id="experience" class="ul-span anchor-offset">Experience</h1>
+  <div class="flex flex-col gap-8">
+    {
+      data.map((company) => (
+        <section class="flex">
+          <Image
+            class="!my-0 size-fit"
+            src={images[getImage("companies/", company.logo, images)]()}
+            alt={company.name}
+          />
+          <div class="flex sm:flex-row flex-col flex-1 justify-between ml-4">
+            <div class="flex flex-col">
+              <a class="link-override" href={company.link}>
+                {company.name}
+              </a>
+              {company.position}
+            </div>
+            <div class="italic">{company.time}</div>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</section>

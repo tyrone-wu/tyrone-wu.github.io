@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+
+import { techMap } from "@/assets/icons/techMap.ts";
+
+interface Props {
+  tech: string;
+}
+
+const { tech } = Astro.props;
+const icon = techMap.get(tech);
+if (tech === undefined) throw new Error(`${tech} icon not found`);
+---
+
+<div
+  class="flex flex-col items-center justify-evenly border-1 w-[5.2rem] h-[5.2rem] sm:w-[6.6rem] sm:h-[6.6rem]"
+>
+  <Image
+    class="!my-0 sm:w-[50px] sm:h-[50px]"
+    src={`/src/assets/icons/${icon}`}
+    alt={tech}
+    height={38}
+    width={38}
+  />
+  <div class="text-center leading-4">{tech}</div>
+</div>
