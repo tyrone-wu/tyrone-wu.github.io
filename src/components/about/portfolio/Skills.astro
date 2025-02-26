@@ -4,6 +4,10 @@ import { Image } from "astro:assets";
 import TechIcon from "@components/widgets/TechIcon.astro";
 import { langs, tools, certs } from "@contents/about/skills.ts";
 import { techMap } from "@/assets/icons/techMap.ts";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/icons/*.{avif,png}",
+);
 ---
 
 <section>
@@ -32,13 +36,13 @@ import { techMap } from "@/assets/icons/techMap.ts";
       <div class="flex flex-wrap gap-1 fs-base">
         {
           certs.map((cert) => (
-            <div class="flex flex-col items-center justify-evenly border-1 w-[127px] h-[127px] sm:w-[161px] sm:h-[161px]">
+            <div class="flex flex-col items-center justify-evenly border-1 w-[131px] h-[131px] sm:w-[161px] sm:h-[161px]">
               <Image
-                class="!m-0 sm:w-[100px] sm:h-[100px]"
-                src={`/src/assets/icons/${techMap.get(cert[0])}`}
+                class="!m-0 size-fit w-[70px] h-[70px] sm:w-[100px] sm:h-[100px]"
+                src={images[`/src/assets/icons/${techMap.get(cert[0])}`]()}
                 alt={cert[0]}
-                height={70}
-                width={70}
+                width={100}
+                height={100}
               />
               <a class="text-center leading-4" href={cert[1]}>
                 {cert[0]}

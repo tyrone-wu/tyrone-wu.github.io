@@ -2,12 +2,15 @@
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-import { getImage } from "@utils";
 import { data } from "@contents/about/projects.ts";
 import { techMap } from "@/assets/icons/techMap";
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/thumbnails/*.jpg",
+const thumbnails = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/thumbnails/*.png",
+);
+
+const icons = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/icons/*.{png,svg}",
 );
 ---
 
@@ -23,15 +26,17 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
           <div class="fs-md">{project.description}</div>
           <Image
             class="!my-4 size-fit border-1"
-            src={images[getImage("thumbnails/", project.thumbnail, images)]()}
+            src={thumbnails[`/src/assets/thumbnails/${project.thumbnail}`]()}
             alt={project.name}
+            width={450}
+            height={350}
           />
           <div class="flex flex-wrap justify-center gap-2">
             {project.stack.map((tech) => (
               <div class="flex flex-row items-center gap-2 pb-1 border-b-1">
                 <Image
-                  class="!my-0"
-                  src={`/src/assets/icons/${techMap.get(tech)}`}
+                  class="!my-0 size-fit w-[24px] h-[24px]"
+                  src={icons[`/src/assets/icons/${techMap.get(tech)}`]()}
                   alt={tech}
                   height={24}
                   width={24}

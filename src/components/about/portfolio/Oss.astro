@@ -4,11 +4,10 @@ import { Image } from "astro:assets";
 
 import "@style";
 import Accordion from "@components/widgets/Accordion.astro";
-import { getImage } from "@utils";
 import { data } from "@contents/about/oss.ts";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/thumbnails/*.{jpg,png}",
+  "/src/assets/thumbnails/*.png",
 );
 ---
 
@@ -21,8 +20,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
           <div class="flex flex-row items-center">
             <Image
               class="!my-0 size-fit"
-              src={images[getImage("thumbnails/", oss.thumbnail, images)]()}
+              src={images[`/src/assets/thumbnails/${oss.thumbnail}`]()}
               alt={oss.name}
+              width={70}
+              height={70}
             />
             <div class="flex flex-col ml-4">
               <a class="link-override" href={oss.link}>

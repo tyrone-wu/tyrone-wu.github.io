@@ -26,7 +26,7 @@ export const data: OSS[] = [
     },
     description:
       "Rust library for building, loading, and attaching eBPF programs.",
-    thumbnail: "aya.jpg",
+    thumbnail: "aya.png",
     prs: [
       [
         {

@@ -4,6 +4,11 @@ import { Image } from "astro:assets";
 import Accordion from "@components/widgets/Accordion.astro";
 import { aocs } from "@contents/about/others.ts";
 import { techMap } from "@assets/icons/techMap.ts";
+import aocTimes from "../../../../assets/others/aoc-2024-times.png";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/icons/*.svg",
+);
 ---
 
 <section>
@@ -13,13 +18,13 @@ import { techMap } from "@assets/icons/techMap.ts";
       <div class="flex flex-wrap gap-1 fs-base">
         {
           aocs.map((aoc) => (
-            <div class="flex flex-col items-center justify-evenly border-1 w-[5.2rem] h-[5.2rem] sm:w-[6.6rem] sm:h-[6.6rem]">
+            <div class="flex flex-col items-center justify-evenly border-1 w-[5.4rem] h-[5.4rem] sm:w-[6.6rem] sm:h-[6.6rem]">
               <Image
-                class="!my-0 sm:w-[50px] sm:h-[50px]"
-                src={`/src/assets/icons/${techMap.get(aoc.lang)}`}
+                class="!my-0 size-fit w-[40px] h-[40px] sm:w-[50px] sm:h-[50px]"
+                src={images[`/src/assets/icons/${techMap.get(aoc.lang)}`]()}
                 alt={aoc.lang}
-                height={38}
-                width={38}
+                height={50}
+                width={50}
               />
               <a href={aoc.link} class="text-center leading-4">
                 {aoc.year}
@@ -39,10 +44,10 @@ import { techMap } from "@assets/icons/techMap.ts";
           😕
           <Image
             class="!my-2 size-fit"
-            src="/src/assets/others/aoc-2024-times.png"
+            src={aocTimes}
             alt="aoc-2024-times"
-            width={540}
-            height={540}
+            width={601}
+            height={637}
           />
           I was so convinced that my input was bugged for Day 6 part 2. Turns out,
           it was my reading comprehension that was bugged. 🫠

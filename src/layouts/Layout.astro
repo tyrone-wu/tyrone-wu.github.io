@@ -3,11 +3,10 @@ import "@style";
 import Header from "@components/header/Header.astro";
 import Footer from "@components/Footer.astro";
 
-const favicon = "../public/favicon.ico";
-
 interface Props {
   page: string;
 }
+
 const { page } = Astro.props;
 ---
 
@@ -16,9 +15,9 @@ const { page } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href={favicon} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{"tw - " + page}</title>
+    <title>{page}</title>
   </head>
 
   <body class="flex flex-col section w-full min-h-screen">

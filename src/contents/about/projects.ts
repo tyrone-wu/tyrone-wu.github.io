@@ -11,7 +11,7 @@ export const data: Project[] = [
     name: "K8s Cluster Deployment Inventory",
     description:
       "An automated kubernetes, multi-node cluster deployment for an inventory webapp.",
-    thumbnail: "k8s-deploy.jpg",
+    thumbnail: "k8s-deploy.png",
     stack: [
       "Ansible",
       "AWS EC2",
@@ -27,7 +27,7 @@ export const data: Project[] = [
     name: "Research Exchange",
     description:
       "A Stack Exchange-like webapp that hosts a crowd-review platform for research publications.",
-    thumbnail: "research-exchange.jpg",
+    thumbnail: "research-exchange.png",
     stack: [
       "Java",
       "Micronaut",
@@ -42,7 +42,7 @@ export const data: Project[] = [
     name: "One Wallet",
     description:
       "A webapp that centralizes personal finance information with customizable interfaces.",
-    thumbnail: "one-wallet.jpg",
+    thumbnail: "one-wallet.png",
     stack: ["CSS", "Flask", "HTML", "Python", "React", "Typescript"],
     link: "https://github.com/SelenaChen123/OneWallet",
   },

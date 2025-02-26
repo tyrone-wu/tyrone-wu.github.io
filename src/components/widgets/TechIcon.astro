@@ -8,19 +8,21 @@ interface Props {
 }
 
 const { tech } = Astro.props;
-const icon = techMap.get(tech);
-if (tech === undefined) throw new Error(`${tech} icon not found`);
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/icons/*.{svg,png}",
+);
+const image = images[`/src/assets/icons/${techMap.get(tech)}`]();
 ---
 
 <div
-  class="flex flex-col items-center justify-evenly border-1 w-[5.2rem] h-[5.2rem] sm:w-[6.6rem] sm:h-[6.6rem]"
+  class="flex flex-col items-center justify-evenly border-1 w-[5.4rem] h-[5.4rem] sm:w-[6.6rem] sm:h-[6.6rem]"
 >
   <Image
-    class="!my-0 sm:w-[50px] sm:h-[50px]"
-    src={`/src/assets/icons/${icon}`}
+    class="!my-0 size-fit w-[40px] h-[40px] sm:w-[50px] sm:h-[50px]"
+    src={image}
     alt={tech}
-    height={38}
-    width={38}
+    height={50}
+    width={50}
   />
   <div class="text-center leading-4">{tech}</div>
 </div>
