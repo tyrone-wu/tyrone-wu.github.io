@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 
 import "@style";
 import Accordion from "@components/widgets/Accordion.astro";
-import { data } from "@contents/about/oss.ts";
+import { data } from "@content/about/oss";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/thumbnails/*.png",

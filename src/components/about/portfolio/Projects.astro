@@ -2,7 +2,7 @@
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-import { data } from "@contents/about/projects.ts";
+import { data } from "@content/about/projects";
 import { techMap } from "@/assets/icons/techMap";
 
 const thumbnails = import.meta.glob<{ default: ImageMetadata }>(

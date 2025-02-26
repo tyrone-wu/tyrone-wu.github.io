@@ -10,7 +10,7 @@
       "@utils": ["src/lib/utils.ts"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
-      "@contents/*": ["src/contents/*"],
+      "@contents/*": ["src/content/*"],
       "@assets/*": ["src/assets/*"]
     },
     "plugins": [{ "name": "@astrojs/ts-plugin" }],
