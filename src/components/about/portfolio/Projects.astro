@@ -20,7 +20,7 @@ const icons = import.meta.glob<{ default: ImageMetadata }>(
     {
       data.map((project) => (
         <section class="flex flex-col w-[21rem]">
-          <a class="link-override" href={project.link}>
+          <a class="link-override" href={project.link} target="_blank">
             {project.name}
           </a>
           <div class="fs-md">{project.description}</div>
