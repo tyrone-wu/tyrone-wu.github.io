@@ -5,10 +5,41 @@ import { Content as Me } from "@contents/about/me.mdx";
 import Experience from "@components/about/Experience.astro";
 import Portfolio from "@components/about/portfolio/Portfolio.astro";
 
+import { type HeaderNav } from "@components/widgets/SidebarNav.astro";
+
 const page = "about";
+const headers: HeaderNav[] = [
+  { title: "Me", href: "#me" },
+  { title: "Experience", href: "#experience" },
+  {
+    title: "Portfolio",
+    href: "#portfolio",
+    subheaders: [
+      { title: "Open-Source", href: "#open-source" },
+      { title: "Projects", href: "#projects" },
+      {
+        title: "Skills",
+        href: "#skills",
+        subheaders: [
+          { title: "Programming Langs", href: "#langs" },
+          { title: "Tools/Software", href: "#tools" },
+          { title: "Certifications", href: "#certs" },
+        ],
+      },
+      {
+        title: "Other Stuff",
+        href: "#other-stuff",
+        subheaders: [
+          { title: "Advent of Code", href: "#aoc" },
+          { title: "Homelab", href: "#homelab" },
+        ],
+      },
+    ],
+  },
+];
 ---
 
-<Layout page={page}>
+<Layout page={page} headers={headers}>
   <article class="markdown flex flex-col gap-30">
     <section><Me /></section>
     <Experience />

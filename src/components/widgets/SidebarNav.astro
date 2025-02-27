@@ -1,0 +1,53 @@
+---
+export interface HeaderNav {
+  title: string;
+  href: string;
+  subheaders?: HeaderNav[];
+}
+
+interface Props {
+  headers: HeaderNav[];
+}
+
+const { headers } = Astro.props;
+---
+
+<div class="markdown fixed top-1/7 left-1/2 ml-[-38rem] z-40 hidden xl:block">
+  <div class="fs-lg font-bold">Sections</div>
+  <nav class="flex flex-col pl-2 pb-2 pt-1 border-t-2 border-b-2">
+    {
+      headers.map((header) => (
+        <div class="flex flex-col">
+          <a href={header.href} class="!no-underline hover:!underline">
+            {header.title}
+          </a>
+          {header.subheaders && (
+            <div class="flex flex-col ml-2 pl-4 border-l-1">
+              {header.subheaders.map((subheader) => (
+                <div class="flex flex-col">
+                  <a
+                    href={subheader.href}
+                    class="!no-underline hover:!underline"
+                  >
+                    {subheader.title}
+                  </a>
+                  <div class="flex flex-col ml-2 pl-4 border-l-1">
+                    {subheader.subheaders &&
+                      subheader.subheaders.map((subsubheader) => (
+                        <a
+                          href={subsubheader.href}
+                          class="fs-base !no-underline hover:!underline"
+                        >
+                          {subsubheader.title}
+                        </a>
+                      ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </nav>
+</div>
