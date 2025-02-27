@@ -51,6 +51,14 @@ a {
   @apply hover:underline hover:font-bold;
 }
 
+ul {
+  @apply !my-0;
+}
+
+li {
+  @apply !my-0;
+}
+
 /* ----- Text ----- */
 
 .markdown {

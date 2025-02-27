@@ -50,17 +50,17 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
                       <div class="pl-4" slot="title">
                         {subheader}
                       </div>
-                      <ul class="!my-0" slot="contents">
+                      <ul slot="contents">
                         {oss.prs[i].map((pr) => (
-                          <li class="!my-0 !pb-2">
+                          <li class="!pb-2">
                             <div class="flex">
                               {pr.id_links.map((id_link, i) => (
-                                <div>
+                                <>
                                   {i > 0 && ","}
                                   <a href={id_link.link} target="_blank">
                                     {id_link.id}
                                   </a>
-                                </div>
+                                </>
                               ))}
                             </div>
                             {pr.description}

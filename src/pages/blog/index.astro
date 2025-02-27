@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+
+import "@style";
+import Layout from "@layouts/Layout.astro";
+
+const posts = await getCollection("blog");
+const page = "blog";
+---
+
+<Layout page={page}>
+  <div class="markdown flex flex-col gap-8">
+    {
+      posts.map((post) => (
+        <div class="flex flex-col py-4 border-b-1">
+          <a href={`/blog/${post.data.slug}`} class="fs-lg ul-offset">
+            > {post.data.title}
+          </a>
+          <div class="flex flex-col gap-2 mt-4 fs-base">
+            {post.data.description.map((desc) => (
+              <div>{desc}</div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Layout>
