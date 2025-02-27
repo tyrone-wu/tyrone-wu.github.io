@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://tyrone-wu.github.io",
+  site: "https://tyrone-wu.pages.dev",
   trailingSlash: "ignore",
   prefetch: true,
   vite: {
