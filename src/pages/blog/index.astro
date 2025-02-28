@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 import "@style";
@@ -12,14 +13,25 @@ const page = "blog";
   <div class="markdown flex flex-col gap-8">
     {
       posts.map((post) => (
-        <div class="flex flex-col py-4 border-b-1">
+        <div class="flex flex-col py-4 border-b-1 gap-1">
           <a href={`/blog/${post.data.slug}`} class="fs-lg ul-offset">
-            > {post.data.title}
+            {post.data.title}
           </a>
-          <div class="flex flex-col gap-2 mt-4 fs-base">
-            {post.data.description.map((desc) => (
-              <div>{desc}</div>
-            ))}
+          <div class="fs-base">{post.data.date}</div>
+          {post.data.description.main}
+          <div class="flex flex-col sm:flex-row gap-2 items-center sm:items-start">
+            <Image
+              class="!my-0 size-fit h-fit w-[144px] sm:w-[192px]"
+              src={post.data.thumbnail}
+              alt={post.id}
+              width={192}
+              height={192}
+            />
+            <div class="flex flex-col fs-base">
+              {post.data.description.extra.map((desc) => (
+                <div>{desc}</div>
+              ))}
+            </div>
           </div>
         </div>
       ))

@@ -1,16 +1,19 @@
 ---
 slug: proxmox-on-hyperv
 title: Installing Proxmox VE on Hyper-V
+date: Mar 20, 2024
 description:
-  - Steps for installing Proxmox VE on Hyper-V bc why not.
-  - mainly for learning purposes if you don't have a homelab setup and want to play around with proxmox :P
+  main: Guide on installing Proxmox VE on Hyper-V bc why not.
+  extra:
+    - wrote this a looong while back before I finally made this blog, so it might be outdated
+thumbnail: ../../assets/blog/proxmox-on-hyperv/proxmox-x-hyperv.png
 ---
 
-# Installing Proxmox VE on Hyper-V
+<!-- # Installing Proxmox VE on Hyper-V -->
 
-Here are instructions for installing Proxmox on Hyper-V. If you don't have a homelab setup and want to play with proxmox, then this _should_ be good enough. 🙃
+Here are instructions for installing Proxmox on Hyper-V. If you don't have a homelab setup and want to play with proxmox, then this _should_ be good enough sandbox environment for you. 🙃
 
-There are some quirks witht the virtualization inception. I wrote this a while back, so I don't quite recall what additional configurations I enabled to get this working (or at least not broken :P).
+You will definitely encounter some quirks. I originally wrote this a while back, so I don't quite recall what additional configurations I used to get this working (or at least not broken :P).
 
 ## Prerequisite
 
@@ -79,4 +82,4 @@ Congrats, you now have Proxmox installed on Hyper-V and the web dashboard up and
 
 ---
 
-Note, you'll probably need to enable [MAC address spoofing](https://learn.microsoft.com/en-us/answers/questions/1075755/enable-mac-address-spoofing) in order for your containers to correctly receive traffic from public (but i might be wrong since it's been a while).
+IIRC, you'll need to enable [MAC address spoofing](https://learn.microsoft.com/en-us/answers/questions/1075755/enable-mac-address-spoofing) in order for your containers to correctly receive traffic from public (but i might be wrong since it's been a while).

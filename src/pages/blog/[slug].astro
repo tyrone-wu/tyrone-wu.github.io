@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
 
 import Layout from "@layouts/Layout.astro";
 
@@ -20,6 +21,15 @@ const { Content } = await render(post);
 
 <Layout page={page}>
   <article class="markdown">
+    <Image
+      class="!my-0 size-fit"
+      src={post.data.thumbnail}
+      alt={post.id}
+      width={192}
+      height={192}
+    />
+    <h1>{post.data.title}</h1>
+    <div class="!my-[-1rem] text-base">{post.data.date}</div>
     <Content />
   </article>
 </Layout>
