@@ -90,7 +90,7 @@ li {
   @apply underline underline-offset-6;
 }
 
-.ul-span {
+h1 {
   @apply border-b-3;
 }
 
