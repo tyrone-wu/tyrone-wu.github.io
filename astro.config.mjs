@@ -7,7 +7,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://tyrone-wu.pages.dev",
-  trailingSlash: "ignore",
+  trailingSlash: "never",
   prefetch: true,
   vite: {
     plugins: [tailwindcss()],

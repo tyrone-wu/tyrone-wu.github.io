@@ -15,7 +15,7 @@ const icons = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <section>
-  <h2 id="projects" class="ul-offset anchor-offset">Projects</h2>
+  <h2 id="projects" class="ul-offset">Projects</h2>
   <div class="flex flex-wrap gap-8">
     {
       data.map((project) => (
@@ -35,7 +35,7 @@ const icons = import.meta.glob<{ default: ImageMetadata }>(
             {project.stack.map((tech) => (
               <div class="flex flex-row items-center gap-2 pb-1 border-b-1">
                 <Image
-                  class="!my-0 size-fit w-[24px] h-[24px]"
+                  class="!my-0 object-fit w-[24px] h-auto"
                   src={icons[`/src/assets/icons/${techMap.get(tech)}`]()}
                   alt={tech}
                   height={24}

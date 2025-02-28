@@ -92,6 +92,15 @@ li {
 
 h1 {
   @apply border-b-3;
+  scroll-margin-top: 8rem;
+}
+
+h2 {
+  scroll-margin-top: 8rem;
+}
+
+h3 {
+  scroll-margin-top: 8rem;
 }
 
 .hvr-ulb {

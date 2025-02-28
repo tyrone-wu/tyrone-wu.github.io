@@ -6,6 +6,8 @@ export const techMap: Map<string, string> = new Map([
   ["Bash/Shell", "bash.svg"],
   ["Certified K8s Administrator", "cka.avif"],
   ["Certified K8s Application Dev", "ckad.avif"],
+  ["Cloudflare", "cloudflare.svg"],
+  ["Codecov", "codecov.svg"],
   ["C++", "cpp.svg"],
   ["CSS", "css.svg"],
   ["Docker", "docker.svg"],
