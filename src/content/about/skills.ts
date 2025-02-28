@@ -2,6 +2,7 @@ export const langs = ["Java", "Rust", "Python", "Typescript", "Bash/Shell"];
 
 export const tools = [
   "AWS",
+  "Cloudflare",
   "Linux",
   "Ansible",
   "GitHub Actions",

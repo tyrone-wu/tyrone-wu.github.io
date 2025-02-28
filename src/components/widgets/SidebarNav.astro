@@ -2,7 +2,14 @@
 export interface HeaderNav {
   title: string;
   href: string;
-  subheaders?: HeaderNav[];
+  subheaders?: {
+    title: string;
+    href: string;
+    subheaders?: {
+      title: string;
+      href: string;
+    }[];
+  }[];
 }
 
 interface Props {
@@ -14,11 +21,11 @@ const { headers } = Astro.props;
 
 <div class="markdown fixed top-1/7 left-1/2 ml-[-38rem] z-40 hidden xl:block">
   <div class="fs-lg font-bold">Sections</div>
-  <nav class="flex flex-col pb-2 pt-1 border-t-2 border-b-2">
+  <nav class="flex flex-col pb-2 pt-1 border-t-2 border-b-2 w-[14rem]">
     {
       headers.map((header) => (
         <div class="flex flex-col">
-          <a href={header.href} class="!no-underline hover:!underline">
+          <a href={`#${header.href}`} class="!no-underline hover:!underline">
             > {header.title}
           </a>
           {header.subheaders && (
@@ -26,7 +33,7 @@ const { headers } = Astro.props;
               {header.subheaders.map((subheader) => (
                 <div class="flex flex-col">
                   <a
-                    href={subheader.href}
+                    href={`#${subheader.href}`}
                     class="!no-underline hover:!underline"
                   >
                     > {subheader.title}
@@ -35,7 +42,7 @@ const { headers } = Astro.props;
                     {subheader.subheaders &&
                       subheader.subheaders.map((subsubheader) => (
                         <a
-                          href={subsubheader.href}
+                          href={`#${subsubheader.href}`}
                           class="fs-base !no-underline hover:!underline"
                         >
                           > {subsubheader.title}

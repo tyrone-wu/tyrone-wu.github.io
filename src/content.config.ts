@@ -13,6 +13,30 @@ const blog = defineCollection({
         extra: z.array(z.string()),
       }),
       thumbnail: image(),
+      nav: z.optional(
+        z.array(
+          z.object({
+            title: z.string(),
+            href: z.string(),
+            subheaders: z.optional(
+              z.array(
+                z.object({
+                  title: z.string(),
+                  href: z.string(),
+                  subheaders: z.optional(
+                    z.array(
+                      z.object({
+                        title: z.string(),
+                        href: z.string(),
+                      }),
+                    ),
+                  ),
+                }),
+              ),
+            ),
+          }),
+        ),
+      ),
     }),
 });
 
