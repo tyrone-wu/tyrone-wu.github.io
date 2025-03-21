@@ -1,7 +1,7 @@
-interface OSS {
+export interface OSS {
   name: string;
   link: string;
-  org: {
+  org?: {
     name: string;
     link: string;
   };
@@ -166,6 +166,92 @@ export const data: OSS[] = [
         },
       ],
       [],
+    ],
+  },
+];
+
+export const minor: OSS[] = [
+  {
+    name: "rust",
+    link: "https://github.com/rust-lang/rust",
+    org: {
+      name: "rust-lang",
+      link: "https://github.com/rust-lang",
+    },
+    description: "The Rust programming language.",
+    thumbnail: "ferris.png",
+    prs: [
+      [],
+      [
+        {
+          id_links: [
+            {
+              id: "PR#133060",
+              link: "https://github.com/rust-lang/rust/pull/133060",
+            },
+          ],
+          description:
+            "Trim extra whitespace when applying `let` removal suggestion.",
+          extra: undefined,
+        },
+        {
+          id_links: [
+            {
+              id: "#133083",
+              link: "https://github.com/rust-lang/rust/issues/133083",
+            },
+            {
+              id: "PR#133151",
+              link: "https://github.com/rust-lang/rust/pull/133151",
+            },
+          ],
+          description:
+            "Trim extra whitespace for invalid `fn` ptr qualifiers in removal suggestion.",
+          extra: undefined,
+        },
+      ],
+    ],
+  },
+  {
+    name: "kube",
+    link: "https://github.com/kube-rs/kube",
+    org: {
+      name: "kube-rs",
+      link: "https://github.com/kube-rs",
+    },
+    description: "Rust Kubernetes client and controller runtime.",
+    thumbnail: "kube-rs.png",
+    prs: [
+      [],
+      [
+        {
+          id_links: [
+            {
+              id: "#1144",
+              link: "https://github.com/kube-rs/kube/issues/1144",
+            },
+            {
+              id: "PR#1466",
+              link: "https://github.com/kube-rs/kube/pull/1466",
+            },
+          ],
+          description:
+            "Migrate code coverage dependency (tarpaulin) to the new maintainer, and resolved false negative coverage.",
+          extra: undefined,
+        },
+        {
+          id_links: [
+            { id: "tarpaulin", link: "https://github.com/xd009642/tarpaulin" },
+            {
+              id: "PR#1503",
+              link: "https://github.com/xd009642/tarpaulin/pull/1503",
+            },
+          ],
+          description:
+            "Fixed `include-tests` configuration to also include non-std test attributes, e.g. `#[tokio::test]`.",
+          extra: undefined,
+        },
+      ],
     ],
   },
 ];

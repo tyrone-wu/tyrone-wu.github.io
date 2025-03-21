@@ -21,7 +21,9 @@ const { headers } = Astro.props;
 
 <div class="markdown fixed top-1/7 left-1/2 ml-[-38rem] z-40 hidden xl:block">
   <div class="fs-lg font-bold">Sections</div>
-  <nav class="flex flex-col pb-2 pt-1 border-t-2 border-b-2 w-[14rem]">
+  <nav
+    class="text-base flex flex-col pb-2 pt-1 border-t-2 border-b-2 w-[14rem]"
+  >
     {
       headers.map((header) => (
         <div class="flex flex-col">
@@ -29,7 +31,7 @@ const { headers } = Astro.props;
             > {header.title}
           </a>
           {header.subheaders && (
-            <div class="flex flex-col ml-1 pl-4 border-l-1">
+            <div class="flex flex-col ml-1 pl-3 border-l-1">
               {header.subheaders.map((subheader) => (
                 <div class="flex flex-col">
                   <a
@@ -38,12 +40,12 @@ const { headers } = Astro.props;
                   >
                     > {subheader.title}
                   </a>
-                  <div class="flex flex-col ml-1 pl-4 border-l-1">
+                  <div class="flex flex-col ml-1 pl-3 border-l-1">
                     {subheader.subheaders &&
                       subheader.subheaders.map((subsubheader) => (
                         <a
                           href={`#${subsubheader.href}`}
-                          class="fs-base !no-underline hover:!underline"
+                          class="!no-underline hover:!underline"
                         >
                           > {subsubheader.title}
                         </a>
