@@ -3,6 +3,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ----- Font ----- */
+
 @font-face {
   font-family: "Mono";
   font-style: normal;
@@ -30,97 +32,202 @@
     format("woff2");
 }
 
-/* ----- Layout ----- */
+:root {
+  /* ----- Light Mode ----- */
+  --swiss-coffee: oklch(89.28% 0.0067 28.84);
+  --ebb: oklch(93.21% 0.0071 39.46);
+  --fantasy: oklch(97.12% 0.007 39.46);
+  --soapstone: oklch(98.79% 0.0045 34.31);
 
-body {
-  @apply font-mono antialiased;
-  @apply bg-stone-100 dark:bg-stone-900;
-  @apply text-black/50 dark:text-white/65;
-  @apply overflow-y-scroll;
+  --baltic-sea: oklch(26.83% 0.0131 320.61);
+  --ocean-green: oklch(61.91% 0.1297 159.22);
+  --flame-pea: oklch(64.47% 0.1719 39.13);
+  --fuchsia-blue: oklch(53.51% 0.1538 291.14);
+  --cabaret: oklch(62.66% 0.192 6.57);
+
+  --bahama-blue: oklch(48.99% 0.1122 240.01);
+  --medium-carmine: oklch(50.42% 0.1516 26.97);
+  --blumine: oklch(42.85% 0.0811 229.8);
+  --cinnamon: oklch(45.52% 0.106 60.7);
+  --royal-purple: oklch(48.28% 0.1545 311.07);
+  --tahiti-gold: oklch(67.62% 0.1679 54.79);
+  --la-palma: oklch(58.68% 0.157 138.43);
+
+  /* ----- Dark Mode ----- */
+  --shark-darker: oklch(24.39% 0.0072 325.79);
+  --shark-darker-75: oklch(24.39% 0.0072 325.79 / 0.75);
+  --shark: oklch(28.98% 0.0083 317.72);
+  --mine-shaft: oklch(31.64% 0.0059 314.74);
+  --tundora: oklch(36.69% 0.0057 314.75);
+
+  --romance: oklch(99.05% 0.0026 106.45);
+  --goldenrod: oklch(89.39% 0.1387 90.47);
+  --yellow-green: oklch(83.61% 0.1422 130.71);
+  --atomic-tangerine: oklch(77.37% 0.1364 46.2);
+  --dull-lavender: oklch(74.09% 0.1215 290.68);
+  --brink-pink: oklch(70.58% 0.1936 8.45);
+  --spray: oklch(83.81% 0.0952 205.66);
 }
 
-.section {
-  @apply mx-auto max-w-screen-md px-8;
+@layer base {
+  body {
+    @apply font-mono antialiased;
+    @apply overflow-y-scroll;
+  }
+
+  ul {
+    @apply !my-0;
+  }
+
+  li {
+    @apply !my-0;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  pre {
+    @apply !rounded-none border-t-4;
+    @apply !bg-[var(--tundora)] border-[var(--medium-carmine)];
+  }
 }
 
-button {
-  @apply cursor-pointer;
+@layer components {
+  .fs-base-sm {
+    @apply text-sm sm:text-base;
+  }
+
+  .fs-lg-base {
+    @apply text-base sm:text-lg;
+  }
+
+  .fs-xl-lg {
+    @apply text-lg sm:text-xl;
+  }
+
+  .ul-offset {
+    @apply underline underline-offset-6;
+  }
+
+  .scroll-anchor-offset {
+    scroll-margin-top: 8rem;
+  }
 }
 
-a {
-  @apply hover:underline hover:font-bold;
-}
+@layer utilities {
+  /* ----- Light Mode ----- */
+  .bg-color {
+    @apply bg-[var(--soapstone)];
+  }
 
-ul {
-  @apply !my-0;
-}
+  .header-theme {
+    @apply bg-[var(--fantasy)];
+  }
 
-li {
-  @apply !my-0;
-}
+  .prose-theme {
+    /* Text */
+    --tw-prose-headings: var(--cinnamon);
+    --tw-prose-lead: var(--baltic-sea);
+    --tw-prose-body: var(--baltic-sea);
+    --tw-prose-links: var(--baltic-sea);
+    --tw-prose-bold: var(--baltic-sea);
+    --tw-prose-quotes: var(--baltic-sea);
+    --tw-prose-captions: var(--baltic-sea);
+    --tw-prose-kbd: var(--baltic-sea);
+    --tw-prose-code: var(--flame-pea);
+    --tw-prose-pre-code: var(--spray);
+    --tw-prose-counters: var(--baltic-sea);
+    --tw-prose-bullets: var(--baltic-sea);
 
-/* ----- Text ----- */
+    /* Layout */
+    --tw-prose-hr: var(--baltic-sea);
+    --tw-prose-quote-borders: var(--cabaret);
+    --tw-prose-pre-bg: var(--tundora);
+    --tw-prose-th-borders: var(--baltic-sea);
+    --tw-prose-td-borders: var(--baltic-sea);
 
-.markdown {
-  @apply prose dark:prose-invert prose-stone;
-  /* idk why but i think the breakpoints for these should be backwards */
-  @apply prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg;
-  @apply md:prose-lg md:prose-h1:text-3xl md:prose-h2:text-2xl md:prose-h3:text-xl;
-  /* prose is adding a weird invisible margin on the right */
-  @apply max-w-full;
-}
+    /* ??? */
+    --tw-prose-kbd-shadows: NaN NaN NaN;
+  }
 
-.fs-base {
-  @apply text-sm sm:text-base;
-}
+  .current-highlight {
+    @apply text-[var(--cinnamon)];
+  }
 
-.fs-md {
-  @apply text-base sm:text-lg;
-}
+  .line-highlight {
+    @apply border-[var(--cinnamon)];
+  }
 
-.fs-lg {
-  @apply text-lg sm:text-xl;
-}
+  /* ----- Dark Mode ----- */
+  .dark {
+    .bg-color {
+      @apply bg-[var(--shark)];
+    }
 
-.link-override {
-  @apply !font-bold hover:!underline hover:!decoration-2;
-}
+    .header-theme {
+      @apply bg-[var(--shark-darker)];
+    }
 
-.ul-offset {
-  @apply underline underline-offset-6;
-}
+    .prose-theme {
+      /* Text */
+      --tw-prose-headings: var(--goldenrod);
+      --tw-prose-lead: var(--romance);
+      --tw-prose-body: var(--romance);
+      --tw-prose-links: var(--romance);
+      --tw-prose-bold: var(--romance);
+      --tw-prose-quotes: var(--romance);
+      --tw-prose-captions: var(--romance);
+      --tw-prose-kbd: var(--romance);
+      --tw-prose-code: var(--yellow-green);
+      --tw-prose-pre-code: var(--spray);
+      --tw-prose-counters: var(--romance);
+      --tw-prose-bullets: var(--romance);
 
-h1 {
-  @apply border-b-3;
-  scroll-margin-top: 8rem;
-}
+      /* Layout */
+      --tw-prose-hr: var(--romance);
+      --tw-prose-quote-borders: var(--brink-pink);
+      --tw-prose-pre-bg: var(--tundora);
+      --tw-prose-th-borders: var(--romance);
+      --tw-prose-td-borders: var(--romance);
 
-h2 {
-  scroll-margin-top: 8rem;
-}
+      /* ??? */
+      --tw-prose-kbd-shadows: NaN NaN NaN;
+    }
 
-h3 {
-  scroll-margin-top: 8rem;
-}
+    .current-highlight {
+      @apply text-[var(--goldenrod)];
+    }
 
-.hvr-ulb {
-  @apply hover:underline hover:font-bold;
-}
+    .line-highlight {
+      @apply border-[var(--goldenrod)];
+    }
+  }
 
-/* ----- Custom Styles ----- */
+  .prose {
+    h1 {
+      @apply sm:text-2xl text-xl;
+      @apply border-b-3;
+      scroll-margin-top: 8rem;
+    }
 
-.hr-base {
-  border: none;
-  height: 0px;
-  border-top: 2px solid;
-}
+    h2 {
+      @apply sm:text-xl text-lg;
+      scroll-margin-top: 8rem;
+    }
 
-.hr-sm {
-  border: none;
-  height: 0px;
-  border-top: 1px solid;
-}
+    h3 {
+      @apply text-lg;
+      scroll-margin-top: 8rem;
+    }
+  }
 
-.anchor-offset {
-  scroll-margin-top: 8rem;
+  a:hover {
+    @apply underline font-bold;
+    @apply text-[var(--la-palma)] dark:text-[var(--atomic-tangerine)];
+  }
+
+  .a-hover-bul {
+    @apply font-bold hover:decoration-4;
+  }
 }

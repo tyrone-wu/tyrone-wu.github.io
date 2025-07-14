@@ -20,7 +20,7 @@ const { Content } = await render(post);
 ---
 
 <Layout page={page} headers={post.data.nav}>
-  <article class="markdown">
+  <article>
     <Image
       class="!my-0 size-fit"
       src={post.data.thumbnail}
@@ -29,7 +29,7 @@ const { Content } = await render(post);
       height={192}
     />
     <h1 id={post.id}>{post.data.title}</h1>
-    <div class="!my-[-1rem] text-base">{post.data.date}</div>
+    <div class="!my-[-1rem] fs-base-sm italic">{post.data.date}</div>
     <Content />
   </article>
 </Layout>

@@ -24,7 +24,7 @@ const { page, headers } = Astro.props;
     <title>{page}</title>
   </head>
 
-  <body>
+  <body class="prose prose-theme bg-color max-w-full">
     <div class="flex flex-col min-h-screen">
       <Header currentPage={page} />
       {headers && <SidebarNav headers={headers} />}

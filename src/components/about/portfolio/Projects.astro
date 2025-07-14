@@ -20,10 +20,10 @@ const icons = import.meta.glob<{ default: ImageMetadata }>(
     {
       data.map((project) => (
         <section class="flex flex-col w-[21rem]">
-          <a class="link-override" href={project.link} target="_blank">
+          <a class="fs-lg-base a-hover-bul" href={project.link} target="_blank">
             {project.name}
           </a>
-          <div class="fs-md">{project.description}</div>
+          <div class="text-base">{project.description}</div>
           <Image
             class="!my-4 size-fit border-1"
             src={thumbnails[`/src/assets/thumbnails/${project.thumbnail}`]()}
@@ -41,7 +41,7 @@ const icons = import.meta.glob<{ default: ImageMetadata }>(
                   height={24}
                   width={24}
                 />
-                <div class="fs-base">{tech}</div>
+                <div class="text-sm">{tech}</div>
               </div>
             ))}
           </div>

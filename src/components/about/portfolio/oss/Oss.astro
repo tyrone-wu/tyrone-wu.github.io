@@ -12,14 +12,14 @@ import { data, minor } from "@content/about/oss";
       {data.map((oss) => <OssSection oss={oss} />)}
     </div>
 
-    <div class="fs-base my-2 pb-2 pt-8">
+    <div class="fs-base-sm my-2 pb-2 pt-8">
       The repos listed above are the contributions I'm most proud of.
       <br />
       Here are some other minor contributions I've done as well! 😋
     </div>
 
     <Accordion>
-      <div class="fs-lg" slot="title">Other contributions</div>
+      <div class="fs-lg-base" slot="title">Other contributions</div>
       <div class="pt-4" slot="contents">
         <div class="flex flex-col md:grid md:grid-cols-2 gap-8">
           {minor.map((oss) => <OssSection oss={oss} />)}

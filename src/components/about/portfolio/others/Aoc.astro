@@ -11,11 +11,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 ---
 
-<section id="aoc" class="anchor-offset">
+<section id="aoc" class="scroll-anchor-offset">
   <Accordion>
-    <div class="!my-0 fs-lg" slot="title">🎄 Advent of Code</div>
+    <div class="!my-0 fs-lg-base" slot="title">🎄 Advent of Code</div>
     <section slot="contents" class="flex flex-col gap-2">
-      <div class="flex flex-wrap gap-1 fs-base">
+      <div class="flex flex-wrap gap-1 fs-base-sm">
         {
           aocs.map((aoc) => (
             <div class="flex flex-col items-center justify-evenly border-1 w-[5.4rem] h-[5.4rem] sm:w-[6.6rem] sm:h-[6.6rem]">

@@ -20,16 +20,19 @@ const navigation: Page[] = [
 ---
 
 <div
-  class="border-b-1 backdrop-blur-sm bg-stone-100/75 dark:bg-stone-900/25 fixed top-0 left-0 right-0 z-50 py-4"
+  class="header-theme border-b-1 line-highlight fixed top-0 left-0 right-0 z-50 py-4"
 >
-  <div class="section flex flex-row justify-between">
+  <div class="mx-auto max-w-screen-md px-8 flex flex-row justify-between">
     <ThemeIcon />
-    <nav class="flex flex-row items-center gap-6 fs-md">
+    <nav class="flex flex-row items-center gap-6 fs-lg-base">
       {
         navigation.map((nav) => (
           <a
             class="ul-offset hover:decoration-2"
-            class:list={{ "font-bold": nav.name === currentPage }}
+            class:list={{
+              "font-bold": nav.name === currentPage,
+              "current-highlight": nav.name === currentPage,
+            }}
             href={nav.url}
           >
             {nav.name}
