@@ -25,7 +25,7 @@ const { headers } = Astro.props;
     {
       headers.map((header) => (
         <div class="flex flex-col">
-          <a href={`#${header.href}`} class="!no-underline hover:!underline">
+          <a href={header.href} class="!no-underline hover:!underline">
             > {header.title}
           </a>
           {header.subheaders && (
@@ -33,7 +33,7 @@ const { headers } = Astro.props;
               {header.subheaders.map((subheader) => (
                 <div class="flex flex-col">
                   <a
-                    href={`#${subheader.href}`}
+                    href={subheader.href}
                     class="!no-underline hover:!underline"
                   >
                     > {subheader.title}
@@ -42,7 +42,7 @@ const { headers } = Astro.props;
                     {subheader.subheaders &&
                       subheader.subheaders.map((subsubheader) => (
                         <a
-                          href={`#${subsubheader.href}`}
+                          href={subsubheader.href}
                           class="!no-underline hover:!underline"
                         >
                           > {subsubheader.title}

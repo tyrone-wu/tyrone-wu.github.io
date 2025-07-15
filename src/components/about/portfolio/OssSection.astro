@@ -15,14 +15,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 ---
 
-<section>
+<section id={oss.id} class="tile tile-theme scroll-anchor-offset">
   <div class="flex flex-row items-end">
     <Image
       class="!my-0 size-fit"
       src={images[`/src/assets/thumbnails/${oss.thumbnail}`]()}
       alt={oss.name}
-      width={70}
-      height={70}
+      width={48}
+      height={48}
     />
     <div class="flex flex-col ml-4 h-full">
       <a class="a-hover-bul" href={oss.link} target="_blank">

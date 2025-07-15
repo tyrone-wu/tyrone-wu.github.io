@@ -113,6 +113,10 @@
   .scroll-anchor-offset {
     scroll-margin-top: 8rem;
   }
+
+  .tile {
+    @apply p-4 border-l-6 border-1;
+  }
 }
 
 @layer utilities {
@@ -123,6 +127,10 @@
 
   .header-theme {
     @apply bg-[var(--fantasy)];
+  }
+
+  .tile-theme {
+    @apply border-[var(--shark-darker-75)] bg-[var(--fantasy)];
   }
 
   .prose-theme {
@@ -167,6 +175,10 @@
 
     .header-theme {
       @apply bg-[var(--shark-darker)];
+    }
+
+    .tile-theme {
+      @apply border-[var(--swiss-coffee)] bg-[var(--tundora)];
     }
 
     .prose-theme {
@@ -229,5 +241,10 @@
 
   .a-hover-bul {
     @apply font-bold hover:decoration-4;
+  }
+
+  .a-button {
+    @apply hover:border-l-4;
+    @apply border-[var(--shark-darker-75)] dark:border-[var(--swiss-coffee)];
   }
 }

@@ -12,24 +12,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
 <section>
   <h1 id="experience">Experience</h1>
-  <div class="flex flex-col gap-8">
+  <div class="flex flex-col gap-4">
     {
       data.map((company) => (
-        <section class="flex">
+        <section class="flex tile tile-theme">
           <Image
             class="!my-0 size-fit"
             src={images[`/src/assets/companies/${company.logo}`]()}
             alt={company.name}
-            width={70}
-            height={70}
+            width={60}
+            height={60}
           />
           <div class="flex sm:flex-row flex-col flex-1 justify-between ml-4">
             <div class="flex flex-col">
-              <a
-                class="fs-lg-base a-hover-bul"
-                href={company.link}
-                target="_blank"
-              >
+              <a class="a-hover-bul" href={company.link} target="_blank">
                 {company.name}
               </a>
               {company.position}

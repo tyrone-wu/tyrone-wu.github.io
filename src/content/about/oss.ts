@@ -1,4 +1,5 @@
 export interface OSS {
+  id: string;
   name: string;
   link: string;
   org?: {
@@ -18,7 +19,8 @@ interface PR {
 
 export const data: OSS[] = [
   {
-    name: "aya",
+    id: "aya",
+    name: "Aya",
     link: "https://github.com/aya-rs/aya",
     org: {
       name: "aya-rs",
@@ -75,6 +77,7 @@ export const data: OSS[] = [
     ],
   },
   {
+    id: "linux-bpf-subsystem",
     name: "BPF Subsystem",
     link: "https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git/",
     org: {
@@ -138,6 +141,7 @@ export const data: OSS[] = [
     ],
   },
   {
+    id: "bpftop",
     name: "bpftop",
     link: "https://github.com/Netflix/bpftop",
     org: {
@@ -172,7 +176,8 @@ export const data: OSS[] = [
 
 export const minor: OSS[] = [
   {
-    name: "rust",
+    id: "rust",
+    name: "Rust",
     link: "https://github.com/rust-lang/rust",
     org: {
       name: "rust-lang",
@@ -213,6 +218,7 @@ export const minor: OSS[] = [
     ],
   },
   {
+    id: "kube",
     name: "kube",
     link: "https://github.com/kube-rs/kube",
     org: {

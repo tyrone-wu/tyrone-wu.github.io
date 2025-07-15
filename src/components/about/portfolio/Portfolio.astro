@@ -1,14 +1,39 @@
 ---
-import Oss from "./oss/Oss.astro";
+import { Icon } from "astro-icon/components";
+
 import Projects from "./Projects.astro";
 import Skills from "./Skills.astro";
 import OtherStuff from "./others/OtherStuff.astro";
+
+const pages = [
+  {
+    name: "Open-Source Contributions",
+    href: "open-source",
+  },
+];
 ---
 
 <section>
   <h1 id="portfolio">Portfolio</h1>
   <div class="flex flex-col gap-16">
-    <Oss />
+    <div class="flex flex-wrap gap-4">
+      {
+        pages.map((page) => (
+          <a
+            class="w-[8.7rem] sm:w-[10rem] h-[8rem] flex flex-col justify-center items-center tile tile-theme a-button"
+            href={`/about/${page.href}`}
+          >
+            <Icon
+              name={page.href}
+              class="text-[var(--tundora)] dark:text-[var(--swiss-coffee)] flex-shrink-0"
+              size="64"
+            />
+            <div class="text-base">{page.name}</div>
+          </a>
+        ))
+      }
+    </div>
+
     <Projects />
     <Skills />
     <OtherStuff />

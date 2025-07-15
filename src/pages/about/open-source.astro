@@ -1,0 +1,30 @@
+---
+import "@style";
+import Layout from "@layouts/Layout.astro";
+import OssSection from "@components/about/portfolio/OssSection.astro";
+import { data, minor } from "@content/about/oss";
+
+import { type HeaderNav } from "@components/widgets/SidebarNav.astro";
+
+const page = "open-source";
+const headers: HeaderNav[] = [
+  { title: "..", href: "/about#portfolio" },
+  { title: "Aya", href: "#aya" },
+  { title: "Linux BPF Subsystem", href: "#linux-bpf-subsystem" },
+  { title: "bpftop", href: "#bpftop" },
+  { title: "Rust", href: "#rust" },
+  { title: "kube", href: "#kube" },
+];
+---
+
+<Layout page={page} headers={headers}>
+  <section>
+    <h1 id="open-source">Open-Source Contributions</h1>
+    <div class="flex flex-col">
+      <div class="flex flex-col gap-6">
+        {data.map((oss) => <OssSection oss={oss} />)}
+        {minor.map((oss) => <OssSection oss={oss} />)}
+      </div>
+    </div>
+  </section>
+</Layout>
