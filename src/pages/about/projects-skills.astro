@@ -1,0 +1,28 @@
+---
+import "@style";
+import Layout from "@layouts/Layout.astro";
+import Projects from "@components/about/portfolio/Projects.astro";
+import Skills from "@components/about/portfolio/Skills.astro";
+
+import { type HeaderNav } from "@components/widgets/SidebarNav.astro";
+
+const page = "projects & skills";
+const headers: HeaderNav[] = [
+  { title: "..", href: "/about#portfolio" },
+  { title: "Projects", href: "#projects" },
+  {
+    title: "Skills",
+    href: "#skills",
+    subheaders: [
+      { title: "Programming Languages", href: "#langs" },
+      { title: "Tools/Software", href: "#tools" },
+      { title: "Certifications", href: "#certs" },
+    ],
+  },
+];
+---
+
+<Layout page={page} headers={headers}>
+  <Projects />
+  <Skills />
+</Layout>

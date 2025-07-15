@@ -10,8 +10,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 ---
 
-<section>
-  <h2 id="skills" class="ul-offset">Skills</h2>
+<section class="mt-24">
+  <h1 id="skills">Skills</h1>
   <div class="grid md:grid-cols-2 gap-8 fs-base-sm">
     <section>
       <div id="langs" class="text-lg font-bold border-b-1 mb-4">
@@ -36,7 +36,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       <div class="flex flex-wrap gap-1">
         {
           certs.map((cert) => (
-            <div class="flex flex-col items-center justify-evenly border-1 w-[131px] h-[131px] sm:w-[161px] sm:h-[161px]">
+            <div class="flex flex-col items-center justify-evenly border-1 w-[131px] h-[131px] sm:w-[161px] sm:h-[161px] icon-theme">
               <Image
                 class="!m-0 size-fit w-[70px] h-[70px] sm:w-[100px] sm:h-[100px]"
                 src={images[`/src/assets/icons/${techMap.get(cert[0])}`]()}

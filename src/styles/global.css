@@ -133,6 +133,10 @@
     @apply border-[var(--shark-darker-75)] bg-[var(--fantasy)];
   }
 
+  .icon-theme {
+    @apply bg-[var(--fantasy)];
+  }
+
   .prose-theme {
     /* Text */
     --tw-prose-headings: var(--cinnamon);
@@ -179,6 +183,10 @@
 
     .tile-theme {
       @apply border-[var(--swiss-coffee)] bg-[var(--tundora)];
+    }
+
+    .icon-theme {
+      @apply bg-[var(--tundora)];
     }
 
     .prose-theme {

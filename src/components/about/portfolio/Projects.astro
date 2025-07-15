@@ -15,11 +15,11 @@ const icons = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <section>
-  <h2 id="projects" class="ul-offset !mt-4">Projects</h2>
-  <div class="flex flex-wrap gap-8">
+  <h1 id="projects">Projects</h1>
+  <div class="flex flex-wrap gap-4">
     {
       data.map((project) => (
-        <section class="flex flex-col w-[21rem]">
+        <section class="flex flex-col w-[21rem] tile tile-theme">
           <a class="fs-lg-base a-hover-bul" href={project.link} target="_blank">
             {project.name}
           </a>
