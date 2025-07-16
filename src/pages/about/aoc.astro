@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+
+import "@style";
+import Layout from "@layouts/Layout.astro";
+
+import { aocs } from "@content/about/others";
+import { techMap } from "@assets/icons/techMap.ts";
+import aocTimes from "../../assets/others/aoc-2024-times.png";
+
+import { type HeaderNav } from "@components/widgets/SidebarNav.astro";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/icons/*.svg",
+);
+
+const page = "advent of code";
+const headers: HeaderNav[] = [{ title: "..", href: "/about#portfolio" }];
+---
+
+<Layout page={page} headers={headers}>
+  <section>
+    <h1>🎄 Advent of Code</h1>
+    <div class="flex flex-col gap-2">
+      2022 was first year doing AoC. 🥳
+      <div class="flex flex-wrap gap-1 fs-base-sm">
+        {
+          aocs.map((aoc) => (
+            <div class="flex flex-col items-center justify-evenly border-1 w-[5.4rem] h-[5.4rem] sm:w-[6.6rem] sm:h-[6.6rem] tile-theme">
+              <Image
+                class="!my-0 size-fit w-[40px] h-[40px] sm:w-[50px] sm:h-[50px]"
+                src={images[`/src/assets/icons/${techMap.get(aoc.lang)}`]()}
+                alt={aoc.lang}
+                height={50}
+                width={50}
+              />
+              <a href={aoc.link} class="text-center leading-4" target="_blank">
+                {aoc.year}
+                {aoc.lang}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+
+      <h4 class="font-bold underline mb-0">2024 Times & Ranks</h4>
+
+      I'm not a competitive programmer, but I decided to actually try on release
+      this year since I was curious to see where I would place against everybody
+      else. Unfortunately, LLM army also decided to raid the rankings as well.
+      😕
+
+      <Image
+        class="!my-2 size-fit"
+        src={aocTimes}
+        alt="aoc-2024-times"
+        width={601}
+        height={637}
+      />
+
+      I was so convinced that my input was bugged for Day 6 part 2. Turns out,
+      it was my reading comprehension that was bugged. 🫠
+      <br />
+      For times that went over 12 hrs, I ended up getting hints from the subreddit
+      to complete it.
+      <br />
+      All things considered, I think I did decent. at least I hope so? I don't have
+      a reference to go off of, and AoC attracts a ton of cracked ppl.
+    </div>
+  </section>
+</Layout>
