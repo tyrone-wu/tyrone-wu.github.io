@@ -1,21 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import OtherStuff from "./others/OtherStuff.astro";
-
 const pages = [
-  {
-    name: "Open-Source Contributions",
-    href: "open-source",
-  },
-  {
-    name: "Projects & Skills",
-    href: "projects-skills",
-  },
-  {
-    name: "Advent of Code",
-    href: "aoc",
-  },
+  { name: "Open-Source Contributions", href: "open-source" },
+  { name: "Projects & Skills", href: "projects-skills" },
+  { name: "Homelab", href: "homelab" },
+  { name: "Advent of Code", href: "aoc" },
 ];
 ---
 
@@ -26,7 +16,7 @@ const pages = [
       {
         pages.map((page) => (
           <a
-            class="w-[8.7rem] sm:w-[10rem] h-[8rem] flex flex-col justify-center items-center tile tile-theme a-button"
+            class="w-[8.7rem] sm:w-[10.2rem] h-[8rem] flex flex-col justify-center items-center tile tile-theme a-button"
             href={`/about/${page.href}`}
           >
             <Icon
@@ -39,7 +29,5 @@ const pages = [
         ))
       }
     </div>
-
-    <OtherStuff />
   </div>
 </section>

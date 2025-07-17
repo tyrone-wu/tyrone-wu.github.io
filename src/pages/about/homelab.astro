@@ -1,0 +1,38 @@
+---
+import "@style";
+import Layout from "@layouts/Layout.astro";
+import Content from "@contents/about/homelab.mdx";
+
+import { type HeaderNav } from "@components/widgets/SidebarNav.astro";
+
+const page = "homelab";
+const headers: HeaderNav[] = [
+  { title: "..", href: "/about#portfolio" },
+  { title: "Diagram", href: "#diagram" },
+  {
+    title: "Network",
+    href: "#network",
+    subheaders: [
+      { title: "Internet Connection", href: "#setting-up-internet-connection" },
+      { title: "How to setup ICS", href: "#how-to-setup-ics" },
+      { title: "Caveats", href: "#caveats-in-my-network-setup" },
+    ],
+  },
+  { title: "Storage", href: "#storage" },
+  { title: "Power", href: "#power" },
+  {
+    title: "Final Thoughts",
+    href: "#final-thoughts",
+    subheaders: [
+      { title: "Hyper-V vs Proxmox", href: "#hyper-v-vs-proxmox" },
+      { title: "Future Todos", href: "#future-todos" },
+    ],
+  },
+];
+---
+
+<Layout page={page} headers={headers}>
+  <section class="text-base">
+    <Content />
+  </section>
+</Layout>

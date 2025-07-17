@@ -79,6 +79,10 @@
     @apply !my-0;
   }
 
+  ol {
+    @apply marker:!font-bold;
+  }
+
   li {
     @apply !my-0;
   }
