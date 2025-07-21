@@ -1,42 +1,38 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 import "@style";
 import Layout from "@layouts/Layout.astro";
+import BlogSection from "@components/BlogSection.astro";
 
 const posts = await getCollection("blog");
+const homelabBlog = await getEntry("homelabBlog", "homelab");
 const page = "blog";
 ---
 
 <Layout page={page}>
-  <div class="flex flex-col gap-8">
+  <div class="flex flex-col gap-6">
+    <!-- my homelab -->
+    <BlogSection
+      href={`/about/${homelabBlog?.data.slug}`}
+      title={homelabBlog?.data.title}
+      date={homelabBlog?.data.date}
+      description={homelabBlog?.data.description}
+      thumbnail={homelabBlog?.data.thumbnail}
+      alt="homelab"
+    />
+
+    <!-- rest of my blog stuff -->
     {
       posts.map((post) => (
-        <div class="flex flex-col py-4 border-b-1 gap-1">
-          <a
-            href={`/blog/${post.data.slug}`}
-            class="fs-xl-lg ul-offset font-bold a-hover-bul"
-          >
-            {post.data.title}
-          </a>
-          <div class="fs-base-sm italic">{post.data.date}</div>
-          <div class="text-base">{post.data.description.main}</div>
-          <div class="flex flex-col sm:flex-row gap-2 items-center sm:items-start">
-            <Image
-              class="!my-0 size-fit h-fit w-[144px] sm:w-[192px]"
-              src={post.data.thumbnail}
-              alt={post.id}
-              width={192}
-              height={192}
-            />
-            <div class="flex flex-col fs-base-sm gap-2">
-              {post.data.description.extra.map((desc) => (
-                <div>{desc}</div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <BlogSection
+          href={`/blog/${post.data.slug}`}
+          title={post.data.title}
+          date={post.data.date}
+          description={post.data.description}
+          thumbnail={post.data.thumbnail}
+          alt={post.id}
+        />
       ))
     }
   </div>

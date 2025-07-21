@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  href: string;
+  title?: string;
+  date?: string;
+  description?: {
+    main: string;
+    extra: string[];
+  };
+  thumbnail: {
+    src: string;
+    width: number;
+    height: number;
+    format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif";
+  };
+  alt: string;
+}
+
+const { href, title, date, description, thumbnail, alt } = Astro.props;
+---
+
+<div
+  class="flex flex-col gap-1 md:h-[200px] overflow-hidden tile tile-theme a-button"
+>
+  <a
+    href={href}
+    class="fs-xl-lg font-bold no-underline hover:no-underline border-b-1 hover:border-b-3 text-[var(--cinnamon)] dark:text-[var(--goldenrod)]"
+  >
+    {title}
+  </a>
+  <div class="fs-base-sm italic">Updated: {date}</div>
+  {description && <div class="text-base">{description.main}</div>}
+  <div class="flex flex-col sm:flex-row gap-2 items-center sm:items-start">
+    <Image
+      class="!my-0 w-[144px] sm:w-[192px] object-contain"
+      src={thumbnail}
+      alt={alt}
+      width={192}
+      height={192}
+    />
+    {
+      description && (
+        <div class="flex flex-col fs-base-sm gap-2">
+          {description.extra.map((desc) => (
+            <div>{desc}</div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</div>
