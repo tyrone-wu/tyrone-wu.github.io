@@ -1,0 +1,41 @@
+---
+import Accordion from "@components/widgets/Accordion.astro";
+
+import type { Page } from "./Header.astro";
+
+interface Props {
+  pages: (Page & { pageName: string })[];
+  currentPage: string;
+}
+
+const { pages, currentPage } = Astro.props;
+---
+
+<Accordion
+  buttonClasses="flex border-b-1 hover:border-b-2 hover:text-[var(--la-palma)] hover:dark:text-[var(--atomic-tangerine)]"
+  iconClasses="size-6"
+  contentsClasses="absolute right-0 mt-6 border-l-1 border-r-6 border-b-1 header-theme line-highlight"
+>
+  <div
+    slot="contents"
+    class="flex flex-row gap-2 sm:gap-3 my-3 mx-4 text-right fs-lg-base"
+  >
+    {
+      pages.map((nav, i) => (
+        <>
+          <a
+            href={`/about/${nav.path}`}
+            class="text-nowrap ul-offset"
+            class:list={{
+              "font-bold": nav.pageName === currentPage,
+              "current-highlight": nav.pageName === currentPage,
+            }}
+          >
+            {nav.name}
+          </a>
+          {i !== pages.length - 1 && <span>|</span>}
+        </>
+      ))
+    }
+  </div>
+</Accordion>

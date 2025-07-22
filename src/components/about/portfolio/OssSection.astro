@@ -44,37 +44,39 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
   <div class="mt-2">{oss.description}</div>
 
-  <div>
-    {
-      ["Features", "Bug Fixes"].map(
-        (subheader, i) =>
-          oss.prs[i].length > 0 && (
-            <section>
-              <Accordion>
-                <div class="pl-4" slot="title">
-                  {subheader}
-                </div>
-                <ul class="text-base" slot="contents">
-                  {oss.prs[i].map((pr) => (
-                    <li class="!pb-2">
-                      <div class="flex">
-                        {pr.id_links.map((id_link, i) => (
-                          <>
-                            {i > 0 && ","}
-                            <a href={id_link.link} target="_blank">
-                              {id_link.id}
-                            </a>
-                          </>
-                        ))}
-                      </div>
-                      {pr.description}
-                    </li>
-                  ))}
-                </ul>
-              </Accordion>
-            </section>
-          ),
-      )
-    }
-  </div>
+  {
+    ["Features", "Bug Fixes"].map(
+      (subheader, i) =>
+        oss.prs[i].length > 0 && (
+          <section>
+            <Accordion
+              buttonClasses="w-full flex py-1 border-b-1 hover:underline hover:font-bold"
+              iconClasses="size-7 mr-4 ml-auto"
+              contentsClasses="pl-2 pt-2"
+            >
+              <div class="pl-4" slot="title">
+                {subheader}
+              </div>
+              <ul class="text-base" slot="contents">
+                {oss.prs[i].map((pr) => (
+                  <li class="!pb-2">
+                    <div class="flex">
+                      {pr.id_links.map((id_link, i) => (
+                        <>
+                          {i > 0 && ","}
+                          <a href={id_link.link} target="_blank">
+                            {id_link.id}
+                          </a>
+                        </>
+                      ))}
+                    </div>
+                    {pr.description}
+                  </li>
+                ))}
+              </ul>
+            </Accordion>
+          </section>
+        ),
+    )
+  }
 </section>

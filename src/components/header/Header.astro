@@ -1,5 +1,6 @@
 ---
 import ThemeIcon from "./ThemeIcon.astro";
+import AboutDropdown from "./AboutDropdown.astro";
 
 interface Props {
   currentPage: string;
@@ -7,15 +8,21 @@ interface Props {
 
 const { currentPage } = Astro.props;
 
-interface Page {
+export interface Page {
   name: string;
-  url: string;
+  path: string;
 }
 
 const navigation: Page[] = [
-  { name: "home", url: "/" },
-  { name: "blog", url: "/blog" },
-  { name: "about", url: "/about" },
+  { name: "home", path: "" },
+  { name: "blog", path: "blog" },
+  { name: "about", path: "about" },
+];
+const aboutPages: (Page & { pageName: string })[] = [
+  { name: "oss", path: "open-source", pageName: "open-source" },
+  { name: "projs", path: "projects-skills", pageName: "projects & skills" },
+  { name: "homelab", path: "homelab", pageName: "homelab" },
+  { name: "aoc", path: "aoc", pageName: "advent of code" },
 ];
 ---
 
@@ -33,12 +40,15 @@ const navigation: Page[] = [
               "font-bold": nav.name === currentPage,
               "current-highlight": nav.name === currentPage,
             }}
-            href={nav.url}
+            href={`/${nav.path}`}
           >
             {nav.name}
           </a>
         ))
       }
+      <div class="relative">
+        <AboutDropdown pages={aboutPages} currentPage={currentPage} />
+      </div>
     </nav>
   </div>
 </div>

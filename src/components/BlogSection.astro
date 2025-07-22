@@ -44,7 +44,7 @@ const { href, title, date, description, thumbnail, alt } = Astro.props;
       description && (
         <div class="flex flex-col fs-base-sm gap-2">
           {description.extra.map((desc) => (
-            <div>{desc}</div>
+            <>{desc}</>
           ))}
         </div>
       )
