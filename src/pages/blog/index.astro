@@ -4,36 +4,52 @@ import { getCollection, getEntry } from "astro:content";
 import "@style";
 import Layout from "@layouts/Layout.astro";
 import BlogSection from "@components/BlogSection.astro";
+import labThumbnail from "@assets/homelab/homecook.png";
+import type { BlogData } from "@components/BlogSection.astro";
 
-const posts = await getCollection("blog");
-const homelabBlog = await getEntry("homelabBlog", "homelab");
 const page = "blog";
+
+const homelabBlog = await (async () => {
+  const blog = await getEntry("homelabBlog", "homelab");
+  if (!blog) throw new Error("where homelab at");
+  return {
+    href: `/${blog.data.slug}`,
+    title: blog.data.title,
+    date: blog.data.date.toLocaleDateString(),
+    description: blog.data.description,
+    thumbnail: labThumbnail,
+    alt: "homecooked-homelab",
+  };
+})();
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/blog/*/thumbnail.png",
+);
+const blogs: BlogData[] = await Promise.all(
+  (await getCollection("blog"))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    .map(async (blog): Promise<BlogData> => {
+      const thumbnail = (
+        await images[`/src/assets/blog/${blog.data.slug}/thumbnail.png`]()
+      ).default;
+      return {
+        href: `/blog/${blog.data.slug}`,
+        title: blog.data.title,
+        date: blog.data.date.toLocaleDateString(),
+        description: blog.data.description,
+        thumbnail: thumbnail,
+        alt: blog.id,
+      };
+    }),
+);
 ---
 
 <Layout page={page}>
   <div class="flex flex-col gap-6">
     <!-- my homelab -->
-    <BlogSection
-      href={`/about/${homelabBlog?.data.slug}`}
-      title={homelabBlog?.data.title}
-      date={homelabBlog?.data.date}
-      description={homelabBlog?.data.description}
-      thumbnail={homelabBlog?.data.thumbnail}
-      alt="homelab"
-    />
+    <BlogSection blog={homelabBlog} />
 
     <!-- rest of my blog stuff -->
-    {
-      posts.map((post) => (
-        <BlogSection
-          href={`/blog/${post.data.slug}`}
-          title={post.data.title}
-          date={post.data.date}
-          description={post.data.description}
-          thumbnail={post.data.thumbnail}
-          alt={post.id}
-        />
-      ))
-    }
+    {blogs.map((blog) => <BlogSection blog={blog} />)}
   </div>
 </Layout>

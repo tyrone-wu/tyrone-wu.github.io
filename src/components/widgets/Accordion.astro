@@ -58,8 +58,11 @@ const { buttonClasses, iconClasses, contentsClasses } = Astro.props;
       if (accordionButton && accordionContent && accordionChevron) {
         accordionButton.addEventListener("click", (event) => {
           if (!accordionMenu.classList.contains("active")) {
-            accordionButton.classList.add("current-highlight");
-            accordionButton.classList.add("border-b-2");
+            accordionButton.classList.add(
+              "current-highlight",
+              "border-b-2",
+              "accordion-theme",
+            );
             accordionMenu.classList.add("active");
             if (accordionTitle) {
               accordionTitle.classList.add("font-bold");
@@ -69,8 +72,11 @@ const { buttonClasses, iconClasses, contentsClasses } = Astro.props;
               accordionContent.scrollHeight + "rem";
             accordionChevron.classList.add("rotate-180");
           } else {
-            accordionButton.classList.remove("current-highlight");
-            accordionButton.classList.remove("border-b-2");
+            accordionButton.classList.remove(
+              "current-highlight",
+              "border-b-2",
+              "accordion-theme",
+            );
             accordionMenu.classList.remove("active");
             if (accordionTitle) {
               accordionTitle.classList.remove("font-bold");

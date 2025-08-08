@@ -1,28 +1,45 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+import ossIcon from "@assets/icons/open-source.svg";
+import projsIcon from "@assets/icons/projects-skills.png";
+import labIcon from "@assets/icons/homelab.png";
+import aocIcon from "@assets/icons/aoc.png";
 
 const pages = [
-  { name: "Open-Source Contributions", href: "open-source" },
-  { name: "Projects & Skills", href: "projects-skills" },
-  { name: "Homelab", href: "homelab" },
-  { name: "Advent of Code", href: "aoc" },
+  {
+    name: "Open-Source Contributions",
+    href: "/about/open-source",
+    icon: ossIcon,
+    size: 60,
+  },
+  {
+    name: "Projects & Skills",
+    href: "/about/projects-skills",
+    icon: projsIcon,
+    size: 60,
+  },
+  { name: "Homelab", href: "/homelab", icon: labIcon, size: 80 },
+  { name: "Advent of Code", href: "/about/aoc", icon: aocIcon, size: 88 },
 ];
 ---
 
-<section>
-  <h1 id="portfolio">Portfolio</h1>
+<section id="portfolio" class="scroll-anchor-offset">
+  <h1>Portfolio</h1>
   <div class="flex flex-col gap-16">
     <div class="flex flex-wrap gap-4">
       {
         pages.map((page) => (
           <a
             class="w-[8.7rem] sm:w-[10.2rem] h-[8rem] flex flex-col justify-center items-center tile tile-theme a-button"
-            href={`/about/${page.href}`}
+            href={page.href}
           >
-            <Icon
-              name={page.href}
-              class="text-[var(--tundora)] dark:text-[var(--swiss-coffee)] flex-shrink-0"
-              size="64"
+            <Image
+              src={page.icon}
+              alt={page.name}
+              class="mt-0 mb-0"
+              width={page.size}
+              height={page.size}
             />
             <div class="text-base">{page.name}</div>
           </a>

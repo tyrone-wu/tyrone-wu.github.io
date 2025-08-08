@@ -1,0 +1,20 @@
+<section id="storage" class="scroll-anchor-offset">
+
+# Storage
+
+My laptop only has a single SSD formatted with `ext4`, and I disabled HA/auto-backups so it doesn't
+wear out the disk too fast.
+All my media is instead manually backed up on my main PC.
+
+On PVE host, I store media for [Kavita](https://github.com/Kareadita/Kavita) and
+[Jellyfin](https://github.com/jellyfin/jellyfin) under `/mnt/media`.
+The LXCs access these files through [bind mount points](https://pve.proxmox.com/wiki/Linux_Container#_bind_mount_points).
+
+However, since the containers are *unprivileged*, they currently can't write those directories
+(which plan to improve in the future).
+For now, I transfer files from my main PC via `scp`.
+
+I've considered using [TrueNAS](https://github.com/truenas) with a mounted flash drive to manage my
+media storage, however, that drive is what I use to install Proxmox and is the only one I have. :/
+
+</section> {/* storage */}

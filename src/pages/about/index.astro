@@ -18,7 +18,7 @@ const headers: HeaderNav[] = [
     subheaders: [
       { title: "Open-Source", href: "/about/open-source" },
       { title: "Projects & Skills", href: "/about/projects-skills" },
-      { title: "Homelab", href: "/about/homelab" },
+      { title: "Homelab", href: "/homelab" },
       { title: "Advent of Code", href: "/about/aoc" },
     ],
   },
@@ -27,7 +27,7 @@ const headers: HeaderNav[] = [
 
 <Layout page={page} headers={headers}>
   <article class="flex flex-col gap-30">
-    <section><Me /></section>
+    <section id="about-me" class="scroll-anchor-offset"><Me /></section>
     <Experience />
     <Portfolio />
   </article>

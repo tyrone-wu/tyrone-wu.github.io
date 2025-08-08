@@ -1,12 +1,11 @@
 ---
 slug: proxmox-on-hyperv
 title: Installing Proxmox VE on Hyper-V
-date: Mar 20, 2024
+date: 2024-03-20
 description:
   main: Guide on installing Proxmox VE on Hyper-V bc why not.
   extra:
     - wrote this a looong while back before I finally made this blog, so it might be outdated
-thumbnail: ../../assets/blog/proxmox-on-hyperv/proxmox-x-hyperv.png
 ---
 
 <!-- # Installing Proxmox VE on Hyper-V -->

@@ -1,0 +1,68 @@
+<section id="final-thoughts" class="scroll-anchor-offset">
+
+# Final Thoughts
+
+I am faaaar from an expert on these sort of things, I'm just doing this for fun and bc I'm
+interested.
+There's a lot of experts and docs online that I constantly refer to make this work which I'll link
+here.
+
+Right now, I'm only using my services locally from my main PC, so this network and storage setup is
+fine for now (although will definitely change once I get my own place and expand my homelab).
+
+<br />
+
+<section id="hyper-v-vs-proxmox" class="scroll-anchor-offset">
+
+## Hyper-V vs Proxmox
+
+Hyper-V and Proxmox both work for my needs.
+I'm not running any usecases that require some optimal setup.
+
+But here's what I like about each:
+
+- #### What I like about Hyper-V
+
+  Hyper-V Manager GUI is cleaner and is more intuitive to use -- especially if you're completely
+  new since it just "works" right of the box.
+
+  Simple things like setting up a virtual switch, checkpoints (snapshot equivalent for Proxmox),
+  manual backups, and recovery are very straightforward.
+
+- #### What I like about Proxmox
+
+  Spinning up ephemeral VMs (at least from what tested) feels much faster on Proxmox compared to
+  Hyper-V.
+
+  LXC containers are extremely convenient for hosting single-purpose services.
+
+  There's a much larger community with more resources/guides/docs online (like
+  [PVE Helper Scripts](https://community-scripts.github.io/ProxmoxVE)) than Hyper-V.
+  I've found that there wasn't much guides or blogs online for Hyper-V. Most of their support
+  appears to come from being enterprise customers.
+
+Final note from what I've researched, a big feature of Proxmox is `ZFS`, which I'm currently not
+using.
+I'm not concerned over data integrity so `ext4` is acceptable (maybe for now).
+
+</section> {/* hyper-v-vs-proxmox */}
+
+<br />
+
+<section id="future-todos" class="scroll-anchor-offset">
+
+## Future Todos
+
+- automate entire setup with Terraform and/or Ansible.
+  all the configuration of the PVE environment and services were done manually.
+  would make migration to a better setup so much easier.
+
+- setup a DNS server on proxmox that my main PC can refer to so that i'm not using the raw IPs.
+
+- add a current battery power status to GUI.
+
+- make my own dashboard.
+
+</section> {/* future-todos */}
+
+</section> {/* final-thoughts */}

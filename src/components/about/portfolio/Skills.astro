@@ -10,29 +10,23 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 ---
 
-<section class="mt-24">
-  <h1 id="skills">Skills</h1>
+<section id="skills" class="mt-24 scroll-anchor-offset">
+  <h1>Skills</h1>
   <div class="grid md:grid-cols-2 gap-8 fs-base-sm">
-    <section>
-      <div id="langs" class="text-lg font-bold border-b-1 mb-4">
-        Programming Languages
-      </div>
+    <section id="langs" class="scroll-anchor-offset">
+      <div class="text-lg font-bold border-b-1 mb-4">Programming Languages</div>
       <div class="flex flex-wrap flex-grow gap-1">
         {langs.map((lang) => <TechIcon tech={lang} />)}
       </div>
     </section>
-    <section class="row-span-2">
-      <div id="tools" class="text-lg font-bold border-b-1 mb-4">
-        Tools/Software
-      </div>
+    <section id="tools" class="row-span-2 scroll-anchor-offset">
+      <div class="text-lg font-bold border-b-1 mb-4">Tools/Software</div>
       <div class="flex flex-wrap gap-1">
         {tools.map((tool) => <TechIcon tech={tool} />)}
       </div>
     </section>
-    <section>
-      <div id="certs" class="text-lg font-bold border-b-1 mb-4">
-        Certifications
-      </div>
+    <section id="certs" class="scroll-anchor-offset">
+      <div class="text-lg font-bold border-b-1 mb-4">Certifications</div>
       <div class="flex flex-wrap gap-1">
         {
           certs.map((cert) => (

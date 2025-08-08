@@ -1,0 +1,265 @@
+import Accordion from "@components/widgets/Accordion.astro";
+
+<section id="pve-and-hyper-v-connectivity" class="scroll-anchor-offset">
+
+<Accordion
+  buttonClasses="w-full flex items-center hover:underline hover:font-bold border-b-1"
+  iconClasses="size-8 ml-auto mr-2"
+  contentsClasses=""
+>
+<h2 slot="title" class="ml-1 mt-2 mb-1 !border-b-0 !no-underline text-left">PVE and Hyper-V Connectivity</h2>
+<span slot="contents">
+
+This was what spurred the new network setup from **0.0.3** to **0.1.0**. By the time this section
+is finished, the network section will already be updated with the new topology.
+
+**Problem:** no connectivity between the PVE host, and Hyper-V VM on `dev-switch`.
+
+How I'll be referencing each host:
+- `local` - the Windows management host or "Windows Root OS" on Hyper-V
+- `pve01` - the Debian/PVE management host, `192.168.1.2/24` on `vmbr0`
+- `dev01` - the Ubuntu VM on Hyper-V, `192.168.0.10/24` on `dev-switch`
+
+<br />
+
+### troubleshooting this
+
+I started with some connectivity sanity checks.
+For Windows, I used `tshark` from [Wireshark](https://www.wireshark.org/docs/man-pages/tshark.html).
+
+Linux commands:
+
+```bash
+# on sender
+$ ping $IP_DST -c 1
+# or
+$ traceroute -I $IP_DST
+
+# on reciever
+$ tcpdump -n -i $INTERFACE [icmp | "not port 22"]
+```
+
+Windows PowerShell commands:
+
+```bash
+# on sender
+$ ping $IP_DST -n 1
+# or
+$ tracert -d $IP_DST
+
+# on reciever
+$ tshark -f icmp -i $INTERFACE -n
+```
+
+Connectivity matrix:
+
+<span class="matrix">
+| src -> dst | 1.1.1.1 |             local             |             pve01             |             dev01             |
+|:----------:|:-------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
+|    local   |    ✅    |               --              |  192.168.1.1 -> 192.168.1.2 ✅ | 192.168.0.1 -> 192.168.0.10 ✅ |
+|    pve01   |    ✅    |  192.168.1.2 -> 192.168.1.1 ✅ |               --              | 192.168.1.2 -> 192.168.0.10 ❌ |
+|    dev01   |    ✅    | 192.168.0.10 -> 192.168.0.1 ✅ | 192.168.0.10 -> 192.168.1.2 ❌ |               --              |
+</span>
+
+I initially assumed `local` could route between the 2 subnets via its interfaces, but that appeared
+incorrect.
+
+<br />
+
+#### tracing Hyper-V -> PVE
+
+Tracing Hyper-V -> PVE gave:
+
+```bash
+$ traceroute -I 192.168.1.2
+traceroute to 192.168.1.2 (192.168.1.2), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.0.1)  0.293 ms  0.263 ms *
+ 2  10.105.30.161 (10.105.30.161)  1.649 ms * *
+ 3  192.168.1.67 (192.168.1.67)  2967.076 ms !H  2967.063 ms !H  2967.058 ms !H
+```
+
+`_gateway` makes sense as `192.168.0.1` is just that.
+Seeing the router's IP `10.105.30.161` in the trace was a  bit of a suprise.
+
+As mentioned earlier, `dev-switch` subnet was configured with [NAT](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network),
+which was why I made the assumption that `local` could route between its interfaces to `dev01` and
+`pve0`.
+
+tbh, I still don't fully understand the internal details of Hyper-V's NAT, but it's clear that
+traffic is instead forwarded to the router (`10.105.30.161`) in search of `192.168.1.2`.
+
+Anyways from here, this is likely where the issue was occuring since the router wouldn't know where
+to forward `192.168.1.2` since it's only on `local`'s LAN.
+
+That being said, `192.168.1.67` was completely unknown to me.
+Even though I already pinpointed my issue, I was still curious where that IP was coming from since
+this was in `pve01`'s subnet (`192.168.1.0/24`).
+Seeing `10.105.30.161` -> `192.168.1.67` implied that the router found a next hop for
+`192.168.1.2`, which was very very suprising.
+
+<br />
+
+#### what is `192.168.1.67`
+
+I looked into `local`, Hyper-V, and PVE (`ip`/`ipconfig`, `arp`, `Get-NetNeighbor`,
+`Get-NetNatSession`, `Get-NetNatExternalAddress`), but nothing came with this IP.
+
+Somehow, `192.168.1.67` was on `local`'s LAN:
+
+```bash
+# on `local`
+$ tracert -d 192.168.1.67
+Tracing route to 192.168.1.67 over a maximum of 30 hops
+  1    <1 ms    <1 ms    <1 ms  192.168.1.67
+Trace complete.
+```
+
+and also reachable from `dev01`:
+
+```bash
+# on `dev01`
+$ traceroute -I 192.168.1.67
+traceroute to 192.168.1.67 (192.168.1.67), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.0.1)  0.265 ms  0.237 ms *
+ 2  192.168.1.67 (192.168.1.67)  1.766 ms * *
+```
+
+It was unreachable from `pve01`, which makes sense since it expects `192.168.1.67` to be somewhere
+local on `vmbr0` (which it's not).
+
+Verified this again by monitoring `local`'s interfaces:
+- `veth-dev` - Hyper-V virtual adapter connected to `dev-switch`
+- `Wi-Fi 2` - physical wifi adapter
+- `Ethernet 3` - physical ethernet interface connected to `pve01`
+
+```bash
+# ` for multi-line powershell
+$ tshark -f icmp -i "veth-dev" -i "Wi-Fi 2" -i "Ethernet 3" -n `
+    -T fields -E header=y `
+    -e frame.time_relative -e frame.interface_name `
+    -e ip.src -e ip.dst `
+    -e icmp.type -e icmp.code
+
+# on a separate tab while `tshark` is continuously capturing the interfaces
+$ ping 192.168.1.67 -n 1
+
+# tshark output from ping.
+# windows formats `frame.interface_name` as `\\Device\\NPF_{GUID}`,
+# so i manually mapped it to their readable names
+frame.time_relative   frame.interface_name  ip.src          ip.dst          icmp.type   icmp.code
+Capturing on 3 interfaces
+0.000000000           Wi-Fi 2               10.105.30.122   192.168.1.67    8           0
+0.000995000           Wi-Fi 2               192.168.1.67    10.105.30.122   0           0
+2 packets captured
+```
+
+Huh????
+
+Maybe I'm not experienced enough to recognize what's happening here, but this seemed inconsistent
+with `local`'s `tracert` from earlier.
+It only took one hop from `local` to reach `192.168.1.67` , meaning `192.168.1.67` should be part
+of `local`'s LAN.
+
+So why is it going out the wifi interface? and how was it able to reach the `192.168.1.67` host
+without an additional hop?
+
+From my understanding, even if the router has an entry for `192.168.1.67`, it would still need one
+more hop to get to that host.
+
+<br />
+
+#### finding out `192.168.1.67`
+
+After a lot of researching, trial & error, and being dumb, I decided to type the IP into my
+browser.
+And what do ya know, it took me to the router's stupid web interface... -.-
+
+Wow okay, but how and why?
+
+The router turns out to be a Linksys Smart Wi-Fi, and from what I've gathered in this
+[reddit post](https://www.reddit.com/r/LinksysOfficial/comments/1agekx1/installed_linksys_smart_router_and_it_will_not/),
+it can adjust its local IP if it detects a conflict.
+And according to the [online manual](https://support.linksys.com/kb/article/268-en), the IP
+defaults to `192.168.1.1`, which is currently assigned on `Ethernet 3`'s interface.
+
+Unfortunately, I couldn't find out more on `192.168.1.67` inside the router.
+The settings and configuration from the web UI only confirmed that it's on the `10.x.x.x/24`
+subnet, VLAN & Guest Network disabled, and no Static Routing entries.
+
+Nothing in there indicated that `192.168.1.67` was used anywhere or as an alias, and as
+unsatisfying as it was, my research into this was at a complete dead end.
+
+<br />
+
+### a different kind of problem now
+
+Anyways, the network between `pve01` and `dev01` shouldn't involve the router.
+After some trial & error (and experimenting with [IP Forwarding](https://serverfault.com/questions/929081/how-can-i-enable-packet-forwarding-on-windows)
+which ended up having no effect), it turned out ICS was (partly) the problem.
+
+I honestly could not find anything on how ICS was affecting the routing after hours of researching,
+tracing the network, examining routing table, and homelab discord.
+I also checked that the `192.168.1.67` from earlier was not ICS related. :/
+
+After some connectivity tests with ICS disabled on `Ethernet 3`:
+
+<span class="matrix">
+| src -> dst | 1.1.1.1 |             local             |             pve01             |             dev01             |
+|:----------:|:-------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
+|    local   |    ✅    |               --              |  192.168.1.1 -> 192.168.1.2 ✅ | 192.168.0.1 -> 192.168.0.10 ✅ |
+|    pve01   |    ❌    |  192.168.1.2 -> 192.168.1.1 ✅ |               --              | 192.168.1.2 -> 192.168.0.10 ❌ |
+|    dev01   |    ✅    | 192.168.0.10 -> 192.168.0.1 ✅ | 192.168.0.10 -> 192.168.1.2 ✅ |               --              |
+</span>
+
+Interesting, so I think my assumption with Hyper-V NAT was actually not wrong, since `local` was
+able to route between its interfaces from `dev01` to `pve01`.
+
+However, `pve01` to `dev01` was still not routable, as after re-reading the docs, Hyper-V internal
+switches doesn't allow for inbound connections not on its LAN and Hyper-V NAT is only for outbound
+routing.
+
+ICS was also the only source for `pve01`'s internet accessibility, so this introduced a new
+problem now.
+
+At this point, I basically decided to just redo the stupid network. <br />
+(┛◉Д◉)┛彡┻━┻
+
+<br />
+
+### new network topology
+
+After some experimenting, I finally got a much much simpler network setup that checks all the
+boxes.
+
+Simply put, the new network between Hyper-V and PVE now spans across a single subnet on
+`192.168.0.0/24` with internet connectivity from Hyper-V NAT.
+
+On Hyper-V's side, I created an **external** switch named `lab-sw`, and connected it to
+`Ethernet 3` and the management host.
+This allowed PVE's `vmrb0` to participate in the same LAN as `lab-sw`.
+
+For internet access, I found 2 methods that worked:
+- ICS on `local`'s virtual adapter connected to `lab-sw` switch
+- Hyper-V NAT on the `192.168.0.0/24` subnet
+
+I ended up going with NAT since ICS was a little wonky on restarts.
+
+The most involved process in this entire re-setup was updating the interfaces/gateways & IPs of the
+VMs & LXCs to the new network. no dhcp :c
+
+Final connectivity check:
+
+<span class="matrix">
+| src -> dst | 1.1.1.1 |              local             |              pve01             |              dev01             |
+|:----------:|:-------:|:------------------------------:|:------------------------------:|:------------------------------:|
+|    local   |    ✅    |               --               |  192.168.0.1 -> 192.168.0.2 ✅  | 192.168.0.1 -> 192.168.0.100 ✅ |
+|    pve01   |    ✅    |  192.168.0.2 -> 192.168.0.1 ✅  |               --               | 192.168.0.2 -> 192.168.0.100 ✅ |
+|    dev01   |    ✅    | 192.168.0.100 -> 192.168.0.1 ✅ | 192.168.0.100 -> 192.168.0.2 ✅ |               --               |
+</span>
+
+---
+
+</span> {/* content */}
+</Accordion>
+
+</section> {/* pve-and-hyper-v-connectivity */}

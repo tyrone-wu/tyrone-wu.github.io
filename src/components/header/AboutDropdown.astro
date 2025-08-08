@@ -24,7 +24,7 @@ const { pages, currentPage } = Astro.props;
       pages.map((nav, i) => (
         <>
           <a
-            href={`/about/${nav.path}`}
+            href={nav.href}
             class="text-nowrap ul-offset"
             class:list={{
               "font-bold": nav.pageName === currentPage,

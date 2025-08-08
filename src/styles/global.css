@@ -36,6 +36,7 @@
   /* ----- Light Mode ----- */
   --swiss-coffee: oklch(89.28% 0.0067 28.84);
   --ebb: oklch(93.21% 0.0071 39.46);
+  --ebb-75: oklch(93.21% 0.0071 39.46 / 0.75);
   --fantasy: oklch(97.12% 0.007 39.46);
   --soapstone: oklch(98.79% 0.0045 34.31);
 
@@ -141,6 +142,14 @@
     @apply bg-[var(--fantasy)];
   }
 
+  .accordion-theme {
+    @apply bg-[var(--ebb-75)];
+  }
+
+  .sidenav-theme:hover {
+    @apply bg-[var(--ebb-75)];
+  }
+
   .prose-theme {
     /* Text */
     --tw-prose-headings: var(--cinnamon);
@@ -190,6 +199,14 @@
     }
 
     .icon-theme {
+      @apply bg-[var(--tundora)];
+    }
+
+    .accordion-theme {
+      @apply bg-[var(--shark-darker-75)];
+    }
+
+    .sidenav-theme:hover {
       @apply bg-[var(--tundora)];
     }
 
@@ -261,5 +278,22 @@
   .a-button {
     @apply hover:border-l-4;
     @apply border-[var(--shark-darker-75)] dark:border-[var(--swiss-coffee)];
+  }
+
+  .matrix {
+    table {
+      @apply table-fixed;
+    }
+
+    td,
+    th {
+      @apply border-1 align-middle px-1 wrap-break-word;
+    }
+
+    th,
+    td:first-child {
+      @apply border-2 font-semibold pt-2;
+      @apply text-[var(--cinnamon)] dark:text-[var(--goldenrod)];
+    }
   }
 }

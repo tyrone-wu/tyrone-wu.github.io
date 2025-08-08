@@ -17,19 +17,27 @@ export async function getStaticPaths() {
 const page = "post";
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const thumbnail = (
+  await import.meta
+    .glob<{ default: ImageMetadata }>("/src/assets/blog/*/thumbnail.png")
+    [`/src/assets/blog/${post.data.slug}/thumbnail.png`]()
+).default;
 ---
 
 <Layout page={page} headers={post.data.nav}>
   <article>
     <Image
-      class="!my-0 size-fit"
-      src={post.data.thumbnail}
+      class="!my-0 size-fit h-[90px]"
+      src={thumbnail}
       alt={post.id}
-      width={192}
-      height={192}
+      width={300}
+      height={90}
     />
     <h1 id={post.id}>{post.data.title}</h1>
-    <div class="!my-[-1rem] fs-base-sm italic">Updated: {post.data.date}</div>
+    <div class="!my-[-1rem] fs-base-sm italic">
+      Updated: {post.data.date.toLocaleDateString()}
+    </div>
     <Content />
   </article>
 </Layout>

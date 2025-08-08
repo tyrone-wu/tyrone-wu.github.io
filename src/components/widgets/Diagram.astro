@@ -1,39 +1,62 @@
 ---
-import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
-const versions: string[] = ["0.0.2", "0.0.1"];
+interface DiagramVersion {
+  version: string;
+  diagram: ImageMetadata;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/homelab/diagrams/*.png",
+);
+const versions: DiagramVersion[] = await Promise.all(
+  ["0.1.0", "0.0.3", "0.0.2", "0.0.1"].map(
+    async (version): Promise<DiagramVersion> => {
+      const diagram = (
+        await images[`/src/assets/homelab/diagrams/diagram-v${version}.png`]()
+      ).default;
+      return {
+        version: version,
+        diagram: diagram,
+      };
+    },
+  ),
+);
 ---
 
 <div>
   <span class="font-semibold">Diagram version:</span>
-  <select id="imageDropdown">
+  <select id="diagram-dropdown" class="bg-color">
     {
       versions.map((version, index) => (
-        <option value={version} selected={index === 0}>
-          {version}
+        <option value={index} selected={index === 0}>
+          {version.version}
         </option>
       ))
     }
   </select>
 
-  <Image
-    id="displayImage"
+  <img
+    id="diagram-image"
     class="size-fit"
-    src={`/src/assets/homelab/diagrams/diagram-v${versions[0]}.png`}
+    src={versions[0].diagram.src}
     alt="homelab-diagram"
-    width={1920}
-    height={2600}
+    width={versions[0].diagram.width}
+    height={versions[0].diagram.height}
+    decoding="async"
+    loading="lazy"
   />
 </div>
 
-<script>
-  const dropdown = document.getElementById(
-    "imageDropdown",
-  ) as HTMLSelectElement;
-  const image = document.getElementById("displayImage") as HTMLImageElement;
+<script is:inline define:vars={{ versions }}>
+  const dropdown = document.getElementById("diagram-dropdown");
+  const image = document.getElementById("diagram-image");
 
   dropdown.addEventListener("change", (event) => {
-    const target = event.target as HTMLSelectElement;
-    image.src = `/src/assets/homelab/diagrams/diagram-v${target.value}.png`;
+    const index = parseInt(event.target.value);
+    const diagram = versions[index].diagram;
+    image.src = diagram.src;
+    image.width = diagram.width;
+    image.height = diagram.height;
   });
 </script>

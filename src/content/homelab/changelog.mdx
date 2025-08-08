@@ -1,0 +1,42 @@
+import { Image } from "astro:assets";
+
+import Accordion from "@components/widgets/Accordion.astro";
+
+import homecook from "../../assets/homelab/homecook.png";
+
+<section id="changelog" class="scroll-anchor-offset">
+
+<Accordion
+  buttonClasses="w-full flex items-center hover:underline hover:font-bold border-b-1"
+  iconClasses="size-8 ml-auto mr-2"
+  contentsClasses="border-r-1 line-highlight"
+>
+<h2 slot="title" class="ml-2 mt-2 mb-1 !border-b-0">Changelog</h2>
+<span slot="contents">
+
+<Image
+  class="size-fit mb-0 mt-4"
+  src={homecook}
+  alt="homecook"
+  width={200}
+  height={200}
+/>
+
+I'll be updating as I expand and add more details to my lab.
+
+#### [0.1.0] - 2025-08-03
+- Move ICS guide to separate blog since it's not longer relevent in my lab.
+- Add Issues Encountered section for documenting big struggles. Document Hyper-V & PVE network
+  connectivity to issues section.
+- Update Network and Diagram to reflect new network topology.
+
+#### [0.0.2] - 2025-07-27
+- Add current Hyper-V environment to Diagram and Network section.
+
+#### [0.0.1] - 2025-07-21
+- Initial documentation of current Proxmox lab.
+
+</span>
+</Accordion>
+
+</section> {/* changelog */}

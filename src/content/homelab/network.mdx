@@ -1,0 +1,100 @@
+import Accordion from "@components/widgets/Accordion.astro";
+
+<section id="network" class="scroll-anchor-offset">
+
+# Network
+
+Both PVE and Hyper-V network lie on the `192.168.0.0/24` subnet, which spans across Hyper-V's
+**external** switch `lab-sw` and PVE's bridge `vmbr0`.
+
+The PVE laptop (`enp0s25` interface) and Hyper-V PC (`Ethernet 3` interface) are connected via an
+ethernet cable, with their L2 networks linked to form a single LAN.
+
+<section id="pve-network" class="scroll-anchor-offset">
+
+## PVE Network
+
+The PVE management host and services are connected on `vmbr0`, which is linked to `enp0s25`.
+
+I didn't have a long enough ethernet cable to connect the laptop to the router, so to facilitate a
+"wired" network connection to the router, I had the laptop directly connect to the PC so it can
+share it's wifi adapter.
+
+On the PC host, the `192.168.0.0/24` subnet is configured with Hyper-V [NAT](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network)
+so that anything inside the LAN can access stuff outside the subnet through the Hyper-V management
+host.
+
+To complete the connection to the router, the default gateway on `vmbr0` is set to the Hyper-V
+management host's IP `192.168.0.1`.
+
+I found that ICS configured on `Ethernet 3` also provided internet access, however, ICS was a little wonky on
+reboots so I settled with NAT.
+
+The laptop technically has a physical wifi adapter built in, but setting up WLAN seems to be
+[strongly discouraged](https://pve.proxmox.com/wiki/WLAN).
+
+Since its not connected to the actual router, none of the services get DHCP, meaning I have to
+manually assign and track static IPs for all my services.
+
+</section> {/* pve-network */}
+
+<br />
+
+<section id="hyper-v-network" class="scroll-anchor-offset">
+
+## Hyper-V Network
+
+The Hyper-V management host and VM are connected on an **external** switch called `lab-sw`, which
+is connected to the `Ethernet 3` interface (which is connected to the PVE laptop).
+
+The **external** switch is what allows the PVE network to "physically" connect to the Hyper-V
+network so that the entire network spans across a single L2 LAN.
+
+As mentioned earlier, the `192.168.0.0/24` subnet is configured with [NAT](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network)
+so that the LAN can reach the internet through the Hyper-V management host `192.168.0.1`.
+
+It's a janky setup, but it works ¯\\\_(ツ)\_/¯.
+
+</section> {/* hyper-v-network */}
+
+<br /><br />
+
+<section id="previous-network-setup" class="scroll-anchor-offset">
+
+<Accordion
+  buttonClasses="w-full flex items-center hover:underline hover:font-bold border-b-1"
+  iconClasses="size-6 ml-auto mr-2"
+  contentsClasses="border-r-1 line-highlight"
+>
+<h2 slot="title" class="mt-2 mb-1 !border-b-0 !no-underline">Previous Network Setup</h2>
+<span slot="contents">
+#### 0.0.1 -- 0.0.3
+
+**PVE Network**
+
+The PVE `vmbr0` network is on the `192.168.1.0/24` subnet.
+
+First challenge was internet accessibility for my PVE server.
+
+Since the router is on the opposite side of the building and I didn't have a long enough ethernet
+cable, I ended up having my main PC act as the "router" using windows Internet Connection Sharing
+(ICS).
+
+The physical ethernet interface on my PC is configured with ICS and connected it to my laptop via a
+eth cable. I wrote a small guide on how to do this [here](/blog/router-to-pve-via-windows-ics).
+
+This results in some funny networking, in that internet traffic for my PVE server goes through NAT
+twice -- once on the actual router and again on my main PC (via ICS).
+
+**Hyper-V Network**
+
+Hyper-V `dev-switch` network is on the `192.168.0.0/24` subnet, and is an **internal switch**.
+
+Since it's set as an internal switch, NAT is configured on `dev-switch` for internet access for the
+VMs.
+</span>
+</Accordion>
+
+</section> {/* previous-network-setup */}
+
+</section> {/* network */}

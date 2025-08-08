@@ -25,7 +25,10 @@ const { headers } = Astro.props;
     {
       headers.map((header) => (
         <div class="flex flex-col">
-          <a href={header.href} class="!no-underline hover:!underline">
+          <a
+            href={header.href}
+            class="!no-underline hover:!underline sidenav-theme"
+          >
             > {header.title}
           </a>
           {header.subheaders && (
@@ -34,7 +37,7 @@ const { headers } = Astro.props;
                 <div class="flex flex-col">
                   <a
                     href={subheader.href}
-                    class="!no-underline hover:!underline"
+                    class="!no-underline hover:!underline sidenav-theme"
                   >
                     > {subheader.title}
                   </a>
@@ -43,7 +46,7 @@ const { headers } = Astro.props;
                       subheader.subheaders.map((subsubheader) => (
                         <a
                           href={subsubheader.href}
-                          class="!no-underline hover:!underline"
+                          class="!no-underline hover:!underline sidenav-theme"
                         >
                           > {subsubheader.title}
                         </a>
@@ -58,3 +61,30 @@ const { headers } = Astro.props;
     }
   </nav>
 </div>
+
+<script is:inline type="module">
+  // doesn't work when section is larger than display view:
+  // https://github.com/w3c/IntersectionObserver/issues/124
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        const anchor = document.querySelector(`nav a[href="#${id}"]`);
+        if (!anchor) return;
+
+        if (entry.isIntersecting) {
+          anchor.classList.add("font-bold", "current-highlight");
+        } else {
+          anchor.classList.remove("font-bold", "current-highlight");
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    },
+  );
+
+  document
+    .querySelectorAll("section[id]")
+    .forEach((section) => observer.observe(section));
+</script>

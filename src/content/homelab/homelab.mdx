@@ -1,0 +1,84 @@
+---
+slug: homelab
+title: My Homelab
+date: 2025-08-03
+description:
+  main: "documenting all my homelab, including struggles"
+  extra:
+    - "homecooked homelab"
+---
+
+import { Image } from "astro:assets";
+
+import frontView from "../../assets/homelab/homelab-1.jpg";
+import pcView from "../../assets/homelab/homelab-2.jpg";
+
+import Changelog from "./changelog.mdx";
+import Diagram from "./diagram.mdx";
+import Network from "./network.mdx";
+import Issues from "./issues/issues.mdx";
+import Storage from "./storage.mdx";
+import Power from "./power.mdx"
+import Thoughts from "./thoughts.mdx";
+
+# My Homelab
+
+This is my homecooked homelab. :)
+
+I initially started with WSL2, and later migrated to Hyper-V on my main PC workstation.
+
+Then I installed Proxmox VE on a Lenovo Thinkpad (that my sister got for free from her previous
+workplace) since I wanted to try out Proxmox for fun and also offload some stuff off my PC.
+
+I use my homelab for dev work, storing/reading eBooks, host & preserve 🏳️‍🌈 chinese TV shows (some
+unfortunately banned in China :c), learn networking, and test scripts in sandbox/ephemeral
+environments.
+
+There's a lot I like to document, so I'll try to keep things short.
+
+pics of my crappy homelab 🫠
+
+<div class="flex flex-wrap gap-6">
+  <Image
+    class="border-1 size-fit w-[330px] !m-0"
+    src={frontView}
+    alt="homelab-frontview"
+    width={330}
+    height={330}
+  />
+  <Image
+    class="border-1 size-fit w-[330px] !m-0"
+    src={pcView}
+    alt="homelab-with-pc"
+    width={330}
+    height={330}
+  />
+</div>
+
+<br /><br />
+
+<Changelog />
+
+<br /><br /><br /><br /><br /><br />
+
+<Diagram />
+
+<br /><br /><br /><br /><br /><br />
+
+<Network />
+
+<br /><br /><br /><br /><br /><br />
+
+<Issues />
+
+<br /><br /><br /><br /><br /><br />
+
+<Storage />
+
+<br /><br /><br /><br /><br /><br />
+
+<Power />
+
+<br /><br /><br /><br /><br /><br />
+
+<Thoughts />

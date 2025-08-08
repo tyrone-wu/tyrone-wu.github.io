@@ -10,19 +10,23 @@ const { currentPage } = Astro.props;
 
 export interface Page {
   name: string;
-  path: string;
+  href: string;
 }
 
 const navigation: Page[] = [
-  { name: "home", path: "" },
-  { name: "blog", path: "blog" },
-  { name: "about", path: "about" },
+  { name: "home", href: "/" },
+  { name: "blog", href: "/blog" },
+  { name: "about", href: "/about" },
 ];
 const aboutPages: (Page & { pageName: string })[] = [
-  { name: "oss", path: "open-source", pageName: "open-source" },
-  { name: "projs", path: "projects-skills", pageName: "projects & skills" },
-  { name: "homelab", path: "homelab", pageName: "homelab" },
-  { name: "aoc", path: "aoc", pageName: "advent of code" },
+  { name: "oss", href: "/about/open-source", pageName: "open-source" },
+  {
+    name: "projs",
+    href: "/about/projects-skills",
+    pageName: "projects & skills",
+  },
+  { name: "homelab", href: "/homelab", pageName: "homelab" },
+  { name: "aoc", href: "/about/aoc", pageName: "advent of code" },
 ];
 ---
 
@@ -40,7 +44,7 @@ const aboutPages: (Page & { pageName: string })[] = [
               "font-bold": nav.name === currentPage,
               "current-highlight": nav.name === currentPage,
             }}
-            href={`/${nav.path}`}
+            href={nav.href}
           >
             {nav.name}
           </a>
