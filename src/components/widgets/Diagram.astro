@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+
+const versions: string[] = ["0.0.2", "0.0.1"];
+---
+
+<div>
+  <span class="font-semibold">Diagram version:</span>
+  <select id="imageDropdown">
+    {
+      versions.map((version, index) => (
+        <option value={version} selected={index === 0}>
+          {version}
+        </option>
+      ))
+    }
+  </select>
+
+  <Image
+    id="displayImage"
+    class="size-fit"
+    src={`/src/assets/homelab/diagrams/diagram-v${versions[0]}.png`}
+    alt="homelab-diagram"
+    width={1920}
+    height={2600}
+  />
+</div>
+
+<script>
+  const dropdown = document.getElementById(
+    "imageDropdown",
+  ) as HTMLSelectElement;
+  const image = document.getElementById("displayImage") as HTMLImageElement;
+
+  dropdown.addEventListener("change", (event) => {
+    const target = event.target as HTMLSelectElement;
+    image.src = `/src/assets/homelab/diagrams/diagram-v${target.value}.png`;
+  });
+</script>

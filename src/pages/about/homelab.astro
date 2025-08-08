@@ -8,14 +8,21 @@ import { type HeaderNav } from "@components/widgets/SidebarNav.astro";
 const page = "homelab";
 const headers: HeaderNav[] = [
   { title: "..", href: "/about#portfolio" },
+  { title: "Changelog", href: "#changelog" },
   { title: "Diagram", href: "#diagram" },
   {
     title: "Network",
     href: "#network",
     subheaders: [
-      { title: "Internet Connection", href: "#setting-up-internet-connection" },
-      { title: "How to setup ICS", href: "#how-to-setup-ics" },
-      { title: "Caveats", href: "#caveats-in-my-network-setup" },
+      {
+        title: "PVE Network",
+        href: "#pve-network",
+        subheaders: [
+          { title: "Internet Access.", href: "#internet-accessibility" },
+          { title: "How to setup ICS", href: "#how-to-setup-ics" },
+        ],
+      },
+      { title: "Hyper-V Network", href: "#hyper-v-network" },
     ],
   },
   { title: "Storage", href: "#storage" },

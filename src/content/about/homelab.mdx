@@ -1,24 +1,32 @@
 ---
 slug: homelab
 title: My Homelab
-date: July 21, 2025
+date: July 27, 2025
 description:
   main: "Documenting my homelab journey."
   extra:
     - "As I'm expanding my homelab, I'll keep previous iterations up here so I can look back and see all the dumb stuff I did. 🫠"
-thumbnail: ../../assets/homelab/homelab-diagram.png
+thumbnail: ../../assets/homelab/diagrams/diagram-v0.0.2.png
 ---
 
 import { Image } from "astro:assets";
+import Accordion from "@components/widgets/Accordion.astro";
+import Diagram from "@components/widgets/Diagram.astro";
 
 import homelabFrontview from "../../assets/homelab/homelab-1.jpg";
 import homelabPc from "../../assets/homelab/homelab-2.jpg";
 
+
+
 # My Homelab
 
-I converted a Lenovo Thinkpad (that my sister got for free from her previous workplace) into a Proxmox server.
+I converted a Lenovo Thinkpad (that my sister got for free from her previous workplace) into a
+Proxmox server.
 
-I mainly use it to store/read my eBooks, host & preserve 🏳️‍🌈 chinese TV shows (some unfortunately banned in China :c), learn networking, and test scripts in sandbox/ephemeral environments.
+I mainly use it to store/read my eBooks, host & preserve 🏳️‍🌈 chinese TV shows (some unfortunately
+banned in China :c), learn networking, and test scripts in sandbox/ephemeral environments.
+
+There'a a lot I like to document, so I'll try to keep things short.
 
 pics of my crappy homelab 🫠
 
@@ -39,35 +47,74 @@ pics of my crappy homelab 🫠
   />
 </div>
 
----
 
-## Diagram
 
-![homelab-diagram](../../assets/homelab/homelab-diagram.png)
+<br /><br />
 
-<figcaption>
-  *as i'm expanding my homelab (network switch coming soon), i'll update the
-  diagram but keep previous iterations up here.
-</figcaption>
+<Accordion
+  buttonClasses="w-full flex hover:underline hover:font-bold border-b-1"
+  iconClasses="size-8 ml-auto"
+  contentsClasses=""
+>
+<h2 id="changelog" slot="title" class="!my-0 !border-b-0">Changelog</h2>
+<span slot="contents">
 
-On the top, I have my main Windows PC workstation where I initially started with Hyper-V.
+I'll be updating my journey as I expand and add more details to my homelab.
 
-Then I installed Proxmox VE on a Lenovo Thinkpad since I wanted to try out Proxmox for fun and also offload some work off my main PC.
+#### [0.0.2] - 2025-07-27
+- Add current Hyper-V environment to Diagram and Network section.
 
----
+#### [0.0.1] - 2025-07-21
+- Initial documentation of current Proxmox homelab.
 
-## Network
+</span>
+</Accordion>
 
-### Setting up Internet Connection
 
-First issue I ran into was getting my PVE server to reach the internet.
 
-Since the router is on the opposite side of the building and I didn't have a long enough ethernet cable, I ended up having my main PC act as the "router" by using windows Internet Connection Sharing (ICS).
+<br /><br /><br /><br /><br /><br />
 
-The ethernet interface on my PC has ICS setup, which is then connected by an eth cable to my laptop.
-Internet traffic to my PVE server essentially goes through NAT twice: one on the actual router and one on my main PC through ICS.
+# Diagram
 
-### How to setup ICS
+<Diagram />
+
+I initially started with WSL2, and later migrated to Hyper-V on my main Windows PC workstation.
+
+Then I installed Proxmox VE on a Lenovo Thinkpad since I wanted to try out Proxmox for fun and also
+offload some work off my main PC.
+
+Even though I have DockerDesktop app on the Windows host, I mostly use Docker on the Ubuntu VMs in
+Hyper-V and Proxmox.
+
+
+
+<br /><br /><br /><br /><br /><br />
+
+# Network
+
+## PVE Network
+
+The PVE `vmbr0` network is on the `192.168.1.0/24` subnet.
+
+<br />
+
+### Internet Accessibility
+
+First challenge was internet accessibility for my PVE server.
+
+Since the router is on the opposite side of the building and I didn't have a long enough ethernet
+cable, I ended up having my main PC act as the "router" using windows Internet Connection Sharing
+(ICS).
+
+The physical ethernet interface on my PC is configured with ICS and connected it to my laptop via a
+eth cable.
+
+This results in some funny networking, in that internet traffic for my PVE server goes through NAT
+twice -- once on the actual router and again on my main PC (via ICS).
+
+<br />
+
+#### How to setup ICS
 
 Steps for dummies (like me) on setting up ICS for internet connection for your PVE server.
 
@@ -77,30 +124,38 @@ Steps for dummies (like me) on setting up ICS for internet connection for your P
 
 Here you'll see all your host's networking stuff.
 
-One should be the ethernet interface that'll be connecting to your PVE server, and another should be the wifi adapter on your host that is connected to the actual router.
+One should be the physical ethernet interface that'll be connecting to your PVE server, and another
+should be the wifi adapter on your host that is connected to the actual router.
 
 For me, the eth interface is `Ethernet 3` and the wifi adapter is `Wi-Fi 2`.
 
-2. Right Click on the wifi adapter (`Wi-Fi 2` for me) and open `Properties`, then navigate to the `Sharing` tab.
+2. Right Click on the wifi adapter (`Wi-Fi 2` for me) and open `Properties`, then navigate to the
+`Sharing` tab.
 
 ![wifi-properties](../../assets/homelab/network/wifi-properties.png)
 
 Check the box for `Allow other network users to connect through this computer's Internet connection`.
-Then in the `Home networking connection:` dropdown, select the eth interface that you'll be using (`Ethernet 3` for me).
+Then in the `Home networking connection:` dropdown, select the eth interface that you'll be using
+(`Ethernet 3` for me).
 
-When clicking `OK`, you may get a pop-up about the IP automatically being assigned to the eth interface, ignore that since we'll need to manually assign our own.
+When clicking `OK`, you may get a pop-up about the IP automatically being assigned to the eth
+interface, ignore that since we'll need to manually assign our own.
 
-3. Right Click on the eth interface (`Ethernet 3` for me) and open `Properties`, then under `Networking` tab, select `Internet Protocol Version 4 (TCP/IPv4)`, then select `Properties`.
+3. Right Click on the eth interface (`Ethernet 3` for me) and open `Properties`, then under
+`Networking` tab, select `Internet Protocol Version 4 (TCP/IPv4)`, then select `Properties`.
 
 ![eth-properties](../../assets/homelab/network/eth-properties.png)
 
 4. Select the radio option `Use the following IP address`.
 
-For this, you'll need to input the gateway IP (and mask if it's different) that you configured on your PVE server.
+For this, you'll need to input the gateway IP (and mask if it's different) that you configured on
+your PVE server.
 
 ![eth-ip](../../assets/homelab/network/eth-ip.png)
 
-For me, it's `192.168.1.1`, which can be found in `/etc/network/interfaces`:
+For me, it's `192.168.1.1`. I modified mine to be the first address on the subnet.
+
+This can be found in `/etc/network/interfaces`:
 
 ```bash
 root@pve01:~# cat /etc/network/interfaces
@@ -118,73 +173,127 @@ Click OK for the rest, now it is done! \\o/
 
 You can give a `ping` test to check if you can reach the PVE server locally.
 
-### Caveats in my network setup
+<br />
 
-Since it's not connected to my actual router, the services don't get DHCP, meaning I have to manually set a static IP for every one of them (which i track in a notepad :P).
+#### Caveats in this network setup
+
+Since it's not connected to an actual router, the services don't get DHCP, meaning I have to
+manually assign static IPs for every one of them (which i track in a notepad :P).
+
+This can be a pain for some services, like TrueNAS >.>
 
 export const url =
   "https://www.reddit.com/r/truenas/comments/ugavqe/ok_whose_bright_idea_was_to_label_ip_addresses";
 
-This can be a pain for some services, like TrueNAS >.> <a class="wrap-break-word" href={url}>{url}</a>
+<blockquote class="wrap-break-word">
+Ok, whose bright idea was to label IP Addresses "Aliases" in the setting?
+<a href={url}>{url}</a>
+</blockquote>
 
-It's a janky setup, but it works ¯\\\_(ツ)\_/¯. The laptop technically has a wifi adapter built in, but setting up WLAN seems to be [strongly discouraged](https://pve.proxmox.com/wiki/WLAN).
+It's a janky setup, but it works ¯\\\_(ツ)\_/¯. The laptop technically has a physical wifi adapter
+built in, but setting up WLAN seems to be
+[strongly discouraged](https://pve.proxmox.com/wiki/WLAN).
 
----
 
-## Storage
 
-My laptop only has a single SSD which is using `ext4`, and since I didn't want to wear out the disk too fast, I disabled HA/auto-backups.
+<br />
+
+## Hyper-V Network
+
+Hyper-V `dev-switch` network is an **internal switch**, and is on the `192.168.0.0/24` subnet.
+
+export const nat_url =
+  "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network";
+
+Since it's set as an internal switch, <a href={nat_url}>NAT</a> is configured on `dev-switch` for
+internet access for the VMs.
+
+
+
+<br /><br /><br /><br /><br /><br />
+
+# Storage
+
+My laptop only has a single SSD formatted with `ext4`, and I disabled HA/auto-backups so it doesn't
+wear out the disk too fast.
 All my media is instead manually backed up on my main PC.
 
-As you can see in the diagram, I'm hosting [Kavita](https://github.com/Kareadita/Kavita) and [Jellyfin](https://github.com/jellyfin/jellyfin), in which all the media is stored under `/mnt/media` on the PVE host.
-The LXC containers have access to the directories through [Bind Mount Points](https://pve.proxmox.com/wiki/Linux_Container#_bind_mount_points).
+On PVE host, I store media for [Kavita](https://github.com/Kareadita/Kavita) and
+[Jellyfin](https://github.com/jellyfin/jellyfin) under `/mnt/media`.
+The LXCs access these files through [bind mount points](https://pve.proxmox.com/wiki/Linux_Container#_bind_mount_points).
 
-Since the containers are unprivileged, they cannot write to the directory (which I'm working to change in the future or at least have better setup), so I transfer data with `scp` from my main PC.
+However, since the containers are *unprivileged*, they currently can't write those directories
+(which plan to improve in the future).
+For now, I transfer files from my main PC via `scp`.
 
-I've thought about using [TrueNAS](https://github.com/truenas) along with a mounted flash drive to manage my media storage, however, this flash drive is what I use to install Proxmox and is the only one I have. :/
+I've considered using [TrueNAS](https://github.com/truenas) with a mounted flash drive to manage my
+media storage, however, that drive is what I use to install Proxmox and is the only one I have. :/
 
----
 
-## Power
 
-Since this is a laptop, it's definitely not good to have it constantly charged 24/7, so I really only charge it when the battery low or when it's off.
+<br /><br /><br /><br /><br /><br />
 
-I'm also not running any services that require 100% uptime, so I shutdown the server like I do with my main PC.
+# Power
 
-I've also configured the laptop to turn off screen after 30 sec of inactivity, and to keep running when lid is closed.
-Guide I used: https://www.youtube.com/watch?v=_u8qTN3cCnQ&t=1588s
+My laptop doesn't stay plugged in 24/7 to protect battery health. I typically charge it when
+battery is low or when it's powered off.
 
----
+Since I'm not running any services that require 100% uptime, so I shutdown the it down like I do
+with my main PC.
 
-## Final Thoughts
+I've also configured the laptop to turn off screen after a few sec of inactivity, and also continue
+running when lid is closed. [guide](https://www.youtube.com/watch?v=_u8qTN3cCnQ&t=1588s)
 
-Note I am faaaar from an expert on these sort of things, and I'm mainly just doing this for fun and to learn something cool.
-There's a lot of experts and documentation online that I constantly refer to make this work, and will try to link every one that I use.
 
-Since I'm only using my services locally from my main PC, this entire setup is good enough for now (although will definitely change once I get my own place and expand my homelab).
 
-### Hyper-V vs Proxmox
+<br /><br /><br /><br /><br /><br />
 
-Overall, Hyper-V and Proxmox both work and I'm not running any insane usecases that require some optimal setup.
+# Final Thoughts
+
+I am faaaar from an expert on these sort of things, I'm just doing this for fun and to learn
+something cool.
+There's a lot of experts and docs online that I constantly refer to make this work which I'll link
+here.
+
+Right now, I'm only using my services locally from my main PC, so this network and storage setup is
+fine for now (although will definitely change once I get my own place and expand my homelab).
+
+<br />
+
+## Hyper-V vs Proxmox
+
+Hyper-V and Proxmox both work for my needs.
+I'm not running any usecases that require some optimal setup.
+
+But here's what I like about each:
 
 - #### What I like about Hyper-V
 
-  Hyper-V Manager GUI is cleaner and is more intuitive to use if you're completely new.
+  Hyper-V Manager GUI is cleaner and is more intuitive to use -- especially if you're completely
+  new since it just "works" right of the box.
 
-  Simple things like setting up a virtual switch, checkpoints (snapshot equivalent for Proxmox), and manual backups are very easy to do.
+  Simple things like setting up a virtual switch, checkpoints (snapshot equivalent for Proxmox),
+  manual backups, and recovery are very straightforward.
 
 - #### What I like about Proxmox
 
-  I've found that spinning up ephemeral VMs is definitely a lot faster on Proxmox than on Hyper-V.
+  Spinning up ephemeral VMs (at least from what tested) feels much faster on Proxmox compared to
+  Hyper-V.
 
-  LXC containers are also extremely convenient for hosting single services.
+  LXC containers are extremely convenient for hosting single-purpose services.
 
-  There's also a lot more community resources/guides/docs online (like [PVE Helper Scripts](https://community-scripts.github.io/ProxmoxVE)) than Hyper-V.
-  I found that there wasn't much guides or blogs from the community for Hyper-V. Most of their support appears to come from being enterprise customers.
+  There's a much larger community with more resources/guides/docs online (like
+  [PVE Helper Scripts](https://community-scripts.github.io/ProxmoxVE)) than Hyper-V.
+  I've found that there wasn't much guides or blogs online for Hyper-V. Most of their support
+  appears to come from being enterprise customers.
 
-From what I've researched, a big feature of Proxmox over Hyper-V is ZFS, which I'm currently not using. I'm not concerned with data integrity so I'm using `ext4`.
+Final note from what I've researched, a big feature of Proxmox is `ZFS`, which I'm currently not
+using.
+I'm not concerned over data integrity so `ext4` is acceptable (maybe for now).
 
-### Future Todos
+<br />
+
+## Future Todos
 
 - automate entire setup with Terraform and/or Ansible.
   all the configuration of the PVE environment and services were done manually.
@@ -192,10 +301,6 @@ From what I've researched, a big feature of Proxmox over Hyper-V is ZFS, which I
 
 - setup a DNS server on proxmox that my main PC can refer to so that i'm not using the raw IPs.
 
-- setup pfSense/OPNsense and Pi-hole. will need to reconfigure the networking.
-
 - add a current battery power status to GUI.
 
-- create a dashboard.
-
-- enable periodic backups once i get a proper server and/or some NAS machine.
+- make my own dashboard.

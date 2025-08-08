@@ -230,18 +230,21 @@
 
   .prose {
     h1 {
-      @apply sm:text-2xl text-xl;
-      @apply border-b-3;
+      @apply sm:text-2xl text-xl border-b-3;
       scroll-margin-top: 8rem;
     }
 
     h2 {
-      @apply sm:text-xl text-lg;
+      @apply sm:text-xl text-lg border-b-1;
       scroll-margin-top: 8rem;
     }
 
     h3 {
-      @apply text-lg;
+      @apply text-lg underline;
+      scroll-margin-top: 8rem;
+    }
+
+    h4 {
       scroll-margin-top: 8rem;
     }
   }
