@@ -6,21 +6,21 @@ interface DiagramVersion {
   diagram: ImageMetadata;
 }
 
+const versions = ["0.2.0", "0.1.0", "0.0.3", "0.0.2", "0.0.1"];
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/homelab/diagrams/*.png",
 );
-const versions: DiagramVersion[] = await Promise.all(
-  ["0.1.0", "0.0.3", "0.0.2", "0.0.1"].map(
-    async (version): Promise<DiagramVersion> => {
-      const diagram = (
-        await images[`/src/assets/homelab/diagrams/diagram-v${version}.png`]()
-      ).default;
-      return {
-        version: version,
-        diagram: diagram,
-      };
-    },
-  ),
+const diagrams: DiagramVersion[] = await Promise.all(
+  versions.map(async (version): Promise<DiagramVersion> => {
+    const diagram = (
+      await images[`/src/assets/homelab/diagrams/diagram-v${version}.png`]()
+    ).default;
+    return {
+      version: version,
+      diagram: diagram,
+    };
+  }),
 );
 ---
 
@@ -28,7 +28,7 @@ const versions: DiagramVersion[] = await Promise.all(
   <span class="font-semibold">Diagram version:</span>
   <select id="diagram-dropdown" class="bg-color">
     {
-      versions.map((version, index) => (
+      diagrams.map((version, index) => (
         <option value={index} selected={index === 0}>
           {version.version}
         </option>
@@ -39,22 +39,22 @@ const versions: DiagramVersion[] = await Promise.all(
   <img
     id="diagram-image"
     class="size-fit"
-    src={versions[0].diagram.src}
+    src={diagrams[0].diagram.src}
     alt="homelab-diagram"
-    width={versions[0].diagram.width}
-    height={versions[0].diagram.height}
+    width={diagrams[0].diagram.width}
+    height={diagrams[0].diagram.height}
     decoding="async"
     loading="lazy"
   />
 </div>
 
-<script is:inline define:vars={{ versions }}>
+<script is:inline define:vars={{ diagrams }}>
   const dropdown = document.getElementById("diagram-dropdown");
   const image = document.getElementById("diagram-image");
 
   dropdown.addEventListener("change", (event) => {
     const index = parseInt(event.target.value);
-    const diagram = versions[index].diagram;
+    const diagram = diagrams[index].diagram;
     image.src = diagram.src;
     image.width = diagram.width;
     image.height = diagram.height;

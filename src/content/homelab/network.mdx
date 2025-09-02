@@ -1,42 +1,60 @@
-import Accordion from "@components/widgets/Accordion.astro";
-
 <section id="network" class="scroll-anchor-offset">
 
 # Network
 
-Both PVE and Hyper-V network lie on the `192.168.0.0/24` subnet, which spans across Hyper-V's
-**external** switch `lab-sw` and PVE's bridge `vmbr0`.
+My homelab network contains 3 subnets managed by OPNsense:
+- `192.168.10.0/30`: OPNsense `WAN`
+- `192.168.11.0/24`: Hyper-V `LAN`
+- `192.168.12.0/24`: PVE `LAN`
 
-The PVE laptop (`enp0s25` interface) and Hyper-V PC (`Ethernet 3` interface) are connected via an
-ethernet cable, with their L2 networks linked to form a single LAN.
+<section id="opnsense-setup" class="scroll-anchor-offset">
 
-<section id="pve-network" class="scroll-anchor-offset">
+## OPNsense Setup
 
-## PVE Network
+#### Connection to router
 
-The PVE management host and services are connected on `vmbr0`, which is linked to `enp0s25`.
+Typically the OPNsense `WAN` interface connects to the router via wire.
+But since my PC only has 1 NIC, which is already connected to my laptop (plus I've only got 1 eth
+cable), I had to get creative.
 
-I didn't have a long enough ethernet cable to connect the laptop to the router, so to facilitate a
-"wired" network connection to the router, I had the laptop directly connect to the PC so it can
-share it's wifi adapter.
+I did a similar trick from my previous setup to facilitate a "wired" connection to the router.
+I created an **internal** switch (`opn-wan`) that connects only the OPNsense VM and my Win mgmt
+host, so OPNsense can "connect" to the router through the mgmt host.
 
-On the PC host, the `192.168.0.0/24` subnet is configured with Hyper-V [NAT](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network)
-so that anything inside the LAN can access stuff outside the subnet through the Hyper-V management
-host.
+![opnsense_network](../../assets/homelab/network/opn_net-v0.2.0.png)
 
-To complete the connection to the router, the default gateway on `vmbr0` is set to the Hyper-V
-management host's IP `192.168.0.1`.
+Hyper-V NAT is applied on the `opn-wan` subnet (`192.168.10.0/30`), so that anything outside
+OPNsense's network gets forwarded from OPNsense's gateway -> Win mgmt host -> mgmt host's wifi
+interface -> router.
 
-I found that ICS configured on `Ethernet 3` also provided internet access, however, ICS was a little wonky on
-reboots so I settled with NAT.
+I also found that ICS configured on any of the Win mgmt host's interfaces gave access to the wifi
+adapter, but it was a bit flaky on reboots.
+I sometimes had to manually re-configure ICS again on start up.
 
-The laptop technically has a physical wifi adapter built in, but setting up WLAN seems to be
-[strongly discouraged](https://pve.proxmox.com/wiki/WLAN).
+#### DHCP & DNS
 
-Since its not connected to the actual router, none of the services get DHCP, meaning I have to
-manually assign and track static IPs for all my services.
+I'm using `Dnsmasq` for DHCP and `Unbound DNS` for DNS.
 
-</section> {/* pve-network */}
+I've setup DHCP reservations for some hosts (like PVE) so they get static IPs, and more
+importantly, have their hostnames automatically registered in DNS.
+
+I'm able to resolve all the local hostnames in my lab network -- just not on my Win mgmt host. :c
+
+As it turns out, [Windows only switches DNS servers if the primary is unresponsive](https://www.reddit.com/r/sysadmin/comments/11tm4t0/host_doesnt_use_secondary_dns_but_direct_nslookup).
+A responses like "cannot find" or "no such host" are technically valid responses, so Windows does
+does not try the secondary DNS.
+
+I tried pointing my Win mgmt host to OPNsense as its primary, thinking OPNsense would just
+forward queries to the router, but that backfired.
+It ended up looping from Win host -> OPNsense -> Win host -> OPNsense -> ..., due to the caveat I
+mentioned earlier.
+
+Final note, bc my Win host was getting DHCP from both the router and OPNsense, I ended up with 2
+default gateways.
+I had to manually lower the metric on the wifi adapter so Windows would prioritize the router's
+gateway instead of OPNsense (otherwise it would fallback to the same looping issue).
+
+</section> {/* opnsense-setup */}
 
 <br />
 
@@ -44,57 +62,59 @@ manually assign and track static IPs for all my services.
 
 ## Hyper-V Network
 
-The Hyper-V management host and VM are connected on an **external** switch called `lab-sw`, which
-is connected to the `Ethernet 3` interface (which is connected to the PVE laptop).
+The Hyper-V network is on an **internal** switch called `hv-lan`, which is managed by OPNsense on
+`hn1`.
 
-The **external** switch is what allows the PVE network to "physically" connect to the Hyper-V
-network so that the entire network spans across a single L2 LAN.
+By default, OPNsense's firewall blocks inbound on the `WAN` interface, which is fine.
+I instead access all my services on Hyper-V from `hv-lan`.
 
-As mentioned earlier, the `192.168.0.0/24` subnet is configured with [NAT](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network)
-so that the LAN can reach the internet through the Hyper-V management host `192.168.0.1`.
+![opnsense_network](../../assets/homelab/network/hv_net-v0.2.0.png)
 
-It's a janky setup, but it works ¯\\\_(ツ)\_/¯.
+#### Container apps
+
+Similar to how LXCs on Proxmox have their own IP that's visible on the L2 network, I wanted my
+container apps on Hyper-V to have their own IP.
+
+A Debian VM with docker + macvlan worked great, but I also wanted OPNsense to be aware of these
+containers for auto hostname registration and avoid IP conflicts with docker's own assignments.
+
+I first found this [docker network driver](https://github.com/devplayer0/docker-net-dhcp) that
+seemed promising for my usecase? but it hasn't been updated in a long time.
+Then I found podman supported DHCP leasing with macvlan via [netavark](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/building_running_and_managing_containers/assembly_setting-container-network-modes_building-running-and-managing-containers#running-the-dhcp-plugin-for-netavark-using-systemd_assembly_setting-container-network-modes),
+so I moved to podman.
+
+Unfortunately, macvlan (in both docker & podman) doesn't support port mapping, so I can't expose
+web services to port 80 for convenient access.
+Also containers on macvlan can't reach the host, which is why I have [Glances](https://github.com/nicolargo/glances)
+as another container on the same macvlan network.
+
+I still keep docker for testing/trying out apps that I may want to keep.
+If I decide to keep them, I host them on podman.
 
 </section> {/* hyper-v-network */}
 
-<br /><br />
+<br />
 
-<section id="previous-network-setup" class="scroll-anchor-offset">
+<section id="pve-network" class="scroll-anchor-offset">
 
-<Accordion
-  buttonClasses="w-full flex items-center hover:underline hover:font-bold border-b-1"
-  iconClasses="size-6 ml-auto mr-2"
-  contentsClasses="border-r-1 line-highlight"
->
-<h2 slot="title" class="mt-2 mb-1 !border-b-0 !no-underline">Previous Network Setup</h2>
-<span slot="contents">
-#### 0.0.1 -- 0.0.3
+## PVE Network
 
-**PVE Network**
+The PVE network is on `vmbr0`, which is connected to a Hyper-V **external** switch called `pve-lan`
+which is managed by OPNsense on `hn2`.
 
-The PVE `vmbr0` network is on the `192.168.1.0/24` subnet.
+The **external** switch lets my PC's physical interface `Ethernet 3` to participate in Hyper-V's
+virtual network, which is connected via eth cable to my PVE laptop.
 
-First challenge was internet accessibility for my PVE server.
+![pve_network](../../assets/homelab/network/pve_net-v0.2.0.png)
 
-Since the router is on the opposite side of the building and I didn't have a long enough ethernet
-cable, I ended up having my main PC act as the "router" using windows Internet Connection Sharing
-(ICS).
+Even though I can access the PVE web UI from my Win mgmt host from the `hv-lan` network, this only
+works if my Win host's gateway is set to OPNsense, which breaks access to the router bc of the
+looping issue I mentioned earlier.
 
-The physical ethernet interface on my PC is configured with ICS and connected it to my laptop via a
-eth cable. I wrote a small guide on how to do this [here](/blog/router-to-pve-via-windows-ics).
+So I instead connect my Win host to `pve-lan` to access all my PVE stuff.
 
-This results in some funny networking, in that internet traffic for my PVE server goes through NAT
-twice -- once on the actual router and again on my main PC (via ICS).
-
-**Hyper-V Network**
-
-Hyper-V `dev-switch` network is on the `192.168.0.0/24` subnet, and is an **internal switch**.
-
-Since it's set as an internal switch, NAT is configured on `dev-switch` for internet access for the
-VMs.
-</span>
-</Accordion>
-
-</section> {/* previous-network-setup */}
+</section> {/* pve-network */}
 
 </section> {/* network */}
+
+overall it's a janky setup, but it works for me ¯\\\_(ツ)\_/¯
